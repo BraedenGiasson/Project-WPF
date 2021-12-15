@@ -396,6 +396,17 @@ namespace WPF_Project.Models
                 length = value;
             }
         }
+
+        public string FuelType
+        {
+            get { return fuelType; }
+            set
+            {
+                if (!(value.ToString() == "Gasoline" || value.ToString() == "Electric"))
+                    throw new ArgumentException("FuelType has to be either 'Gasoline' or 'Electric'", "FuelType");
+                fuelType = value;
+            }
+        }
     }
 
 
