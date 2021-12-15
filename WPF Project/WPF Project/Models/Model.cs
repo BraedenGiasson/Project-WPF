@@ -442,7 +442,6 @@ namespace WPF_Project.Models
         Fourty,
         FourtyFive,
         FiftyFive,
-        VTen,
         Electric
     }
 
