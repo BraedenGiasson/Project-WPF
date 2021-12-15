@@ -23,7 +23,7 @@ namespace WPF_Project
     {
         private List<Model> models = new List<Model>();
         
-        List<BodyType> bodyTypes = new List<BodyType>();
+        List<Body> bodyTypes = new List<Body>();
 
         public MainWindow()
         {
