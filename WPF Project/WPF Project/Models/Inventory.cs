@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WPF_Project.Interfaces;
 
 namespace WPF_Project.Models
 {
-    internal static class Inventory
+    internal class Inventory : IQuantity
     {
         //private static bool saved;    not sure if needed
         //private static string savedLocation;      also not sure if needed
@@ -41,6 +42,21 @@ namespace WPF_Project.Models
                 inventoryList[freeSpot] = model;
                 return true;
             }
+        }
+
+        public int AvailableQuantity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int MinimumQuanitity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool QuantityIsValid()
+        {
+            throw new NotImplementedException();
         }
     }
 }
