@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Text.RegularExpressions;
+using WPF_Project.Interfaces;
 
 namespace WPF_Project.Models
 {
-    public class Model
+    public class Model  //: IQuantity
     {
         private string name;
         private string colour;
