@@ -19,8 +19,11 @@ namespace WPF_Project.Models
         private double length;
         private string fuelType;
         private string bodyType;
-        
-        
+
+        private static readonly string makeName = "Audi";
+        private static readonly string makeCountry = "Germany";
+        private static readonly string makeCategory = "luxury";
+
 
         public Model(string name, string colour)        //SAME ENGINE AND ONE BODYTYPE
         {
@@ -418,6 +421,21 @@ namespace WPF_Project.Models
                     throw new ArgumentException("Body type does not exist", "BodyType");
                 bodyType = value;
             }
+        }
+
+        public static string MakeName
+        {
+            get { return makeName; }
+        }
+
+        public static string MakeCountry
+        {
+            get { return makeCountry; }
+        }
+
+        public static string MakeCategory
+        {
+            get { return makeCategory; }
         }
     }
 
