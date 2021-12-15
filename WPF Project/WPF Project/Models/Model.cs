@@ -41,7 +41,7 @@ namespace WPF_Project.Models
                 Height = 1415;
                 Width = 1796;
                 Length = 4458;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(BodyType.Limousine);
             }
             else if (a7.IsMatch(name))
@@ -54,7 +54,7 @@ namespace WPF_Project.Models
                 Height = 1422;
                 Width = 1908;
                 Length = 4969;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(BodyType.Limousine);
             }
             else if (a8.IsMatch(name))
@@ -67,7 +67,7 @@ namespace WPF_Project.Models
                 Height = 1485;
                 Width = 1945;
                 Length = 5302;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(BodyType.Limousine);
             }
             else if (Q5.IsMatch(name))
@@ -80,7 +80,7 @@ namespace WPF_Project.Models
                 Height = 1657;
                 Width = 1898;
                 Length = 4663;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(BodyType.SUV);
             }
             else if (Q8.IsMatch(name))
@@ -93,7 +93,7 @@ namespace WPF_Project.Models
                 Height = 1749;
                 Width = 1995;
                 Length = 5005;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(BodyType.SUV);
             }
             else if (etronGT.IsMatch(name))
@@ -106,7 +106,7 @@ namespace WPF_Project.Models
                 Height = 1413;
                 Width = 1964;
                 Length = 4989;
-                this.fuelType = Convert.ToString(FuelType.Electric);
+                this.fuelType = "Electric";
                 this.bodyType = Convert.ToString(BodyType.Limousine);
             }
         }
@@ -132,7 +132,7 @@ namespace WPF_Project.Models
                 Height = 1493;
                 Width = 1847;
                 Length = 4762;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(bodyType);
             }
             else if (a5.IsMatch(name))
@@ -148,7 +148,7 @@ namespace WPF_Project.Models
                 Height = 1387;
                 Width = 1844;
                 Length = 4755;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(bodyType);
             }
             else if (R8.IsMatch(name))
@@ -161,7 +161,7 @@ namespace WPF_Project.Models
                 Height = 1252;
                 Width = 1940;
                 Length = 4429;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(bodyType);
             }
             else if (TT.IsMatch(name))
@@ -174,7 +174,7 @@ namespace WPF_Project.Models
                 Height = 1252;
                 Width = 1940;
                 Length = 4429;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(bodyType);
             }
             else if (etron.IsMatch(name))
@@ -187,7 +187,7 @@ namespace WPF_Project.Models
                 Height = 1632;
                 Width = 1935;
                 Length = 4901;
-                this.fuelType = Convert.ToString(FuelType.Electric);
+                this.fuelType = "Electric";
                 this.bodyType = Convert.ToString(bodyType);
             }
             else if (Q4etron.IsMatch(name))
@@ -200,7 +200,7 @@ namespace WPF_Project.Models
                 Height = 1643;
                 Width = 1865;
                 Length = 4588;
-                this.fuelType = Convert.ToString(FuelType.Electric);
+                this.fuelType = "Electric";
                 this.bodyType = Convert.ToString(bodyType);
             }
         }
@@ -231,7 +231,7 @@ namespace WPF_Project.Models
                 Height = 1640;
                 Width = 1849;
                 Length = 4485;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(BodyType.SUV);
             }
             else if (Q7.IsMatch(name))
@@ -252,7 +252,7 @@ namespace WPF_Project.Models
                 Height = 1781;
                 Width = 1970;
                 Length = 5067;
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(BodyType.SUV);
             }
         }
@@ -291,7 +291,7 @@ namespace WPF_Project.Models
                     Width = 1902;
                     Length = 4951;
                 }
-                this.fuelType = Convert.ToString(FuelType.Gasoline);
+                this.fuelType = "Gasoline";
                 this.bodyType = Convert.ToString(bodyType);
             }
         }
