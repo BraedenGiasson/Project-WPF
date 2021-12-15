@@ -22,11 +22,16 @@ namespace WPF_Project
     public partial class MainWindow : Window
     {
         private List<Model> models = new List<Model>();
+        
         List<BodyType> bodyTypes = new List<BodyType>();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            models.Add(new Model("A3", "red"));
+            models.Add(new Model("A7", "blue"));
+            models.Add(new Model("Q5", "white"));
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -47,7 +52,8 @@ namespace WPF_Project
 
         private void btnShowAll_Click(object sender, RoutedEventArgs e)
         {
-
+            ModelWindow modelWindow = new ModelWindow(models);
+            modelWindow.Show();
         }
 
         private void btnShoppingList_Click(object sender, RoutedEventArgs e)

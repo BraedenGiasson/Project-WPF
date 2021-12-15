@@ -13,7 +13,9 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Model Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Colour" Binding="{Binding Colour}"/>
-                <DataGridTextColumn Header="# of Seats" Binding="{Binding Seats}"/>
+                <DataGridTextColumn Header="Horsepower" Binding="{Binding Horsepower}"/>
+                <DataGridTextColumn Header="Torque" Binding="{Binding Torque}"/>
+                <DataGridTextColumn Header="# of Seats" Binding="{Binding NumberOfSeats}"/>
                 <DataGridTextColumn Header="Height" Binding="{Binding Height}"/>
                 <DataGridTextColumn Header="Width" Binding="{Binding Width}" />
                 <DataGridTextColumn Header="Length" Binding="{Binding Length}"/>
