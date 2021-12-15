@@ -398,14 +398,7 @@ namespace WPF_Project.Models
         }
     }
 
-    /// <summary>
-    /// Enum options for the car Fuel Type
-    /// </summary>
-    public enum FuelType
-    {
-        Gasoline,
-        Electric
-    };
+
 
     /// <summary>
     /// Enum options for the car Body Type
