@@ -442,8 +442,7 @@ namespace WPF_Project.Models
     {
         Fourty,
         FourtyFive,
-        FiftyFive,
-        Electric
+        FiftyFive
     }
 
 
