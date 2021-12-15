@@ -41,8 +41,8 @@ namespace WPF_Project.Models
                 Height = 1415;
                 Width = 1796;
                 Length = 4458;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(BodyType.Limousine);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(Models.Body.Limousine);
             }
             else if (a7.IsMatch(name))
             {
@@ -54,8 +54,8 @@ namespace WPF_Project.Models
                 Height = 1422;
                 Width = 1908;
                 Length = 4969;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(BodyType.Limousine);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(Models.Body.Limousine);
             }
             else if (a8.IsMatch(name))
             {
@@ -67,8 +67,8 @@ namespace WPF_Project.Models
                 Height = 1485;
                 Width = 1945;
                 Length = 5302;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(BodyType.Limousine);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(Models.Body.Limousine);
             }
             else if (Q5.IsMatch(name))
             {
@@ -80,8 +80,8 @@ namespace WPF_Project.Models
                 Height = 1657;
                 Width = 1898;
                 Length = 4663;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(BodyType.SUV);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(Models.Body.SUV);
             }
             else if (Q8.IsMatch(name))
             {
@@ -93,8 +93,8 @@ namespace WPF_Project.Models
                 Height = 1749;
                 Width = 1995;
                 Length = 5005;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(BodyType.SUV);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(Models.Body.SUV);
             }
             else if (etronGT.IsMatch(name))
             {
@@ -106,14 +106,14 @@ namespace WPF_Project.Models
                 Height = 1413;
                 Width = 1964;
                 Length = 4989;
-                this.fuelType = "Electric";
-                this.bodyType = Convert.ToString(BodyType.Limousine);
+                FuelType = "Electric";
+                BodyType = Convert.ToString(Models.Body.Limousine);
             }
         }
 
 
 
-        public Model(string name, string colour, BodyType bodyType)     //SAME ENGINE DIFFERENT BODY TYPE
+        public Model(string name, string colour, Body bodyType)     //SAME ENGINE DIFFERENT BODY TYPE
         {
             Regex a4 = new Regex("A4", RegexOptions.IgnoreCase);
             Regex a5 = new Regex("A5", RegexOptions.IgnoreCase);
@@ -132,8 +132,8 @@ namespace WPF_Project.Models
                 Height = 1493;
                 Width = 1847;
                 Length = 4762;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(bodyType);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(bodyType);
             }
             else if (a5.IsMatch(name))
             {
@@ -141,15 +141,15 @@ namespace WPF_Project.Models
                 Colour = colour;
                 Horsepower = 261;
                 Torque = 273;
-                if (bodyType == BodyType.Convertible || bodyType == BodyType.Coupe)
+                if (bodyType == Models.Body.Convertible || bodyType == Models.Body.Coupe)
                     NumberOfSeats = 4;
                 else
                     NumberOfSeats = 5;
                 Height = 1387;
                 Width = 1844;
                 Length = 4755;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(bodyType);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(bodyType);
             }
             else if (R8.IsMatch(name))
             {
@@ -161,8 +161,8 @@ namespace WPF_Project.Models
                 Height = 1252;
                 Width = 1940;
                 Length = 4429;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(bodyType);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(bodyType);
             }
             else if (TT.IsMatch(name))
             {
@@ -174,8 +174,8 @@ namespace WPF_Project.Models
                 Height = 1252;
                 Width = 1940;
                 Length = 4429;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(bodyType);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(bodyType);
             }
             else if (etron.IsMatch(name))
             {
@@ -187,8 +187,8 @@ namespace WPF_Project.Models
                 Height = 1632;
                 Width = 1935;
                 Length = 4901;
-                this.fuelType = "Electric";
-                this.bodyType = Convert.ToString(bodyType);
+                FuelType = "Electric";
+                BodyType = Convert.ToString(bodyType);
             }
             else if (Q4etron.IsMatch(name))
             {
@@ -200,8 +200,8 @@ namespace WPF_Project.Models
                 Height = 1643;
                 Width = 1865;
                 Length = 4588;
-                this.fuelType = "Electric";
-                this.bodyType = Convert.ToString(bodyType);
+                FuelType = "Electric";
+                BodyType = Convert.ToString(bodyType);
             }
         }
 
@@ -231,8 +231,8 @@ namespace WPF_Project.Models
                 Height = 1640;
                 Width = 1849;
                 Length = 4485;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(BodyType.SUV);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(Models.Body.SUV);
             }
             else if (Q7.IsMatch(name))
             {
@@ -252,15 +252,15 @@ namespace WPF_Project.Models
                 Height = 1781;
                 Width = 1970;
                 Length = 5067;
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(BodyType.SUV);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(Models.Body.SUV);
             }
         }
 
 
 
 
-        public Model(string name, string colour, Engine engineOption, BodyType bodyType)        //DIFFERENT ENGINE AND DIFFERENT BODY TYPE
+        public Model(string name, string colour, Engine engineOption, Body bodyType)        //DIFFERENT ENGINE AND DIFFERENT BODY TYPE
         {
             Regex a6 = new Regex("A6", RegexOptions.IgnoreCase);
             
@@ -279,20 +279,20 @@ namespace WPF_Project.Models
                     Torque = 369;
                 }
                 NumberOfSeats = 5;
-                if (bodyType == BodyType.Limousine)
+                if (bodyType == Models.Body.Limousine)
                 {
                     Height = 1457;
                     Width = 1886;
                     Length = 4939;
                 }
-                else if (bodyType == BodyType.Wagon)
+                else if (bodyType == Models.Body.Wagon)
                 {
                     Height = 1497;
                     Width = 1902;
                     Length = 4951;
                 }
-                this.fuelType = "Gasoline";
-                this.bodyType = Convert.ToString(bodyType);
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(bodyType);
             }
         }
 
@@ -407,6 +407,17 @@ namespace WPF_Project.Models
                 fuelType = value;
             }
         }
+
+        public string BodyType
+        {
+            get { return bodyType; }
+            set
+            {
+                if (!(value == Convert.ToString(Models.Body.Convertible) || value == Convert.ToString(Models.Body.Coupe) || value == Convert.ToString(Models.Body.Limousine) || value == Convert.ToString(Models.Body.SUV) || value == Convert.ToString(Models.Body.Wagon)))
+                    throw new ArgumentException("Body type does not exist", "BodyType");
+                bodyType = value;
+            }
+        }
     }
 
 
@@ -414,7 +425,7 @@ namespace WPF_Project.Models
     /// <summary>
     /// Enum options for the car Body Type
     /// </summary>
-    public enum BodyType
+    public enum Body
     {
         Convertible,
         SUV,
