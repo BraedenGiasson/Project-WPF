@@ -31,7 +31,7 @@ namespace WPF_Project.Models
         /// <summary>
         /// Method gets the index of the first available parking spot that can be filled with a car
         /// </summary>
-        /// <returns> An integer of the index, -1 if not available parking spot is available </returns>
+        /// <returns> An integer of the index, or -1 if no parking spot is available </returns>
         public static int GetFirstAvailableParkingSpot()
         {
             for (int i = 0; i < inventoryList.Count; i++)
