@@ -7,7 +7,7 @@ using WPF_Project.Interfaces;
 
 namespace WPF_Project.Models
 {
-    public class Model  : IQuantity
+    public class Model : IQuantity
     {
         private string name;
         private string colour;
@@ -223,7 +223,7 @@ namespace WPF_Project.Models
         }
 
 
-        Model(string name, string colour, Engine engineOption)      //DIFFERENT ENGINE BUT ONE BODY TYPE
+        public Model(string name, string colour, Engine engineOption)      //DIFFERENT ENGINE BUT ONE BODY TYPE
         {
 
             Regex Q3 = new Regex("Q3", RegexOptions.IgnoreCase);

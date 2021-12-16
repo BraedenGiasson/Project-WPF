@@ -24,6 +24,7 @@ namespace WPF_Project
         // Saving For Adding Window
         private bool changedData = false;
         List<string> modelNames;
+        int currentConstructorValue;
 
         public AddingWindow()
         {
@@ -61,6 +62,9 @@ namespace WPF_Project
 
             txtBodyType4.Visibility = Visibility.Hidden;
             cmbBodyType4.Visibility = Visibility.Hidden;
+
+            // Setting constructor value
+            currentConstructorValue = 0;
         }
         /// <summary>
         /// When an option in the dropdown of model names is changed, preform behavior
@@ -94,6 +98,28 @@ namespace WPF_Project
 
         private void btnAddCar_Click(object sender, RoutedEventArgs e)
         {
+            if ( currentConstructorValue == 1 )
+            {
+                Model model = new Model(cmbModelNames.Text, cmbColours.Text);
+                MessageBox.Show("1");
+            }
+            else if (currentConstructorValue == 2)
+            {
+                Model model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem);
+                MessageBox.Show("2");
+            }
+            else if(currentConstructorValue == 3)
+            {
+                Model model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem);
+                MessageBox.Show("3");
+            }
+            else if (currentConstructorValue == 4)
+            {
+                Model model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem);
+                MessageBox.Show("4");
+            }
+
+
 
         }
 
@@ -120,6 +146,8 @@ namespace WPF_Project
         /// </summary>
         private void Constructor1()
         {
+            currentConstructorValue = 1;
+
             ShowColour();
             HideEngine();
             HideBodyType();
@@ -129,6 +157,8 @@ namespace WPF_Project
         /// </summary>
         private void Constructor2()
         {
+            currentConstructorValue = 2;
+
             ShowColour();
             HideEngine();
             HideBodyType();
@@ -139,6 +169,8 @@ namespace WPF_Project
         /// </summary>
         private void Constructor3()
         {
+            currentConstructorValue = 3;
+
             ShowColour();
             ShowEngine();
             HideBodyType();
@@ -148,6 +180,8 @@ namespace WPF_Project
         /// </summary>
         private void Constructor4()
         {
+            currentConstructorValue = 4;
+
             ShowColour();
             HideBodyType();
             ShowEngine();
