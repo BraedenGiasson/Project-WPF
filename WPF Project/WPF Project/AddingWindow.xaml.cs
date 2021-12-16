@@ -23,6 +23,7 @@ namespace WPF_Project
     {
         // Saving For Adding Window
         private bool changedData = false;
+        List<string> modelNames;
 
         public AddingWindow()
         {
@@ -30,8 +31,8 @@ namespace WPF_Project
                             .Cast<Body>()
                             .ToList();
 
-            List<string> modelNames = new List<string>() 
-                { "A3", "A4", "A5", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "R8", "TT", "e-tron", "e-tron GT", "Q4 e-tron" };
+            modelNames = new List<string>() 
+                { "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "R8", "TT", "e-tron", "e-tron GT", "Q4 e-tron" };
 
             InitializeComponent();
 
@@ -39,6 +40,26 @@ namespace WPF_Project
             cmbBodyType.ItemsSource = bodyTypes;
             cmbModelNames.ItemsSource = modelNames;
             //txtColour.Visibility = Visibility.Hidden;
+        }
+        
+        private void cmbModelNames_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string model = cmbModelNames.SelectedValue as string;
+
+            // If the selection changed is anything for the 1st constructor
+            if ( model == modelNames[0] || model == modelNames[4] || model == modelNames[5] 
+                || model == modelNames[7] || model == modelNames[9] || model == modelNames[13])
+                MessageBox.Show("Constructor 1 (2 parameters)");
+            // If the selection changed is anything for the 2nd constructor
+            else if ( model == modelNames[1] || model == modelNames[2] || model == modelNames[10] || model == modelNames[11] 
+                || model == modelNames[12] || model == modelNames[14] )
+                MessageBox.Show("Constructor 2 (3 parameters - Body Type)");
+            // If the selection changed is anything for the 3rd constructor
+            else if ( model == modelNames[6] || model == modelNames[8] )
+                MessageBox.Show("Constructor 3 (3 parameters - Engine)");
+            // If the selection changed is anything for the 4th constructor
+            else if (model == modelNames[3] )
+                MessageBox.Show("Constructor 4 (4 parameters)");
         }
 
         private void btnAddCar_Click(object sender, RoutedEventArgs e)
@@ -62,7 +83,7 @@ namespace WPF_Project
                 if (result == MessageBoxResult.Yes)
                     this.Close();
             }
-            
+
         }
     }
 }

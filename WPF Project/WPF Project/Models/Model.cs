@@ -24,7 +24,7 @@ namespace WPF_Project.Models
         private static readonly string makeCountry = "Germany";
         private static readonly string makeCategory = "luxury";
 
-        private List<Regex> listForConstructorWith2Arguments;
+        private List<Regex> listForConstructorWith2Arguments; // delete maybe
 
         public Model(string name, string colour)        //SAME ENGINE AND ONE BODYTYPE
         {
