@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace WPF_Project
 {
     /// <summary>
-    /// Interaction logic for ShoppingList.xaml
+    /// Interaction logic for DeleteWindow.xaml
     /// </summary>
-    public partial class ShoppingList : Window
+    public partial class DeleteWindow : Window
     {
-        public ShoppingList()
+        public DeleteWindow()
         {
             InitializeComponent();
         }

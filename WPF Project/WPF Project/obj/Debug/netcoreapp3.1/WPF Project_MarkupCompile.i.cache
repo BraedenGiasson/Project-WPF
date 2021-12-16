@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\App.xaml
-41280921968
+5-1683543734
 
-13-962426534
+14-1759059531
 192-1533232326
-AddingWindow.xaml;MainWindow.xaml;ModelWindow.xaml;ShoppingList.xaml;
+AddingWindow.xaml;DeleteWindow.xaml;MainWindow.xaml;ModelWindow.xaml;ShoppingListWindow.xaml;
 
-False
+True
 
