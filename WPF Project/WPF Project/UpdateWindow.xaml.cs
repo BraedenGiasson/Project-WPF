@@ -80,7 +80,7 @@ namespace WPF_Project
             List<string> colours = new List<string>();
             for (int i = 0; i < Inventory.InventoryList.Count; i++)
             {
-                if (Inventory.InventoryList[i].Colour != "" )
+                if (Inventory.InventoryList[i].Colour != "" && !colours.Contains(Inventory.InventoryList[i].Colour))
                     colours.Add(Inventory.InventoryList[i].Colour);
             }
             return colours;
