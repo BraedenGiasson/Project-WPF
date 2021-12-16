@@ -5,7 +5,7 @@ using WPF_Project.Interfaces;
 
 namespace WPF_Project.Models
 {
-    internal class Inventory
+    internal class Inventory : IQuantity
     {
 
         private static List<Model> inventoryList;
@@ -42,5 +42,19 @@ namespace WPF_Project.Models
             }
         }
 
+        public int AvailableQuantity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int MinimumQuanitity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool QuantityIsValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
