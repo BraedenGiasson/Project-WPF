@@ -141,7 +141,7 @@ namespace WPF_Project {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WPF Project;V1.0.0.0;component/updatewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WPF Project;component/updatewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\UpdateWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

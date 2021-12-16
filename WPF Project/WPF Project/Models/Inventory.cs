@@ -93,8 +93,6 @@ namespace WPF_Project.Models
 
             //if (inventoryList.Contains(model))
                // model.ModelQuantity++;
-
-            inventoryList.Add(model);
             
             
             if(inventoryList.Count < inventoryList.Capacity)
