@@ -18,7 +18,7 @@ namespace WPF_Project.Models
 
         public static int GetAvailableParkingSpots()
         {
-            return inventoryList.Count;
+            return inventoryList.Capacity - inventoryList.Count;
         }
 
         public static int GetFirstAvailableParkingSpot()
@@ -31,7 +31,7 @@ namespace WPF_Project.Models
             return -1;
         }
 
-        public static bool SetParkingSpot(Model model, int freeSpot)
+        /*public static bool SetParkingSpot(Model model, int freeSpot)
         {
             if (freeSpot < 0)
                 return false;
@@ -42,22 +42,39 @@ namespace WPF_Project.Models
             }
         }
 
-        public bool AddItem(Model model)
+        public static bool FreeParkingSpot(Model model)
         {
-            inventoryList.Add(model);
-            if (inventoryList.Contains(model))
+            for (int i = 0;i < inventoryList.Capacity; i++)
             {
-                if(SetParkingSpot(model, GetFirstAvailableParkingSpot()))
+                if (inventoryList[i] == model)
+                {
+                    inventoryList.RemoveAt(i);
                     return true;
+                }
+            }
+            return false;
+        }*/
+
+        public void AddItem(Model model)
+        {
+            int freeSpot =  GetFirstAvailableParkingSpot();
+
+            if (freeSpot < 0)
+            {
+                throw new ArgumentOutOfRangeException("Cannot add car because the parking lot is full", "AddItem");
             }
                 
-            return false;
+            inventoryList[freeSpot] = model;
         }
 
-        /*public bool RemoveItem(Model model)
+        public void RemoveItem(Model model)
         {
-
-        }*/
+            for (int i = 0;i < inventoryList.Capacity; i++)
+            {
+                if (inventoryList[i] == model)
+                    inventoryList.RemoveAt(i);
+            }
+        }
 
         public int AvailableQuantity()
         {

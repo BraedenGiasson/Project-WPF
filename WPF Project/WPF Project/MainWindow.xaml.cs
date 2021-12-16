@@ -67,6 +67,7 @@ namespace WPF_Project
 
         }
 
+
         /// <summary>
         /// Saving all the data at the right location
         /// </summary>
@@ -97,8 +98,8 @@ namespace WPF_Project
                 try
                 {
                     StringBuilder modelsCSV = new StringBuilder();
-                    foreach (Model visitor in models)
-                        //modelsCSV.AppendLine(visitor.CSVData);
+                    foreach (Model model in models)
+                        //modelsCSV.AppendLine(model.CSVData);
 
                     File.WriteAllText(saveLocation, modelsCSV.ToString()); // writing all the text to the file (at the right location)
                     saved = true;
