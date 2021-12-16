@@ -5,7 +5,7 @@ using WPF_Project.Interfaces;
 
 namespace WPF_Project.Models
 {
-    internal class Inventory : IQuantity
+    public class Inventory : IQuantity
     {
 
         private static List<Model> inventoryList;
