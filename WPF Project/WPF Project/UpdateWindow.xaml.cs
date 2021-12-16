@@ -75,6 +75,16 @@ namespace WPF_Project
             }
             return names;
         }
+        private List<string> GetColourFromModel() // add validation to avoid duplicates
+        {
+            List<string> colours = new List<string>();
+            for (int i = 0; i < Inventory.InventoryList.Count; i++)
+            {
+                if (Inventory.InventoryList[i].Colour != "" )
+                    colours.Add(Inventory.InventoryList[i].Colour);
+            }
+            return colours;
+        }
 
         private void cmbModelNames_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -82,6 +92,22 @@ namespace WPF_Project
             string model = cmbModelNames.SelectedValue as string;
 
             ShowColour();
+            cmbColours.ItemsSource = GetColourFromModel();
+        }
+        private void cmbColours_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string colour = cmbColours.SelectedValue as string;
+
+            MessageBox.Show(GetModelInfoFromNameAndColour(), "Hi", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+        private string GetModelInfoFromNameAndColour()
+        {
+            string model = cmbModelNames.SelectedValue as string;
+            string colour = cmbColours.SelectedValue as string;
+
+            int index = Inventory.InventoryList.FindIndex(x => x.Name == model && x.Colour == colour);
+            //txtTheText.Text = Inventory.InventoryList[index].ToString();
+            return txtTheText.Text = Inventory.InventoryList[index].EngineOption.ToString();
         }
         /// <summary>
         /// Showing the color text and dropdown
