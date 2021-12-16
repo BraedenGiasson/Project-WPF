@@ -93,6 +93,8 @@ namespace WPF_Project.Models
             }
         }
 
+
+
         public int AvailableQuantity()
         {
             throw new NotImplementedException();
