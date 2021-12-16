@@ -30,19 +30,16 @@ namespace WPF_Project
         private string saveLocation = string.Empty;
         private bool saved = false;
 
+        Inventory inventory = new Inventory();
+
         public MainWindow()
         {
             InitializeComponent();
-
-            models.Add(new Model("Q5", "white"));
-            models.Add(new Model("A3", "red"));
-            models.Add(new Model("A7", "blue"));
-            
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddingWindow addingWindow = new AddingWindow();
+            AddingWindow addingWindow = new AddingWindow(ref models);
             addingWindow.Show();
         }
 
@@ -58,8 +55,8 @@ namespace WPF_Project
 
         private void btnShowAll_Click(object sender, RoutedEventArgs e)
         {
-            ModelWindow modelWindow = new ModelWindow(models);
-            modelWindow.Show();
+            ModelWindow modelWindow = new ModelWindow(inventory);
+            modelWindow.Show(); // throwing error because initally null
         }
 
         private void btnShoppingList_Click(object sender, RoutedEventArgs e)

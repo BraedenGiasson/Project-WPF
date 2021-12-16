@@ -11,8 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Project.Interfaces;
 using WPF_Project.Models;
-
 
 namespace WPF_Project
 {
@@ -25,9 +25,10 @@ namespace WPF_Project
         private bool changedData = false;
         List<string> modelNames;
         int currentConstructorValue;
-
-        public AddingWindow()
+        
+        public AddingWindow(ref List<Model> models)
         {
+            
             List<Body> bodyTypes = Enum.GetValues(typeof(Body))
                             .Cast<Body>()
                             .ToList();
@@ -42,7 +43,7 @@ namespace WPF_Project
                 { "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "R8", "TT", "e-tron", "e-tron GT", "Q4 e-tron" };
 
             InitializeComponent();
-
+            
             // Binding all input fields
             cmbBodyType4.ItemsSource = bodyTypes;
             cmbBodyType2.ItemsSource = bodyTypes;
@@ -65,6 +66,8 @@ namespace WPF_Project
 
             // Setting constructor value
             currentConstructorValue = 0;
+            
+            //models.Add(new Model("R8", "blue")); // works but all values are 0
         }
         /// <summary>
         /// When an option in the dropdown of model names is changed, preform behavior
@@ -84,8 +87,11 @@ namespace WPF_Project
             // If the selection changed is anything for the 2nd constructor
             else if (model == modelNames[1] || model == modelNames[2] || model == modelNames[10] || model == modelNames[11]
                 || model == modelNames[12] || model == modelNames[14])
+            {
                 //MessageBox.Show("Constructor 2 (3 parameters - Body Type)");
                 Constructor2();
+                BodyTypeOptions(cmbBodyType2, new Body[] { Body.Limousine, Body.Wagon });
+            }
             // If the selection changed is anything for the 3rd constructor
             else if (model == modelNames[6] || model == modelNames[8])
             {
@@ -93,7 +99,7 @@ namespace WPF_Project
                 Constructor3();
 
                 // If the model name is "Q3", send specific engine options
-                if(model == modelNames[6])
+                if (model == modelNames[6])
                     EngineOptions(new Engine[] { Engine.Fourty, Engine.FourtyFive });
                 // If the model name is "Q7", send specific engine options
                 else if (model == modelNames[8])
@@ -154,8 +160,13 @@ namespace WPF_Project
                 {
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem);
                     MessageBox.Show("Cons 4");
+                    
                 }
             }
+            Inventory inventory = sender as Inventory;
+            inventory.AddItem(model);
+            //MainWindow mw = new MainWindow();
+            //mw.AddToModels(ref model);
         }
         private bool ValidatingInputFields()
         {

@@ -18,12 +18,12 @@ namespace WPF_Project
     /// </summary>
     public partial class ModelWindow : Window
     {
-        public ModelWindow(List<Model> models)
+        public ModelWindow(Inventory inventory)
         {
             InitializeComponent();
 
             // Binding
-            dgModels.ItemsSource = models;
+            dgModels.ItemsSource = inventory.Models;
 
             //Button button = new Button()
             //{

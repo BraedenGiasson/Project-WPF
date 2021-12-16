@@ -5,15 +5,23 @@ using WPF_Project.Interfaces;
 
 namespace WPF_Project.Models
 {
-    internal class Inventory : IQuantity
+    public class Inventory : IQuantity
     {
-
         private static List<Model> inventoryList;
-        private static readonly int maxInventory = 100;
+        private static readonly int maxInventory = 3;
 
-        static Inventory()
+        public Inventory()
         {
-            inventoryList = new List<Model>(maxInventory);
+            inventoryList = new List<Model>( new Model[maxInventory] );
+            //inventoryList.Capacity = maxInventory;
+
+            inventoryList[0] = new Model("A3", "Black");
+            inventoryList[1] = new Model("R8", "Blue");
+            inventoryList[2] = new Model("A4", "Red");
+        }
+        public static List<Model> Models
+        {
+            get { return inventoryList; }
         }
 
         public static int GetAvailableParkingSpots()
@@ -29,6 +37,15 @@ namespace WPF_Project.Models
                     return i;
             }
             return -1;
+        }
+        public void GetAllActualCars()
+        {
+            List<Model> availableList = new List<Model>();
+            foreach (Model model in inventoryList)
+            {
+                if (model != null)
+                    availableList.Add(model);
+            }
         }
 
         /*public static bool SetParkingSpot(Model model, int freeSpot)

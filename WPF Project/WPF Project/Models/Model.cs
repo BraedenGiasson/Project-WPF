@@ -137,12 +137,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 //BodyType = Convert.ToString(bodyType);
                 // *** Ask Justus if these are the only options available ***
-                if (bodyType == Body.Limousine)
-                    BodyType = Convert.ToString(bodyType);
-                else if (bodyType == Body.Wagon)
-                    BodyType = Convert.ToString(bodyType);
-                else
-                    throw new ArgumentException($"Error: That option is invalid for model name of type {Name}");
+                BodyType = Convert.ToString(bodyType);
             }
             else if (a5.IsMatch(name))
             {
