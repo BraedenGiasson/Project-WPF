@@ -60,6 +60,7 @@ namespace WPF_Project
 
         private void btnShowAll_Click(object sender, RoutedEventArgs e)
         {
+            //if(!)
             ModelWindow modelWindow = new ModelWindow();
             
             // If model list has cars, show all cars

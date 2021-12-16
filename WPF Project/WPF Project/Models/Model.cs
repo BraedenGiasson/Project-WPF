@@ -19,7 +19,12 @@ namespace WPF_Project.Models
         private double length;
         private string fuelType;
         private string bodyType;
+<<<<<<< HEAD
+        private int modelQuantity = 0;
+        //private string engineOption;                          MIGHT HAVE TO BE IMPLEMENTED LATER!!!
+=======
         private string engineOption;                          
+>>>>>>> 850ecb03c0f2fec06ac075accf776d08292c2f12
 
         private static readonly string makeName = "Audi";
         private static readonly string makeCountry = "Germany";
@@ -435,6 +440,17 @@ namespace WPF_Project.Models
                 bodyType = value;
             }
         }
+
+
+        public int ModelQuantity
+        {
+            get { return modelQuantity; }
+            set
+            {
+                modelQuantity = value;
+            }
+        }
+
         //ALSO IMPLEMEMENT LATER
         public string EngineOption
         {
@@ -489,6 +505,41 @@ namespace WPF_Project.Models
             }
         }*/
 
+        public static Model FromCSV(string csvLine)
+        {
+            string[] allData = csvLine.Split(',');
+            try
+            {
+                if (allData.Length == 2)
+                {
+                    Model model = new Model(allData[0], allData[1]);
+                    return model;
+                }
+                else if (allData.Length == 3 && (allData[2] == Convert.ToString(Body.Convertible) || allData[2] == Convert.ToString(Body.Coupe) || allData[2] == Convert.ToString(Body.Limousine) || allData[2] == Convert.ToString(Body.SUV) || allData[2] == Convert.ToString(Body.Wagon)))
+                {
+                    Model model = new Model(allData[0], allData[1], (Body)Enum.Parse(typeof(Body), allData[2], true));
+                    return model;
+                }
+                else if (allData.Length == 3 && (allData[2] == Convert.ToString(Engine.FiftyFive) || allData[2] == Convert.ToString(Engine.Fourty) || allData[2] == Convert.ToString(Engine.FourtyFive) || allData[2] == Convert.ToString(Engine.V10) || allData[2] == Convert.ToString(Engine.Electric)))
+                {
+                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true));
+                    return model;
+                }
+                else if (allData.Length == 4 && (allData[2] == Convert.ToString(Engine.FiftyFive) || allData[2] == Convert.ToString(Engine.Fourty) || allData[2] == Convert.ToString(Engine.FourtyFive) || allData[2] == Convert.ToString(Engine.V10) || allData[2] == Convert.ToString(Engine.Electric)) && (allData[2] == Convert.ToString(Body.Convertible)) || allData[2] == Convert.ToString(Body.Coupe) || allData[2] == Convert.ToString(Body.Limousine) || allData[2] == Convert.ToString(Body.SUV) || allData[2] == Convert.ToString(Body.Wagon))
+                {
+                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true), (Body)Enum.Parse(typeof(Body), allData[2], true));
+                    return model;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("All Data Property value not valid " + ex.Message);
+            }
+
+        }
+
+
         public int AvailableQuantity()
         {
             throw new NotImplementedException();
@@ -527,8 +578,13 @@ namespace WPF_Project.Models
         Fourty,
         FourtyFive,
         FiftyFive,
+<<<<<<< HEAD
+        V10,
+        Electric
+=======
         Electric,
         V10
+>>>>>>> 850ecb03c0f2fec06ac075accf776d08292c2f12
     }
 
 
