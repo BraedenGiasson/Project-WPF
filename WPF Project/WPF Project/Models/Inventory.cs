@@ -43,7 +43,7 @@ namespace WPF_Project.Models
             }
             return -1;
         }
-        public void GetAllActualCars()
+        public static List<Model> GetAllActualCars()
         {
             List<Model> availableList = new List<Model>();
             foreach (Model model in inventoryList)
@@ -51,6 +51,7 @@ namespace WPF_Project.Models
                 if (model != null)
                     availableList.Add(model);
             }
+            return availableList;
         }
 
         /*public static bool SetParkingSpot(Model model, int freeSpot)

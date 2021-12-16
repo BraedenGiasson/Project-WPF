@@ -28,7 +28,6 @@ namespace WPF_Project
 
         public AddingWindow(ref List<Model> models)
         {
-            
             List<Body> bodyTypes = Enum.GetValues(typeof(Body))
                             .Cast<Body>()
                             .ToList();

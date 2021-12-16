@@ -5,8 +5,79 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
-        Title="UpdateWindow" Height="450" Width="800">
+        Title="UpdateWindow" Height="450" Width="450"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="Height">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="155"/>
+            <ColumnDefinition Width="70"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <!-- Text saying "Update a car" -->
+        <TextBlock Text="Update a Car" Grid.Column="1" HorizontalAlignment="Left"
+                   Grid.Row="1" Grid.ColumnSpan="4" FontSize="30" FontWeight="Bold" Margin="43,0,0,0"/>
+
+        <!-- Name -->
+        <TextBlock x:Name="txtCarName" Text="Choose a name" Grid.Row="3" Grid.Column="1" 
+                   HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,5,5"
+                   VerticalAlignment="Center"/>
+        <ComboBox x:Name="cmbModelNames" Margin="0,0,0,5" HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"
+                  Width="150" SelectionChanged="cmbModelNames_SelectionChanged"/>
+
+        <!-- Colour -->
+        <TextBlock x:Name="txtColour" Text="Colour" FontWeight="Bold" Margin="0,0,5,5"
+                   Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"/>
+        <ComboBox x:Name="cmbColours" Width="150" VerticalAlignment="Center" Margin="0,0,0,5" 
+                 Grid.Row="4" Height="25" Grid.Column="2"/>
+
+        <!-- Engine -->
+        <TextBlock x:Name="txtEngine" Text="Engine" Grid.Row="5" Grid.Column="1" 
+                   HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,5,5"
+                   VerticalAlignment="Center"/>
+        <ComboBox x:Name="cmbEngine" Margin="0,0,0,5" HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"
+                  Width="150"/>
+
+        <!-- Body Type (constructor 2) -->
+        <TextBlock x:Name="txtBodyType2" Text="Body Type" Grid.Row="5" Grid.Column="1" 
+                   HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,5,5"
+                   VerticalAlignment="Center"/>
+        <ComboBox x:Name="cmbBodyType2" Margin="0,0,0,5" HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"
+                  Width="150"/>
+
+        <!-- Body Type (constructor 4) -->
+        <TextBlock x:Name="txtBodyType4" Text="Body Type" Grid.Row="6" Grid.Column="1" 
+                   HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,5,5"
+                   VerticalAlignment="Center"/>
+        <ComboBox x:Name="cmbBodyType4" Margin="0,0,0,5" HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" Grid.Column="2" Grid.Row="6"
+                  Width="150"/>
+
+        <!-- Update Car Button -->
+        <Button Content="Update car" Grid.Column="1" Grid.Row="7"
+                VerticalAlignment="Center" Width="90" FontSize="15" FontWeight="SemiBold"
+                Margin="0,10,120,0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+        <!-- Cancel Button -->
+        <Button Content="Cancel" Grid.Column="2" Grid.Row="7"
+                VerticalAlignment="Center" Width="75" FontSize="15" FontWeight="SemiBold"
+                Margin="0,10,20,0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
     </Grid>
 </Window>

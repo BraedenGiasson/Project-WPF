@@ -43,7 +43,14 @@ namespace WPF_Project
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            UpdateWindow updateWindow = new UpdateWindow();
 
+            // If model list has cars, show all cars
+            if (Inventory.InventoryList.Count != NO_MODELS)
+                updateWindow.Show(); // throwing error because initally null
+            // If not, give message saying no cars in stock
+            else
+                MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
