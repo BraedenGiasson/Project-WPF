@@ -42,6 +42,23 @@ namespace WPF_Project.Models
             }
         }
 
+        public bool AddItem(Model model)
+        {
+            inventoryList.Add(model);
+            if (inventoryList.Contains(model))
+            {
+                if(SetParkingSpot(model, GetFirstAvailableParkingSpot()))
+                    return true;
+            }
+                
+            return false;
+        }
+
+        /*public bool RemoveItem(Model model)
+        {
+
+        }*/
+
         public int AvailableQuantity()
         {
             throw new NotImplementedException();

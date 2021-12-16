@@ -7,7 +7,7 @@ using WPF_Project.Interfaces;
 
 namespace WPF_Project.Models
 {
-    public class Model  //: IQuantity
+    public class Model  : IQuantity
     {
         private string name;
         private string colour;
@@ -450,6 +450,21 @@ namespace WPF_Project.Models
         {
             get { return makeCategory; }
         }
+
+        public int AvailableQuantity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int MinimumQuanitity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool QuantityIsValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 
@@ -474,6 +489,20 @@ namespace WPF_Project.Models
         Fourty,
         FourtyFive,
         FiftyFive
+    }
+
+
+    /// <summary>
+    /// Enum options for Colour of vehicle
+    /// </summary>
+    public enum Colour
+    {
+        Black,
+        White,
+        Blue,
+        Red,
+        Grey,
+        Yellow
     }
 
 
