@@ -28,7 +28,6 @@ namespace WPF_Project
 
         public AddingWindow(ref List<Model> models)
         {
-            
             List<Body> bodyTypes = Enum.GetValues(typeof(Body))
                             .Cast<Body>()
                             .ToList();
@@ -82,15 +81,24 @@ namespace WPF_Project
             // If the selection changed is anything for the 1st constructor
             if (model == modelNames[0] || model == modelNames[4] || model == modelNames[5]
                 || model == modelNames[7] || model == modelNames[9] || model == modelNames[13])
+            {
                 //MessageBox.Show("Constructor 1 (2 parameters)");
                 Constructor1();
+                BodyTypeOptions(cmbBodyType2, new Body[] { Body.Limousine, Body.Wagon });
+            }
             // If the selection changed is anything for the 2nd constructor
-            else if (model == modelNames[1] || model == modelNames[2] || model == modelNames[10] || model == modelNames[11]
+            else if (model == modelNames[2] || model == modelNames[10] || model == modelNames[11]
                 || model == modelNames[12] || model == modelNames[14])
             {
                 //MessageBox.Show("Constructor 2 (3 parameters - Body Type)");
                 Constructor2();
-                BodyTypeOptions(cmbBodyType2, new Body[] { Body.Limousine, Body.Wagon });
+
+                if (model == modelNames[2])
+                    BodyTypeOptions(cmbBodyType2, new Body[] { Body.Convertible, Body.Coupe, Body.Limousine });
+                else if (model == modelNames[10] || model == modelNames[11])
+                    BodyTypeOptions(cmbBodyType2, new Body[] { Body.Convertible, Body.Coupe });
+                else if (model == modelNames[12] || model == modelNames[14])
+                    BodyTypeOptions(cmbBodyType2, new Body[] { Body.SUV, Body.Coupe });
             }
             // If the selection changed is anything for the 3rd constructor
             else if (model == modelNames[6] || model == modelNames[8])
@@ -106,12 +114,23 @@ namespace WPF_Project
                     EngineOptions(new Engine[] { Engine.FourtyFive, Engine.FiftyFive });
             }
             // If the selection changed is anything for the 4th constructor
-            else if (model == modelNames[3])
+            else if (model == modelNames[1] || model == modelNames[3])
             {
                 //MessageBox.Show("Constructor 4 (4 parameters)");
                 Constructor4();
-                EngineOptions(new Engine[] { Engine.FourtyFive, Engine.FiftyFive });
-                BodyTypeOptions(cmbBodyType4, new Body[] { Body.Limousine, Body.Wagon });
+
+                // If the model name is "A4", send specific engine options
+                if (model == modelNames[1])
+                {
+                    EngineOptions(new Engine[] { Engine.Fourty, Engine.FourtyFive });
+                    BodyTypeOptions(cmbBodyType4, new Body[] { Body.Limousine, Body.Wagon });
+                }
+                // If the model name is "A6", send specific engine & body types options
+                else if (model == modelNames[3])
+                {
+                    EngineOptions(new Engine[] { Engine.FourtyFive, Engine.FiftyFive });
+                    BodyTypeOptions(cmbBodyType4, new Body[] { Body.Limousine, Body.Wagon });
+                }
             }
         }
         /// <summary>
@@ -162,10 +181,14 @@ namespace WPF_Project
                     MessageBox.Show("Cons 4");
                 }
             }
+<<<<<<< HEAD
             //Inventory inventory = new Inventory();
             Inventory.AddItem(model);
             //MainWindow mw = new MainWindow();
             //mw.AddToModels(ref model);
+=======
+            Inventory.AddItem(model);
+>>>>>>> 850ecb03c0f2fec06ac075accf776d08292c2f12
         }
         private bool ValidatingInputFields()
         {

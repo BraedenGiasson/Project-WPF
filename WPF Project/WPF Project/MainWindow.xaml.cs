@@ -24,7 +24,7 @@ namespace WPF_Project
     public partial class MainWindow : Window
     {
         private List<Model> models = new List<Model>();
-        List<Body> bodyTypes = new List<Body>();
+        private const int NO_MODELS = 0;
 
         // Saving For Main Window
         private string saveLocation = string.Empty;
@@ -43,7 +43,14 @@ namespace WPF_Project
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            UpdateWindow updateWindow = new UpdateWindow();
 
+            // If model list has cars, show all cars
+            if (Inventory.InventoryList.Count != NO_MODELS)
+                updateWindow.Show(); // throwing error because initally null
+            // If not, give message saying no cars in stock
+            else
+                MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -55,7 +62,13 @@ namespace WPF_Project
         {
             //if(!)
             ModelWindow modelWindow = new ModelWindow();
-            modelWindow.Show(); // throwing error because initally null
+            
+            // If model list has cars, show all cars
+            if (Inventory.InventoryList.Count != NO_MODELS)
+                modelWindow.Show(); // throwing error because initally null
+            // If not, give message saying no cars in stock
+            else
+                MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void btnShoppingList_Click(object sender, RoutedEventArgs e)
