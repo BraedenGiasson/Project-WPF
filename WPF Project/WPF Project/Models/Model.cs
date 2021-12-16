@@ -430,7 +430,7 @@ namespace WPF_Project.Models
             get { return bodyType; }
             set
             {
-                if (!(value == Convert.ToString(Models.Body.Convertible) || value == Convert.ToString(Models.Body.Coupe) || value == Convert.ToString(Models.Body.Limousine) || value == Convert.ToString(Models.Body.SUV) || value == Convert.ToString(Models.Body.Wagon)))
+                if (!(value == Convert.ToString(Body.Convertible) || value == Convert.ToString(Body.Coupe) || value == Convert.ToString(Models.Body.Limousine) || value == Convert.ToString(Models.Body.SUV) || value == Convert.ToString(Models.Body.Wagon)))
                     throw new ArgumentException("Body type does not exist", "BodyType");
                 bodyType = value;
             }

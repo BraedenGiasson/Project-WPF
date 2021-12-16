@@ -22,3 +22,27 @@ C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.dll
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.pdb
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.genruntimeconfig.cache
+J:\WPF-Project\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.exe
+J:\WPF-Project\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.deps.json
+J:\WPF-Project\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.runtimeconfig.json
+J:\WPF-Project\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.runtimeconfig.dev.json
+J:\WPF-Project\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.dll
+J:\WPF-Project\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.pdb
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.csproj.AssemblyReference.cache
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\AddingWindow.g.cs
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ModelWindow.g.cs
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\App.g.cs
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project_MarkupCompile.cache
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project_MarkupCompile.lref
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\AddingWindow.baml
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\MainWindow.baml
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ModelWindow.baml
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.g.resources
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.GeneratedMSBuildEditorConfig.editorconfig
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.AssemblyInfoInputs.cache
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.AssemblyInfo.cs
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.csproj.CoreCompileInputs.cache
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.dll
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.pdb
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.genruntimeconfig.cache
