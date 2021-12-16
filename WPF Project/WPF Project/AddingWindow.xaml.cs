@@ -24,11 +24,18 @@ namespace WPF_Project
         // Saving For Adding Window
         private bool changedData = false;
         List<string> modelNames;
+        int currentConstructorValue;
 
         public AddingWindow()
         {
             List<Body> bodyTypes = Enum.GetValues(typeof(Body))
                             .Cast<Body>()
+                            .ToList();
+            List<Colour> colourTypes = Enum.GetValues(typeof(Colour))
+                            .Cast<Colour>()
+                            .ToList();
+            List<Engine> engineTypes = Enum.GetValues(typeof(Engine))
+                            .Cast<Engine>()
                             .ToList();
 
             modelNames = new List<string>() 
@@ -36,35 +43,81 @@ namespace WPF_Project
 
             InitializeComponent();
 
-            // Binding
-            cmbBodyType.ItemsSource = bodyTypes;
+            // Binding all input fields
+            cmbBodyType4.ItemsSource = bodyTypes;
+            cmbBodyType2.ItemsSource = bodyTypes;
             cmbModelNames.ItemsSource = modelNames;
-            //txtColour.Visibility = Visibility.Hidden;
+            cmbColours.ItemsSource = colourTypes;
+            cmbEngine.ItemsSource = engineTypes;
+
+            // Hidding all items initally
+            txtColour.Visibility = Visibility.Hidden;
+            cmbColours.Visibility = Visibility.Hidden;
+
+            txtEngine.Visibility = Visibility.Hidden;
+            cmbEngine.Visibility = Visibility.Hidden;
+
+            txtBodyType2.Visibility = Visibility.Hidden;
+            cmbBodyType2.Visibility = Visibility.Hidden;
+
+            txtBodyType4.Visibility = Visibility.Hidden;
+            cmbBodyType4.Visibility = Visibility.Hidden;
+
+            // Setting constructor value
+            currentConstructorValue = 0;
         }
-        
+        /// <summary>
+        /// When an option in the dropdown of model names is changed, preform behavior
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbModelNames_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ChangeNameWhenFieldIsSelected();
             string model = cmbModelNames.SelectedValue as string;
 
             // If the selection changed is anything for the 1st constructor
-            if ( model == modelNames[0] || model == modelNames[4] || model == modelNames[5] 
+            if (model == modelNames[0] || model == modelNames[4] || model == modelNames[5]
                 || model == modelNames[7] || model == modelNames[9] || model == modelNames[13])
-                MessageBox.Show("Constructor 1 (2 parameters)");
+                //MessageBox.Show("Constructor 1 (2 parameters)");
+                Constructor1();
             // If the selection changed is anything for the 2nd constructor
-            else if ( model == modelNames[1] || model == modelNames[2] || model == modelNames[10] || model == modelNames[11] 
-                || model == modelNames[12] || model == modelNames[14] )
-                MessageBox.Show("Constructor 2 (3 parameters - Body Type)");
+            else if (model == modelNames[1] || model == modelNames[2] || model == modelNames[10] || model == modelNames[11]
+                || model == modelNames[12] || model == modelNames[14])
+                //MessageBox.Show("Constructor 2 (3 parameters - Body Type)");
+                Constructor2();
             // If the selection changed is anything for the 3rd constructor
-            else if ( model == modelNames[6] || model == modelNames[8] )
-                MessageBox.Show("Constructor 3 (3 parameters - Engine)");
+            else if (model == modelNames[6] || model == modelNames[8])
+                //MessageBox.Show("Constructor 3 (3 parameters - Engine)");
+                Constructor3();
             // If the selection changed is anything for the 4th constructor
-            else if (model == modelNames[3] )
-                MessageBox.Show("Constructor 4 (4 parameters)");
+            else if (model == modelNames[3])
+                //MessageBox.Show("Constructor 4 (4 parameters)");
+                Constructor4();
         }
 
         private void btnAddCar_Click(object sender, RoutedEventArgs e)
         {
-
+            if ( currentConstructorValue == 1 )
+            {
+                Model model = new Model(cmbModelNames.Text, cmbColours.Text);
+                MessageBox.Show("1");
+            }
+            else if (currentConstructorValue == 2)
+            {
+                Model model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem);
+                MessageBox.Show("2");
+            }
+            else if(currentConstructorValue == 3)
+            {
+                Model model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem);
+                MessageBox.Show("3");
+            }
+            else if (currentConstructorValue == 4)
+            {
+                Model model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem);
+                MessageBox.Show("4");
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -84,6 +137,129 @@ namespace WPF_Project
                     this.Close();
             }
 
+        }
+        //private bool CheckUserInput()
+        //{
+        //    StringBuilder errorMessage = new StringBuilder();
+        //    //Name
+        //    if (string.IsNullOrEmpty(cmbModelNames.Text))
+        //        errorMessage.AppendLine("Name is a required field");
+        //    //Email
+        //    if (string.IsNullOrEmpty(cmbColours.Text))
+        //        errorMessage.AppendLine("Email is a required field");
+        //    //Country
+        //    if (string.IsNullOrEmpty(cmb.Text))
+        //        errorMessage.AppendLine("Country is a required field");
+        //    //Status
+        //    if (!(rdbTeacher.IsChecked.Value || rdbStudent.IsChecked.Value || rdbProfessional.IsChecked.Value))
+        //        errorMessage.AppendLine("Name is a required field");
+        //    //Checkin data
+        //    if (!dpCheckin.SelectedDate.HasValue)
+        //        errorMessage.AppendLine("Check in date is a required field");
+
+        //    if (string.IsNullOrEmpty(errorMessage.ToString()))
+        //        return true;
+
+        //    MessageBox.Show(errorMessage.ToString(), "Required User Input", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    return false;
+        //}
+        /// <summary>
+        /// Showing the options for the 1st type of constructor
+        /// </summary>
+        private void Constructor1()
+        {
+            currentConstructorValue = 1;
+
+            ShowColour();
+            HideEngine();
+            HideBodyType();
+        }
+        /// <summary>
+        /// Showing the options for the 2nd type of constructor
+        /// </summary>
+        private void Constructor2()
+        {
+            currentConstructorValue = 2;
+
+            ShowColour();
+            HideEngine();
+            HideBodyType();
+            ShowBodyType(txtBodyType2, cmbBodyType2);
+        }
+        /// <summary>
+        /// Showing the options for the 3rd type of constructor
+        /// </summary>
+        private void Constructor3()
+        {
+            currentConstructorValue = 3;
+
+            ShowColour();
+            ShowEngine();
+            HideBodyType();
+        }
+        /// <summary>
+        /// Showing the options for the 4th type of constructor
+        /// </summary>
+        private void Constructor4()
+        {
+            currentConstructorValue = 4;
+
+            ShowColour();
+            HideBodyType();
+            ShowEngine();
+            ShowBodyType(txtBodyType4, cmbBodyType4);
+        }
+        /// <summary>
+        /// Showing the color text and dropdown
+        /// </summary>
+        private void ShowColour()
+        {
+            txtColour.Visibility = Visibility.Visible;
+            cmbColours.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// Showing the engine text and dropdown
+        /// </summary>
+        private void ShowEngine()
+        {
+            txtEngine.Visibility = Visibility.Visible;
+            cmbEngine.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// Showing the body type text and dropdown
+        /// </summary>
+        /// <param name="bodyTypeText"> body type text (either the 1st or second in order on XAML) </param>
+        /// <param name="bodyTypes"> body type dropdown (either the 1st or second in order on XAML) </param>
+        private void ShowBodyType(TextBlock bodyTypeText, ComboBox bodyTypes)
+        {
+            bodyTypeText.Visibility = Visibility.Visible;
+            bodyTypes.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// Hiding the engine text and dropdown
+        /// </summary>
+        private void HideEngine()
+        {
+            txtEngine.Visibility = Visibility.Hidden;
+            cmbEngine.Visibility = Visibility.Hidden;
+        }
+        /// <summary>
+        /// Hiding both body types text and dropdown
+        /// </summary>
+        private void HideBodyType()
+        {
+            txtBodyType2.Visibility = Visibility.Hidden;
+            cmbBodyType2.Visibility = Visibility.Hidden;
+
+            txtBodyType4.Visibility = Visibility.Hidden;
+            cmbBodyType4.Visibility = Visibility.Hidden;
+        }
+        /// <summary>
+        /// Changing the name of 'Choose a name' to 'Model Name' when FIRST selection is changed
+        /// </summary>
+        private void ChangeNameWhenFieldIsSelected()
+        {
+            txtCarName.Text = "Model Name";
         }
     }
 }
