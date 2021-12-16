@@ -24,14 +24,6 @@ namespace WPF_Project
 
             // Binding
             dgModels.ItemsSource = Inventory.InventoryList;
-
-            //Button button = new Button()
-            //{
-            //    Content = "Delete",
-            //    Width = 30,
-            //    Height = 15,
-            //};
-            //button.Click += btnDeleteButton_Click;
         }
 
         private void menuCopy_Click(object sender, RoutedEventArgs e)

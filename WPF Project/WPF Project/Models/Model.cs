@@ -233,6 +233,7 @@ namespace WPF_Project.Models
                 Length = 4485;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.SUV);
+                EngineOption = Convert.ToString(engineOption);
             }
             else if (Q7.IsMatch(name))
             {
@@ -254,6 +255,7 @@ namespace WPF_Project.Models
                 Length = 5067;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.SUV);
+                EngineOption = Convert.ToString(engineOption);
             }
         }
 
@@ -308,6 +310,7 @@ namespace WPF_Project.Models
                 }
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(bodyType);
+                EngineOption = Convert.ToString(engineOption);
             }
         }
 
@@ -426,7 +429,8 @@ namespace WPF_Project.Models
             get { return bodyType; }
             set
             {
-                if (!(value == Convert.ToString(Body.Convertible) || value == Convert.ToString(Body.Coupe) || value == Convert.ToString(Models.Body.Limousine) || value == Convert.ToString(Models.Body.SUV) || value == Convert.ToString(Models.Body.Wagon)))
+                if (!(value == Convert.ToString(Body.Convertible) || value == Convert.ToString(Body.Coupe) || value == Convert.ToString(Models.Body.Limousine) 
+                    || value == Convert.ToString(Models.Body.SUV) || value == Convert.ToString(Models.Body.Wagon)))
                     throw new ArgumentException("Body type does not exist", "BodyType");
                 bodyType = value;
             }
@@ -434,9 +438,11 @@ namespace WPF_Project.Models
         //ALSO IMPLEMEMENT LATER
         public string EngineOption
         {
+            get { return engineOption; }
             set
             {
-                if (!(value == Convert.ToString(Engine.FiftyFive) || value == Convert.ToString(Engine.Fourty) || value == Convert.ToString(Engine.FourtyFive)))
+                if (!(value == Convert.ToString(Engine.FiftyFive) || value == Convert.ToString(Engine.Fourty) || value == Convert.ToString(Engine.FourtyFive)
+                    || value == Convert.ToString(Engine.Electric) || (value == Convert.ToString(Engine.V10))))
                     throw new ArgumentException("Engine option does not exist", "EngineOption");
                 engineOption = value;
             }
