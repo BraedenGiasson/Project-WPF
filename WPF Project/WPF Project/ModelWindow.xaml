@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
-        Title="ModelWindow" Height="450" Width="600"
+        Title="ModelWindow" Height="450" Width="700"
         WindowStartupLocation="CenterScreen"
         SizeToContent="Height">
     <Grid>
         <DataGrid x:Name="dgModels" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Delete"/>
                 <DataGridTextColumn Header="Model Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Colour" Binding="{Binding Colour}"/>
                 <DataGridTextColumn Header="Horsepower" Binding="{Binding Horsepower}"/>
@@ -19,9 +20,17 @@
                 <DataGridTextColumn Header="Height" Binding="{Binding Height}"/>
                 <DataGridTextColumn Header="Width" Binding="{Binding Width}" />
                 <DataGridTextColumn Header="Length" Binding="{Binding Length}"/>
+                <DataGridTextColumn Header="Engine" Binding="{Binding Engine}"/>
                 <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}"/>
-                <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}"/>
+                <DataGridTextColumn Header="Body Type" Binding="{Binding Body}"/>
             </DataGrid.Columns>
+
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy" Click="menuCopy_Click"/>
+                    <MenuItem Header="Delete" Click="menuDelete_Click" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
     </Grid>
 </Window>

@@ -24,6 +24,35 @@ namespace WPF_Project
 
             // Binding
             dgModels.ItemsSource = models;
+
+            //Button button = new Button()
+            //{
+            //    Content = "Delete",
+            //    Width = 30,
+            //    Height = 15,
+            //};
+            //button.Click += btnDeleteButton_Click;
+        }
+
+        private void menuCopy_Click(object sender, RoutedEventArgs e)
+        {
+            //Model temp = lbVisitors.SelectedItem as Model;
+
+            //if (temp != null)
+                //Clipboard.SetText(temp.FullInfo);
+        }
+
+        private void menuDelete_Click(object sender, RoutedEventArgs e)
+        {
+            //Model temp = dgModels.SelectedItem as Model;
+
+            //if (temp != null)
+            //{
+                
+            //    .Remove(temp);
+            //    dgModels.Items.Refresh();
+            //    saved = false;
+            //}
         }
     }
 }

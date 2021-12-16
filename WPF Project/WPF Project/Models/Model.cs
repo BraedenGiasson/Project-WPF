@@ -25,8 +25,6 @@ namespace WPF_Project.Models
         private static readonly string makeCountry = "Germany";
         private static readonly string makeCategory = "luxury";
 
-        private List<Regex> listForConstructorWith2Arguments; // delete maybe
-
         public Model(string name, string colour)        //SAME ENGINE AND ONE BODYTYPE
         {
             Regex a3 = new Regex("A3", RegexOptions.IgnoreCase);
@@ -36,8 +34,6 @@ namespace WPF_Project.Models
             Regex Q8 = new Regex("Q8", RegexOptions.IgnoreCase);
             Regex etronGT = new Regex("e-tron GT", RegexOptions.IgnoreCase);
 
-            listForConstructorWith2Arguments = new List<Regex>()
-            { a3, a7, a8, Q5, Q8 };
 
             if (a3.IsMatch(name))
             {
@@ -119,11 +115,6 @@ namespace WPF_Project.Models
             }
         }
 
-        public List<Regex> ListForConstructorWith2Arguments
-        {
-            get { return listForConstructorWith2Arguments; }
-        }
-
         public Model(string name, string colour, Body bodyType)     //SAME ENGINE DIFFERENT BODY TYPE
         {
             Regex a4 = new Regex("A4", RegexOptions.IgnoreCase);
@@ -145,7 +136,7 @@ namespace WPF_Project.Models
                 Length = 4762;
                 FuelType = "Gasoline";
                 //BodyType = Convert.ToString(bodyType);
-
+                // *** Ask Justus if these are the only options available ***
                 if (bodyType == Body.Limousine)
                     BodyType = Convert.ToString(bodyType);
                 else if (bodyType == Body.Wagon)
