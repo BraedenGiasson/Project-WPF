@@ -30,37 +30,66 @@ namespace WPF_Project
             List<Body> bodyTypes = Enum.GetValues(typeof(Body))
                             .Cast<Body>()
                             .ToList();
-            
+            List<Colour> colourTypes = Enum.GetValues(typeof(Colour))
+                            .Cast<Colour>()
+                            .ToList();
+            List<Engine> engineTypes = Enum.GetValues(typeof(Engine))
+                            .Cast<Engine>()
+                            .ToList();
+
             modelNames = new List<string>() 
                 { "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "R8", "TT", "e-tron", "e-tron GT", "Q4 e-tron" };
 
             InitializeComponent();
 
-            // Binding
+            // Binding all input fields
             cmbBodyType4.ItemsSource = bodyTypes;
+            cmbBodyType2.ItemsSource = bodyTypes;
             cmbModelNames.ItemsSource = modelNames;
-            //txtColour.Visibility = Visibility.Hidden;
+            cmbColours.ItemsSource = colourTypes;
+            cmbEngine.ItemsSource = engineTypes;
+
+            // Hidding all items initally
+            txtColour.Visibility = Visibility.Hidden;
+            cmbColours.Visibility = Visibility.Hidden;
+
+            txtEngine.Visibility = Visibility.Hidden;
+            cmbEngine.Visibility = Visibility.Hidden;
+
             txtBodyType2.Visibility = Visibility.Hidden;
+            cmbBodyType2.Visibility = Visibility.Hidden;
+
+            txtBodyType4.Visibility = Visibility.Hidden;
+            cmbBodyType4.Visibility = Visibility.Hidden;
         }
-        
+        /// <summary>
+        /// When an option in the dropdown of model names is changed, preform behavior
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbModelNames_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ChangeNameWhenFieldIsSelected();
             string model = cmbModelNames.SelectedValue as string;
 
             // If the selection changed is anything for the 1st constructor
-            if ( model == modelNames[0] || model == modelNames[4] || model == modelNames[5] 
+            if (model == modelNames[0] || model == modelNames[4] || model == modelNames[5]
                 || model == modelNames[7] || model == modelNames[9] || model == modelNames[13])
-                MessageBox.Show("Constructor 1 (2 parameters)");
+                //MessageBox.Show("Constructor 1 (2 parameters)");
+                Constructor1();
             // If the selection changed is anything for the 2nd constructor
-            else if ( model == modelNames[1] || model == modelNames[2] || model == modelNames[10] || model == modelNames[11] 
-                || model == modelNames[12] || model == modelNames[14] )
-                MessageBox.Show("Constructor 2 (3 parameters - Body Type)");
+            else if (model == modelNames[1] || model == modelNames[2] || model == modelNames[10] || model == modelNames[11]
+                || model == modelNames[12] || model == modelNames[14])
+                //MessageBox.Show("Constructor 2 (3 parameters - Body Type)");
+                Constructor2();
             // If the selection changed is anything for the 3rd constructor
-            else if ( model == modelNames[6] || model == modelNames[8] )
-                MessageBox.Show("Constructor 3 (3 parameters - Engine)");
+            else if (model == modelNames[6] || model == modelNames[8])
+                //MessageBox.Show("Constructor 3 (3 parameters - Engine)");
+                Constructor3();
             // If the selection changed is anything for the 4th constructor
-            else if (model == modelNames[3] )
-                MessageBox.Show("Constructor 4 (4 parameters)");
+            else if (model == modelNames[3])
+                //MessageBox.Show("Constructor 4 (4 parameters)");
+                Constructor4();
         }
 
         private void btnAddCar_Click(object sender, RoutedEventArgs e)
@@ -85,6 +114,96 @@ namespace WPF_Project
                     this.Close();
             }
 
+        }
+        /// <summary>
+        /// Showing the options for the 1st type of constructor
+        /// </summary>
+        private void Constructor1()
+        {
+            ShowColour();
+            HideEngine();
+            HideBodyType();
+        }
+        /// <summary>
+        /// Showing the options for the 2nd type of constructor
+        /// </summary>
+        private void Constructor2()
+        {
+            ShowColour();
+            HideEngine();
+            HideBodyType();
+            ShowBodyType(txtBodyType2, cmbBodyType2);
+        }
+        /// <summary>
+        /// Showing the options for the 3rd type of constructor
+        /// </summary>
+        private void Constructor3()
+        {
+            ShowColour();
+            ShowEngine();
+            HideBodyType();
+        }
+        /// <summary>
+        /// Showing the options for the 4th type of constructor
+        /// </summary>
+        private void Constructor4()
+        {
+            ShowColour();
+            HideBodyType();
+            ShowEngine();
+            ShowBodyType(txtBodyType4, cmbBodyType4);
+        }
+        /// <summary>
+        /// Showing the color text and dropdown
+        /// </summary>
+        private void ShowColour()
+        {
+            txtColour.Visibility = Visibility.Visible;
+            cmbColours.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// Showing the engine text and dropdown
+        /// </summary>
+        private void ShowEngine()
+        {
+            txtEngine.Visibility = Visibility.Visible;
+            cmbEngine.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// Showing the body type text and dropdown
+        /// </summary>
+        /// <param name="bodyTypeText"> body type text (either the 1st or second in order on XAML) </param>
+        /// <param name="bodyTypes"> body type dropdown (either the 1st or second in order on XAML) </param>
+        private void ShowBodyType(TextBlock bodyTypeText, ComboBox bodyTypes)
+        {
+            bodyTypeText.Visibility = Visibility.Visible;
+            bodyTypes.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// Hiding the engine text and dropdown
+        /// </summary>
+        private void HideEngine()
+        {
+            txtEngine.Visibility = Visibility.Hidden;
+            cmbEngine.Visibility = Visibility.Hidden;
+        }
+        /// <summary>
+        /// Hiding both body types text and dropdown
+        /// </summary>
+        private void HideBodyType()
+        {
+            txtBodyType2.Visibility = Visibility.Hidden;
+            cmbBodyType2.Visibility = Visibility.Hidden;
+
+            txtBodyType4.Visibility = Visibility.Hidden;
+            cmbBodyType4.Visibility = Visibility.Hidden;
+        }
+        /// <summary>
+        /// Changing the name of 'Choose a name' to 'Model Name' when FIRST selection is changed
+        /// </summary>
+        private void ChangeNameWhenFieldIsSelected()
+        {
+            txtCarName.Text = "Model Name";
         }
     }
 }

@@ -504,6 +504,4 @@ namespace WPF_Project.Models
         Grey,
         Yellow
     }
-
-
 }
