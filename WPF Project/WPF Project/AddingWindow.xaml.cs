@@ -162,8 +162,8 @@ namespace WPF_Project
                     MessageBox.Show("Cons 4");
                 }
             }
-            Inventory inventory = new Inventory();
-            inventory.AddItem(model);
+            //Inventory inventory = new Inventory();
+            Inventory.AddItem(model);
             //MainWindow mw = new MainWindow();
             //mw.AddToModels(ref model);
         }

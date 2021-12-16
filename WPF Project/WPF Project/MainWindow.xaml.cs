@@ -53,6 +53,7 @@ namespace WPF_Project
 
         private void btnShowAll_Click(object sender, RoutedEventArgs e)
         {
+            //if(!)
             ModelWindow modelWindow = new ModelWindow();
             modelWindow.Show(); // throwing error because initally null
         }

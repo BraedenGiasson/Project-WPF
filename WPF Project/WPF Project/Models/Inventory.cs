@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using WPF_Project.Interfaces;
+using System.Linq;
 
 namespace WPF_Project.Models
 {
@@ -14,6 +15,7 @@ namespace WPF_Project.Models
         {
             inventoryList = new List<Model>( new Model[maxInventory] );
             ////inventoryList.Capacity = maxInventory;
+
 
             inventoryList[0] = new Model("A3", "Black");
             inventoryList[1] = new Model("R8", "Blue");
@@ -35,6 +37,7 @@ namespace WPF_Project.Models
         {
             for (int i = 0; i < inventoryList.Count; i++)
             {
+                //bool isEmpty = !inventoryList.Any();
                 if (inventoryList[i] == null)
                     return i;
             }
@@ -74,7 +77,7 @@ namespace WPF_Project.Models
             return false;
         }*/
 
-        public void AddItem(Model model)
+        public static void AddItem(Model model)
         {
             //int freeSpot =  GetFirstAvailableParkingSpot();
 
@@ -84,17 +87,72 @@ namespace WPF_Project.Models
             //}
 
             //inventoryList[freeSpot] = model;
+
+            //if (inventoryList.Contains(model))
+               // model.ModelQuantity++;
+
             inventoryList.Add(model);
+            
         }
 
-        public void RemoveItem(Model model)
+        public static void RemoveItem(Model model)
         {
             for (int i = 0;i < inventoryList.Capacity; i++)
             {
                 if (inventoryList[i] == model)
+                {
                     inventoryList.RemoveAt(i);
+                    model.ModelQuantity--;
+                }
+
+                return;
             }
         }
+
+        public static void UpdateItem(Model model, int quantity)
+        {
+            if (inventoryList.Count == inventoryList.Capacity)
+                throw new ArgumentException("You cannot add this many cars. Your parking lot is full!", "UpdateItem");
+
+            model.ModelQuantity = quantity;
+        }
+
+
+        public static void LoadItems()
+        {
+            string car = "a3, red";
+
+            Model model = Model.FromCSV(car);
+            Inventory.AddItem(model);
+
+           // Model.FromCSV(Inventory.me);
+        }
+
+
+
+        /*public string CSVData
+        {
+            get
+            {
+                return string.Format($"{Name}, {Colour}, {EngineOption}, {BodyType}");
+            }
+            set
+            {
+                //string comma separated and set the fields of the visitor
+                string[] allData = value.Split(',');
+                try
+                {
+                    Model.Name = allData[0];
+                    Colour = allData[1];
+                    EngineOption = allData[2];
+                    BodyType = allData[3];
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("All Data Property value not valid " + ex.Message);
+                }
+            }
+        }*/
 
 
 
