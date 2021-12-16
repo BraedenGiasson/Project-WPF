@@ -19,12 +19,10 @@ namespace WPF_Project.Models
         private double length;
         private string fuelType;
         private string bodyType;
-<<<<<<< HEAD
         private int modelQuantity = 0;
-        //private string engineOption;                          MIGHT HAVE TO BE IMPLEMENTED LATER!!!
-=======
-        private string engineOption;                          
->>>>>>> 850ecb03c0f2fec06ac075accf776d08292c2f12
+        private string engineOption;                          //MIGHT HAVE TO BE IMPLEMENTED LATER!!!
+
+
 
         private static readonly string makeName = "Audi";
         private static readonly string makeCountry = "Germany";
@@ -578,13 +576,8 @@ namespace WPF_Project.Models
         Fourty,
         FourtyFive,
         FiftyFive,
-<<<<<<< HEAD
         V10,
         Electric
-=======
-        Electric,
-        V10
->>>>>>> 850ecb03c0f2fec06ac075accf776d08292c2f12
     }
 
 

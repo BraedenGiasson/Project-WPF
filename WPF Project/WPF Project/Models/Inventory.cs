@@ -19,16 +19,11 @@ namespace WPF_Project.Models
             //inventoryList = new List<Model>( maxInventory );
             ////inventoryList.Capacity = maxInventory;
 
-<<<<<<< HEAD
 
             inventoryList[0] = new Model("A3", "Black");
             inventoryList[1] = new Model("R8", "Blue");
             inventoryList[2] = new Model("A4", "Red");
-=======
-            //inventoryList[0] = new Model("A3", "Black");
-            //inventoryList[1] = new Model("R8", "Blue");
-            //inventoryList[2] = new Model("A4", "Red");
->>>>>>> 850ecb03c0f2fec06ac075accf776d08292c2f12
+
 
             //GetAllActualCars();
         }
@@ -97,18 +92,15 @@ namespace WPF_Project.Models
             //}
 
             //inventoryList[freeSpot] = model;
-<<<<<<< HEAD
+
 
             //if (inventoryList.Contains(model))
                // model.ModelQuantity++;
 
-            inventoryList.Add(model);
-            
-=======
+
             
             if(inventoryList.Count < inventoryList.Capacity)
                 inventoryList.Add(model);
->>>>>>> 850ecb03c0f2fec06ac075accf776d08292c2f12
         }
 
         public static void RemoveItem(Model model)
@@ -116,16 +108,15 @@ namespace WPF_Project.Models
             for (int i = 0;i < inventoryList.Capacity; i++)
             {
                 if (inventoryList[i] == model)
-<<<<<<< HEAD
                 {
                     inventoryList.RemoveAt(i);
                     model.ModelQuantity--;
                 }
 
                 return;
-=======
-                    inventoryList.RemoveAt(i); // make it null
->>>>>>> 850ecb03c0f2fec06ac075accf776d08292c2f12
+
+                    //inventoryList.RemoveAt(i); // make it null
+
             }
         }
 
