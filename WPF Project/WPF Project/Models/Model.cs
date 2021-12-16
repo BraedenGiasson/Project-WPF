@@ -19,7 +19,7 @@ namespace WPF_Project.Models
         private double length;
         private string fuelType;
         private string bodyType;
-        //private string engineOption;                          MIGHT HAVE TO BE IMPLEMENTED LATER!!!
+        private string engineOption;                          
 
         private static readonly string makeName = "Audi";
         private static readonly string makeCountry = "Germany";
@@ -47,6 +47,7 @@ namespace WPF_Project.Models
                 Length = 4458;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.Limousine);
+                EngineOption = Convert.ToString(Models.Engine.Fourty);
             }
             else if (a7.IsMatch(name))
             {
@@ -60,6 +61,7 @@ namespace WPF_Project.Models
                 Length = 4969;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.Limousine);
+                EngineOption = Convert.ToString(Models.Engine.FiftyFive);
             }
             else if (a8.IsMatch(name))
             {
@@ -73,6 +75,7 @@ namespace WPF_Project.Models
                 Length = 5302;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.Limousine);
+                EngineOption = Convert.ToString(Models.Engine.FiftyFive);
             }
             else if (Q5.IsMatch(name))
             {
@@ -86,6 +89,7 @@ namespace WPF_Project.Models
                 Length = 4663;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.SUV);
+                EngineOption = Convert.ToString(Models.Engine.FourtyFive);
             }
             else if (Q8.IsMatch(name))
             {
@@ -99,6 +103,7 @@ namespace WPF_Project.Models
                 Length = 5005;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.SUV);
+                EngineOption = Convert.ToString(Models.Engine.FiftyFive);
             }
             else if (etronGT.IsMatch(name))
             {
@@ -112,40 +117,26 @@ namespace WPF_Project.Models
                 Length = 4989;
                 FuelType = "Electric";
                 BodyType = Convert.ToString(Models.Body.Limousine);
+                EngineOption = Convert.ToString(Models.Engine.Electric);
             }
         }
 
         public Model(string name, string colour, Body bodyType)     //SAME ENGINE DIFFERENT BODY TYPE
         {
-            Regex a4 = new Regex("A4", RegexOptions.IgnoreCase);
             Regex a5 = new Regex("A5", RegexOptions.IgnoreCase);
             Regex R8 = new Regex("R8", RegexOptions.IgnoreCase);
             Regex TT = new Regex("TT", RegexOptions.IgnoreCase);
             Regex etron = new Regex("e-tron", RegexOptions.IgnoreCase);
             Regex Q4etron = new Regex("Q4 e-tron", RegexOptions.IgnoreCase);
 
-            if (a4.IsMatch(name))
-            {
-                Name = name;
-                Colour = colour;
-                Horsepower = 201;
-                Torque = 236;
-                NumberOfSeats = 5;
-                Height = 1493;
-                Width = 1847;
-                Length = 4762;
-                FuelType = "Gasoline";
-                //BodyType = Convert.ToString(bodyType);
-                // *** Ask Justus if these are the only options available ***
-                BodyType = Convert.ToString(bodyType);
-            }
-            else if (a5.IsMatch(name))
+            
+            if (a5.IsMatch(name))
             {
                 Name = name;
                 Colour = colour;
                 Horsepower = 261;
                 Torque = 273;
-                if (bodyType == Models.Body.Convertible || bodyType == Models.Body.Coupe)
+                if (bodyType == Models.Body.Convertible || bodyType == Models.Body.Coupe) 
                     NumberOfSeats = 4;
                 else
                     NumberOfSeats = 5;
@@ -154,6 +145,7 @@ namespace WPF_Project.Models
                 Length = 4755;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(bodyType);
+                EngineOption = Convert.ToString(Models.Engine.FourtyFive);
             }
             else if (R8.IsMatch(name))
             {
@@ -167,6 +159,7 @@ namespace WPF_Project.Models
                 Length = 4429;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(bodyType);
+                EngineOption = Convert.ToString(Models.Engine.V10);
             }
             else if (TT.IsMatch(name))
             {
@@ -180,6 +173,7 @@ namespace WPF_Project.Models
                 Length = 4429;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(bodyType);
+                EngineOption = Convert.ToString(Models.Engine.FourtyFive);
             }
             else if (etron.IsMatch(name))
             {
@@ -193,6 +187,7 @@ namespace WPF_Project.Models
                 Length = 4901;
                 FuelType = "Electric";
                 BodyType = Convert.ToString(bodyType);
+                EngineOption = Convert.ToString(Models.Engine.Electric);
             }
             else if (Q4etron.IsMatch(name))
             {
@@ -206,6 +201,7 @@ namespace WPF_Project.Models
                 Length = 4588;
                 FuelType = "Electric";
                 BodyType = Convert.ToString(bodyType);
+                EngineOption = Convert.ToString(Models.Engine.Electric);
             }
         }
 
@@ -266,9 +262,24 @@ namespace WPF_Project.Models
 
         public Model(string name, string colour, Engine engineOption, Body bodyType)        //DIFFERENT ENGINE AND DIFFERENT BODY TYPE
         {
+            Regex a4 = new Regex("A4", RegexOptions.IgnoreCase);
             Regex a6 = new Regex("A6", RegexOptions.IgnoreCase);
-            
-            if (a6.IsMatch(name))
+
+            if (a4.IsMatch(name)) 
+            {
+                Name = name;
+                Colour = colour;
+                Horsepower = 201;
+                Torque = 236;
+                NumberOfSeats = 5;
+                Height = 1493;
+                Width = 1847;
+                Length = 4762;
+                FuelType = "Gasoline";
+                BodyType = Convert.ToString(bodyType);
+                EngineOption = Convert.ToString(engineOption);
+            }
+            else if (a6.IsMatch(name))
             {
                 Name = name;
                 Colour = colour;
@@ -299,8 +310,6 @@ namespace WPF_Project.Models
                 BodyType = Convert.ToString(bodyType);
             }
         }
-
-
 
         public string Name
         {
@@ -423,7 +432,7 @@ namespace WPF_Project.Models
             }
         }
         //ALSO IMPLEMEMENT LATER
-        /*public string EngineOption
+        public string EngineOption
         {
             set
             {
@@ -431,7 +440,7 @@ namespace WPF_Project.Models
                     throw new ArgumentException("Engine option does not exist", "EngineOption");
                 engineOption = value;
             }
-        }*/
+        }
 
         public static string MakeName
         {
@@ -447,22 +456,6 @@ namespace WPF_Project.Models
         {
             get { return makeCategory; }
         }
-
-
-        /*private string name;
-        private string colour;
-        private int horsepower;
-        private int torque;
-        private int numberOfSeats;
-        private double height;
-        private double width;
-        private double length;
-        private string fuelType;
-        private string bodyType;*/
-
-
-
-
 
         //Might be needed for reading and writing to file
 
@@ -527,7 +520,9 @@ namespace WPF_Project.Models
     {
         Fourty,
         FourtyFive,
-        FiftyFive
+        FiftyFive,
+        Electric,
+        V10
     }
 
 

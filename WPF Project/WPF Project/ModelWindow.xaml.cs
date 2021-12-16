@@ -23,7 +23,7 @@ namespace WPF_Project
             InitializeComponent();
 
             // Binding
-            dgModels.ItemsSource = Inventory.Models;
+            dgModels.ItemsSource = Inventory.InventoryList;
 
             //Button button = new Button()
             //{

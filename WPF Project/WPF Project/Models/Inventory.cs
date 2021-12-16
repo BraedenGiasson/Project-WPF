@@ -7,21 +7,24 @@ namespace WPF_Project.Models
 {
     public class Inventory : IQuantity
     {
+        private static readonly int maxInventory = 4;
         private static List<Model> inventoryList;
-        private static readonly int maxInventory = 3;
 
-        public Inventory()
+        static Inventory()
         {
-            inventoryList = new List<Model>( new Model[maxInventory] );
+            inventoryList = new List<Model>(maxInventory);
+            //inventoryList = new List<Model>( new Model[maxInventory] );
+            //inventoryList = new List<Model>(  );
+            //inventoryList = new List<Model>( maxInventory );
             ////inventoryList.Capacity = maxInventory;
 
-            inventoryList[0] = new Model("A3", "Black");
-            inventoryList[1] = new Model("R8", "Blue");
-            inventoryList[2] = new Model("A4", "Red");
+            //inventoryList[0] = new Model("A3", "Black");
+            //inventoryList[1] = new Model("R8", "Blue");
+            //inventoryList[2] = new Model("A4", "Red");
 
-            GetAllActualCars();
+            //GetAllActualCars();
         }
-        public static List<Model> Models
+        public static List<Model> InventoryList
         {
             get { return inventoryList; }
         }
@@ -74,9 +77,9 @@ namespace WPF_Project.Models
             return false;
         }*/
 
-        public void AddItem(Model model)
+        public static void AddItem(Model model)
         {
-            //int freeSpot =  GetFirstAvailableParkingSpot();
+            //int freeSpot = GetFirstAvailableParkingSpot();
 
             //if (freeSpot < 0)
             //{
@@ -84,7 +87,9 @@ namespace WPF_Project.Models
             //}
 
             //inventoryList[freeSpot] = model;
-            inventoryList.Add(model);
+            
+            if(inventoryList.Count < inventoryList.Capacity)
+                inventoryList.Add(model);
         }
 
         public void RemoveItem(Model model)
@@ -92,7 +97,7 @@ namespace WPF_Project.Models
             for (int i = 0;i < inventoryList.Capacity; i++)
             {
                 if (inventoryList[i] == model)
-                    inventoryList.RemoveAt(i);
+                    inventoryList.RemoveAt(i); // make it null
             }
         }
 
