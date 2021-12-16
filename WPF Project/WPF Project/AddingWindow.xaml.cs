@@ -181,14 +181,10 @@ namespace WPF_Project
                     MessageBox.Show("Cons 4");
                 }
             }
-<<<<<<< HEAD
             //Inventory inventory = new Inventory();
             Inventory.AddItem(model);
             //MainWindow mw = new MainWindow();
             //mw.AddToModels(ref model);
-=======
-            Inventory.AddItem(model);
->>>>>>> 850ecb03c0f2fec06ac075accf776d08292c2f12
         }
         private bool ValidatingInputFields()
         {
