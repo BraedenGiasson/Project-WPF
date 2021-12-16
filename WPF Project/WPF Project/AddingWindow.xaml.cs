@@ -133,6 +133,8 @@ namespace WPF_Project
                 {
                     model = new Model(cmbModelNames.Text, cmbColours.Text);
                     MessageBox.Show("Cons 1");
+                    Inventory test = sender as Inventory;
+                    test.AddItem(model);
                 }
             }
             else if (currentConstructorValue == 2)
