@@ -36,22 +36,23 @@ namespace WPF_Project
 
         private void menuCopy_Click(object sender, RoutedEventArgs e)
         {
-            Model temp = lbVisitors.SelectedItem as Model;
+            //Model temp = lbVisitors.SelectedItem as Model;
 
-            if (temp != null)
+            //if (temp != null)
                 //Clipboard.SetText(temp.FullInfo);
         }
 
         private void menuDelete_Click(object sender, RoutedEventArgs e)
         {
-            Model temp = dgModels.SelectedItem as Model;
+            //Model temp = dgModels.SelectedItem as Model;
 
-            if (temp != null)
-            {
-                .Remove(temp);
-                dgModels.Items.Refresh();
-                saved = false;
-            }
+            //if (temp != null)
+            //{
+                
+            //    .Remove(temp);
+            //    dgModels.Items.Refresh();
+            //    saved = false;
+            //}
         }
     }
 }

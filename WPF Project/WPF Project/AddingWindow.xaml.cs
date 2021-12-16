@@ -88,47 +88,151 @@ namespace WPF_Project
                 Constructor2();
             // If the selection changed is anything for the 3rd constructor
             else if (model == modelNames[6] || model == modelNames[8])
+            {
                 //MessageBox.Show("Constructor 3 (3 parameters - Engine)");
                 Constructor3();
+
+                // If the model name is "Q3", send specific engine options
+                if(model == modelNames[6])
+                    EngineOptions(new Engine[] { Engine.Fourty, Engine.FourtyFive });
+                // If the model name is "Q7", send specific engine options
+                else if (model == modelNames[8])
+                    EngineOptions(new Engine[] { Engine.FourtyFive, Engine.FiftyFive });
+            }
             // If the selection changed is anything for the 4th constructor
             else if (model == modelNames[3])
             {
                 //MessageBox.Show("Constructor 4 (4 parameters)");
                 Constructor4();
-                EngineOptions(new Engine[] { Engine.FiftyFive, Engine.FourtyFive } );
-                BodyTypeOptions(cmbBodyType4, new Body[] { Body.Limousine, Body.Wagon } );
+                EngineOptions(new Engine[] { Engine.FourtyFive, Engine.FiftyFive });
+                BodyTypeOptions(cmbBodyType4, new Body[] { Body.Limousine, Body.Wagon });
             }
         }
-
+        /// <summary>
+        /// Adding a model (car) object to the models list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddCar_Click(object sender, RoutedEventArgs e)
         {
+            Model model = null; // maybe take off null
+
+            if (string.IsNullOrEmpty(cmbModelNames.Text))
+                ValidatingInputFields();
+
             if ( currentConstructorValue == 1 )
             {
-                Model model = new Model(cmbModelNames.Text, cmbColours.Text);
-                MessageBox.Show("1");
+                // Create new model (car) object if constructor needed is 1
+                if (ValidatingInputFields())
+                {
+                    model = new Model(cmbModelNames.Text, cmbColours.Text);
+                    MessageBox.Show("Cons 1");
+                }
             }
             else if (currentConstructorValue == 2)
             {
-                Model model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem);
-                MessageBox.Show("2");
+                // Create new model (car) object if constructor needed is 2
+                if (ValidatingInputFields())
+                {
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem);
+                    MessageBox.Show("Cons 2");
+                }
             }
             else if(currentConstructorValue == 3)
             {
-                Model model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem);
-                MessageBox.Show("3");
+                // Create new model (car) object if constructor needed is 3
+                if (ValidatingInputFields())
+                {
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem);
+                    MessageBox.Show("Cons 3");
+                }
             }
             else if (currentConstructorValue == 4)
             {
-                Model model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem);
-                MessageBox.Show("4");
+                // Create new model (car) object if constructor needed is 4
+                if (ValidatingInputFields())
+                {
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem);
+                    MessageBox.Show("Cons 4");
+                }
             }
         }
+        private bool ValidatingInputFields()
+        {
+            StringBuilder errorMessage = new StringBuilder();
 
+            // FIRST, validating if the model name is filled out
+            CheckModelNameField(ref errorMessage);
+
+            // If the constructor is 1 (constructor 1 only needs to validate colour now), 2, 3, or 4, validate specific fields
+            if (currentConstructorValue == 1 || currentConstructorValue == 2 || currentConstructorValue == 3 || currentConstructorValue == 4)
+            {
+                CheckColourField(ref errorMessage);
+
+                // If the constructor is 2, validate body type field
+                if (currentConstructorValue == 2)
+                    CheckBodyTypeField(ref errorMessage, cmbBodyType2);
+                // If the constructor is 3, validate engine field
+                else if (currentConstructorValue == 3)
+                    CheckEngineField(ref errorMessage);
+                // If the constructor is 4, validate body type & engine fields
+                else if (currentConstructorValue == 4)
+                {
+                    CheckEngineField(ref errorMessage);
+                    CheckBodyTypeField(ref errorMessage, cmbBodyType4);
+                }
+            }
+
+            // If no errors, return true with no message
+            if (string.IsNullOrEmpty(errorMessage.ToString()))
+                return true;
+
+            // Displaying error
+            MessageBox.Show(errorMessage.ToString(), "Required User Input", MessageBoxButton.OK, MessageBoxImage.Error);
+            return false;
+        }
+        /// <summary>
+        /// Validating the model name field
+        /// </summary>
+        /// <param name="errorMessage"> Reference to the error message stringbuilder </param>
+        private void CheckModelNameField(ref StringBuilder errorMessage)
+        {
+            if (string.IsNullOrEmpty(cmbModelNames.Text))
+                errorMessage.AppendLine("Model Name is a required field");
+        }
+        /// <summary>
+        /// Validating the colour field
+        /// </summary>
+        /// <param name="errorMessage"> Reference to the error message stringbuilder </param>
+        private void CheckColourField(ref StringBuilder errorMessage)
+        {
+            if (string.IsNullOrEmpty(cmbColours.Text))
+                errorMessage.AppendLine("Colour is a required field");
+        }
+        /// <summary>
+        /// Validating the body type field
+        /// </summary>
+        /// <param name="errorMessage"> Reference to the error message stringbuilder </param>
+        /// <param name="bodyType"> The specific Body Type (cmbBodyType2 or cmbBodyType4) </param>
+        private void CheckBodyTypeField(ref StringBuilder errorMessage, ComboBox bodyType)
+        {
+            if (string.IsNullOrEmpty(bodyType.Text))
+                errorMessage.AppendLine("Body Type is a required field");
+        }
+        /// <summary>
+        /// Validating the engine field
+        /// </summary>
+        /// <param name="errorMessage"> Reference to the error message stringbuilder </param>
+        private void CheckEngineField(ref StringBuilder errorMessage)
+        {
+            if(string.IsNullOrEmpty(cmbEngine.Text))
+                errorMessage.AppendLine("Engine is a required field");
+        }
+        
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             if (!changedData) // **** CHANGE TO !
             {
-                //this.Close();
                 // Double checking if user really wants to go back
                 MessageBoxResult result =
                     MessageBox.Show("Are you sure you want to go back?", "Unsaved changes", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -140,47 +244,31 @@ namespace WPF_Project
                 if (result == MessageBoxResult.Yes)
                     this.Close();
             }
-
         }
+        /// <summary>
+        /// Binding engine options
+        /// </summary>
+        /// <param name="engines"> Array of engines to bind </param>
         private void EngineOptions(Engine[] engines)
         {
             cmbEngine.ItemsSource = engines;
         }
+        /// <summary>
+        /// Binding Body Type options
+        /// </summary>
+        /// <param name="body"> Specific Body Type (cmbBodyType2 or cmbBodyType4) </param>
+        /// <param name="bodies"> Array of body types to bind </param>
         private void BodyTypeOptions(ComboBox body, Body[] bodies)
         {
             body.ItemsSource = bodies;
         }
-        //private bool CheckUserInput()
-        //{
-        //    StringBuilder errorMessage = new StringBuilder();
-        //    //Name
-        //    if (string.IsNullOrEmpty(cmbModelNames.Text))
-        //        errorMessage.AppendLine("Name is a required field");
-        //    //Email
-        //    if (string.IsNullOrEmpty(cmbColours.Text))
-        //        errorMessage.AppendLine("Email is a required field");
-        //    //Country
-        //    if (string.IsNullOrEmpty(cmb.Text))
-        //        errorMessage.AppendLine("Country is a required field");
-        //    //Status
-        //    if (!(rdbTeacher.IsChecked.Value || rdbStudent.IsChecked.Value || rdbProfessional.IsChecked.Value))
-        //        errorMessage.AppendLine("Name is a required field");
-        //    //Checkin data
-        //    if (!dpCheckin.SelectedDate.HasValue)
-        //        errorMessage.AppendLine("Check in date is a required field");
-
-        //    if (string.IsNullOrEmpty(errorMessage.ToString()))
-        //        return true;
-
-        //    MessageBox.Show(errorMessage.ToString(), "Required User Input", MessageBoxButton.OK, MessageBoxImage.Error);
-        //    return false;
-        //}
+        
         /// <summary>
         /// Showing the options for the 1st type of constructor
         /// </summary>
         private void Constructor1()
         {
-            currentConstructorValue = 1;
+            currentConstructorValue = 1; // setting the current constructor value
 
             ShowColour();
             HideEngine();
@@ -191,7 +279,7 @@ namespace WPF_Project
         /// </summary>
         private void Constructor2()
         {
-            currentConstructorValue = 2;
+            currentConstructorValue = 2; // setting the current constructor value
 
             ShowColour();
             HideEngine();
@@ -203,7 +291,7 @@ namespace WPF_Project
         /// </summary>
         private void Constructor3()
         {
-            currentConstructorValue = 3;
+            currentConstructorValue = 3; // setting the current constructor value
 
             ShowColour();
             ShowEngine();
@@ -214,7 +302,7 @@ namespace WPF_Project
         /// </summary>
         private void Constructor4()
         {
-            currentConstructorValue = 4;
+            currentConstructorValue = 4; // setting the current constructor value
 
             ShowColour();
             HideBodyType();
