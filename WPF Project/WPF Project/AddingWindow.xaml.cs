@@ -118,9 +118,6 @@ namespace WPF_Project
                 Model model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem);
                 MessageBox.Show("4");
             }
-
-
-
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -141,6 +138,31 @@ namespace WPF_Project
             }
 
         }
+        //private bool CheckUserInput()
+        //{
+        //    StringBuilder errorMessage = new StringBuilder();
+        //    //Name
+        //    if (string.IsNullOrEmpty(cmbModelNames.Text))
+        //        errorMessage.AppendLine("Name is a required field");
+        //    //Email
+        //    if (string.IsNullOrEmpty(cmbColours.Text))
+        //        errorMessage.AppendLine("Email is a required field");
+        //    //Country
+        //    if (string.IsNullOrEmpty(cmb.Text))
+        //        errorMessage.AppendLine("Country is a required field");
+        //    //Status
+        //    if (!(rdbTeacher.IsChecked.Value || rdbStudent.IsChecked.Value || rdbProfessional.IsChecked.Value))
+        //        errorMessage.AppendLine("Name is a required field");
+        //    //Checkin data
+        //    if (!dpCheckin.SelectedDate.HasValue)
+        //        errorMessage.AppendLine("Check in date is a required field");
+
+        //    if (string.IsNullOrEmpty(errorMessage.ToString()))
+        //        return true;
+
+        //    MessageBox.Show(errorMessage.ToString(), "Required User Input", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    return false;
+        //}
         /// <summary>
         /// Showing the options for the 1st type of constructor
         /// </summary>
