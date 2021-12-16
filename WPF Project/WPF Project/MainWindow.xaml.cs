@@ -34,9 +34,10 @@ namespace WPF_Project
         {
             InitializeComponent();
 
+            models.Add(new Model("Q5", "white"));
             models.Add(new Model("A3", "red"));
             models.Add(new Model("A7", "blue"));
-            models.Add(new Model("Q5", "white"));
+            
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)

@@ -92,8 +92,12 @@ namespace WPF_Project
                 Constructor3();
             // If the selection changed is anything for the 4th constructor
             else if (model == modelNames[3])
+            {
                 //MessageBox.Show("Constructor 4 (4 parameters)");
                 Constructor4();
+                EngineOptions(new Engine[] { Engine.FiftyFive, Engine.FourtyFive } );
+                BodyTypeOptions(cmbBodyType4, new Body[] { Body.Limousine, Body.Wagon } );
+            }
         }
 
         private void btnAddCar_Click(object sender, RoutedEventArgs e)
@@ -137,6 +141,14 @@ namespace WPF_Project
                     this.Close();
             }
 
+        }
+        private void EngineOptions(Engine[] engines)
+        {
+            cmbEngine.ItemsSource = engines;
+        }
+        private void BodyTypeOptions(ComboBox body, Body[] bodies)
+        {
+            body.ItemsSource = bodies;
         }
         //private bool CheckUserInput()
         //{
