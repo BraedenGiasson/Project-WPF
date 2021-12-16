@@ -30,16 +30,17 @@ namespace WPF_Project
             List<Body> bodyTypes = Enum.GetValues(typeof(Body))
                             .Cast<Body>()
                             .ToList();
-
+            
             modelNames = new List<string>() 
                 { "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "R8", "TT", "e-tron", "e-tron GT", "Q4 e-tron" };
 
             InitializeComponent();
 
             // Binding
-            cmbBodyType.ItemsSource = bodyTypes;
+            cmbBodyType4.ItemsSource = bodyTypes;
             cmbModelNames.ItemsSource = modelNames;
             //txtColour.Visibility = Visibility.Hidden;
+            txtBodyType2.Visibility = Visibility.Hidden;
         }
         
         private void cmbModelNames_SelectionChanged(object sender, SelectionChangedEventArgs e)

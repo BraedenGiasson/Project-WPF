@@ -54,11 +54,19 @@
                   FontWeight="Bold" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"
                   Width="150"/>
 
-        <!-- Body Type -->
-        <TextBlock Text="Body Type" Grid.Row="6" Grid.Column="1" 
+        <!-- Body Type (constructor 2) -->
+        <TextBlock x:Name="txtBodyType2" Text="Body Type" Grid.Row="5" Grid.Column="1" 
                    HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,5,5"
                    VerticalAlignment="Center"/>
-        <ComboBox x:Name="cmbBodyType" Margin="0,0,0,5" HorizontalAlignment="Center" 
+        <ComboBox x:Name="cmbBodyType2" Margin="0,0,0,5" HorizontalAlignment="Center" 
+                  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"
+                  Width="150"/>
+
+        <!-- Body Type (constructor 4) -->
+        <TextBlock x:Name="txtBodyType4" Text="Body Type" Grid.Row="6" Grid.Column="1" 
+                   HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,5,5"
+                   VerticalAlignment="Center"/>
+        <ComboBox x:Name="cmbBodyType4" Margin="0,0,0,5" HorizontalAlignment="Center" 
                   FontWeight="Bold" VerticalAlignment="Center" Grid.Column="2" Grid.Row="6"
                   Width="150"/>
         
