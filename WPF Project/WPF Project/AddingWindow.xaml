@@ -23,19 +23,21 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <!-- Text saying "Add a car" -->
-        <TextBlock Text="Add a Car" Grid.Column="1" HorizontalAlignment="Center"
-                   Grid.Row="1" Grid.ColumnSpan="2" FontSize="30" FontWeight="Bold"/>
+        <TextBlock Text="Add a Car by model name" Grid.Column="0" HorizontalAlignment="Left"
+                   Grid.Row="1" Grid.ColumnSpan="4" FontSize="30" FontWeight="Bold" Margin="43,0,0,0"/>
 
         <!-- Name -->
         <TextBlock Text="Name" Grid.Row="3" Grid.Column="1" 
                    HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,5,5"
                    VerticalAlignment="Center"/>
-        <TextBox x:Name="txtName" Width="150" VerticalAlignment="Center" Margin="0,0,0,5" 
-                 Grid.Row="3" Height="25" Grid.Column="2"/>
+        <ComboBox x:Name="cmbModelNames" Margin="0,0,0,5" HorizontalAlignment="Center" 
+                  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"
+                  Width="150" SelectionChanged="cmbModelNames_SelectionChanged"/>
 
         <!-- Colour -->
         <TextBlock Text="Colour" FontWeight="Bold" Margin="0,0,5,5"
@@ -59,5 +61,15 @@
         <ComboBox x:Name="cmbBodyType" Margin="0,0,0,5" HorizontalAlignment="Center" 
                   FontWeight="Bold" VerticalAlignment="Center" Grid.Column="2" Grid.Row="6"
                   Width="150"/>
+        
+        <!-- Add Car Button -->
+        <Button Content="Add car" Click="btnAddCar_Click" Grid.Column="1" Grid.Row="7"
+                VerticalAlignment="Center" Width="75" FontSize="15" FontWeight="SemiBold"
+                Margin="0,5,110,0" Grid.ColumnSpan="2"/>
+        
+        <!-- Cancel Button -->
+        <Button Content="Cancel" Click="btnCancel_Click" Grid.Column="2" Grid.Row="7"
+                VerticalAlignment="Center" Width="75" FontSize="15" FontWeight="SemiBold"
+                Margin="0,5,20,0" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

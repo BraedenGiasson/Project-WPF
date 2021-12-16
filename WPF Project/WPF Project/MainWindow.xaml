@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="600"
         WindowStartupLocation="CenterScreen"
-        SizeToContent="Height">
-    <Grid Background="LightSteelBlue">
+        SizeToContent="Height"
+        Closing="Window_Closing">
+    <Grid Background="LightGray">
         <!-- Defining Columns -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
@@ -19,31 +20,54 @@
         </Grid.ColumnDefinitions>
         <!-- Defining Rows -->
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="75"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
+        <!-- Menu -->
+        <Menu Grid.ColumnSpan="5" Margin="0,0,0,32" Grid.RowSpan="2">
+            <MenuItem Header="_File">
+                <MenuItem Header="Save" Click="btnSave_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="About Us" Click="menuAboutUs_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Tool Bar -->
+        <ToolBar Grid.Row="1" Grid.ColumnSpan="5" Background="LightGray" >
+            <Button Click="btnSave_Click">
+                <Image Source="/Images/Save_16x.png" />
+            </Button>
+            <Separator/>
+            <Button Click="btnCopy_Click">
+                <Image Source="/Images/Copy_16x.png" />
+            </Button>
+        </ToolBar>
+
         <!-- Welcoming text -->
-        <StackPanel HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" Orientation="Horizontal">
             <TextBlock Text="Welcome to Audi!" FontSize="35" FontWeight="Bold" Margin="0,15,0,0"/>
         </StackPanel>
 
         <!-- Description -->
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Width="300" Grid.Row="1" Margin="0,0,0,30">
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Width="300" Grid.Row="3" Margin="0,0,0,30">
             <TextBlock Text="As an employee of dealership, Audi, you have the ability to manipulate the system!"
                    FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Center"/>
         </StackPanel>
 
         <!-- Buttons -->
-        <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="2" Grid.Column="1" Width="100" Height="50" Click="btnAdd_Click"/>
-        <Button Cursor="Hand" Content="Update a car" FontSize="16" FontWeight="DemiBold" Grid.Row="2" Grid.Column="2" Width="105" Height="50" Click="btnUpdate_Click"/>
-        <Button Cursor="Hand" Content="Delete a car" FontSize="16" FontWeight="DemiBold" Grid.Row="2" Grid.Column="3" Width="100" Height="50" Click="btnDelete_Click"/>
-        <Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Width="115" Height="50" Grid.RowSpan="2" Margin="0,0,25,0" Click="btnShowAll_Click"/>
-        <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Width="115" Height="50" Grid.RowSpan="2" Click="btnShoppingList_Click"/>
+        <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1" Width="100" Height="50" Click="btnAdd_Click"/>
+        <Button Cursor="Hand" Content="Update a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="2" Width="105" Height="50" Click="btnUpdate_Click"/>
+        <Button Cursor="Hand" Content="Delete a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="3" Width="100" Height="50" Click="btnDelete_Click"/>
+        <Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Width="115" Height="50" Grid.RowSpan="2" Margin="0,0,25,30" Click="btnShowAll_Click"/>
+        <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Width="115" Height="50" Grid.RowSpan="2" Margin="0,0,0,30" Click="btnShoppingList_Click"/>
 
     </Grid>
 </Window>

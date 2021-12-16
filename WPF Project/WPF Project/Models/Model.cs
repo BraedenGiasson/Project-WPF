@@ -24,6 +24,7 @@ namespace WPF_Project.Models
         private static readonly string makeCountry = "Germany";
         private static readonly string makeCategory = "luxury";
 
+        private List<Regex> listForConstructorWith2Arguments; // delete maybe
 
         public Model(string name, string colour)        //SAME ENGINE AND ONE BODYTYPE
         {
@@ -34,6 +35,8 @@ namespace WPF_Project.Models
             Regex Q8 = new Regex("Q8", RegexOptions.IgnoreCase);
             Regex etronGT = new Regex("e-tron GT", RegexOptions.IgnoreCase);
 
+            listForConstructorWith2Arguments = new List<Regex>()
+            { a3, a7, a8, Q5, Q8 };
 
             if (a3.IsMatch(name))
             {
@@ -115,7 +118,10 @@ namespace WPF_Project.Models
             }
         }
 
-
+        public List<Regex> ListForConstructorWith2Arguments
+        {
+            get { return listForConstructorWith2Arguments; }
+        }
 
         public Model(string name, string colour, Body bodyType)     //SAME ENGINE DIFFERENT BODY TYPE
         {
