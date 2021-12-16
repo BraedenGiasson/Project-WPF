@@ -66,22 +66,29 @@ namespace WPF_Project
 
         }
 
-        private void SaveLogic()
+        /// <summary>
+        /// Saving all the data at the right location
+        /// </summary>
+        private void SaveData()
         {
+            // Logic for if the data is being saved for the first time
             if (string.IsNullOrEmpty(saveLocation))
             {
                 SaveFileDialog save = new SaveFileDialog();
-                save.Filter = "CVS Files|*.csv";//"Description|*.xyz|file2|*.file2";
+                save.Filter = "CVS Files|*.csv"; // Only accepts CSV files
+
+                // Saving the data to the specified location
                 if (save.ShowDialog() == true)
-                {
                     saveLocation = save.FileName;
-                }
                 else
                     return;
             }
             WriteDataToFile();
         }
 
+        /// <summary>
+        /// Writing the data to the file
+        /// </summary>
         private void WriteDataToFile()
         {
             if (!saved)
@@ -92,45 +99,52 @@ namespace WPF_Project
                     foreach (Model visitor in models)
                         //modelsCSV.AppendLine(visitor.CSVData);
 
-                    File.WriteAllText(saveLocation, modelsCSV.ToString());
+                    File.WriteAllText(saveLocation, modelsCSV.ToString()); // writing all the text to the file (at the right location)
                     saved = true;
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
             }
         }
 
+        /// <summary>
+        /// Checking to see if the file should really be opened (saved)
+        /// </summary>
+        /// <returns></returns>
         private bool ChecktoOpen()
         {
+            // If the file is already saved, return true
             if (saved)
                 return true;
-
+            // If the file is null or their is no models cars, return true
             if (string.IsNullOrEmpty(saveLocation) && models.Count == 0)
                 return true;
 
-
-            //Data is not saved
+            // If data is not saved, ask user if they want to save the data
             MessageBoxResult result =
                 MessageBox.Show("Do you want to save changes?", "Unsaved changes", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
 
-
+            // If the result from the user answer is no, return true
             if (result == MessageBoxResult.No)
                 return true;
-
+            // If the result from the user answer is cancel, return false and go back to window
             if (result == MessageBoxResult.Cancel)
                 return false;
-
+            // If the result from the user answer is yes, save the data
             if (result == MessageBoxResult.Yes)
-                SaveLogic();
+                SaveData();
 
             return saved; //if the user saved it mean it ok to open a file and if the user cancels then saved will be false
 
         }
 
-
+        /// <summary>
+        /// Used to check if saving data needed when trying to close the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = !ChecktoOpen();
