@@ -19,11 +19,9 @@ namespace WPF_Project.Models
             //inventoryList = new List<Model>( maxInventory );
             ////inventoryList.Capacity = maxInventory;
 
-
-            inventoryList[0] = new Model("A3", "Black");
-            inventoryList[1] = new Model("R8", "Blue");
-            inventoryList[2] = new Model("A4", "Red");
-
+            //inventoryList[0] = new Model("A3", "Black");
+            //inventoryList[1] = new Model("R8", "Blue");
+            //inventoryList[2] = new Model("A4", "Red");
 
             //GetAllActualCars();
         }
@@ -112,7 +110,6 @@ namespace WPF_Project.Models
                     inventoryList.RemoveAt(i);
                     model.ModelQuantity--;
                 }
-
                 return;
 
                     //inventoryList.RemoveAt(i); // make it null
