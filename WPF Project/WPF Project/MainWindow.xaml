@@ -41,13 +41,13 @@
         </Menu>
 
         <!-- Tool Bar -->
-        <ToolBar Grid.Row="1" Grid.ColumnSpan="5" Background="LightGray" >
+        <ToolBar Grid.Row="1" Grid.ColumnSpan="5"  >
             <Button Click="btnSave_Click">
-                <Image Source="/Images/Save_16x.png" />
+                <Image Source="/Images/Save_16x.png" Width="50" Height="35" />
             </Button>
             <Separator/>
             <Button Click="btnCopy_Click">
-                <Image Source="/Images/Copy_16x.png" />
+                <Image Source="/Images/Copy_16x.png" Width="50" Height="35"  />
             </Button>
         </ToolBar>
 

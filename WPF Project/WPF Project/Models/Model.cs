@@ -143,7 +143,14 @@ namespace WPF_Project.Models
                 Width = 1847;
                 Length = 4762;
                 FuelType = "Gasoline";
-                BodyType = Convert.ToString(bodyType);
+                //BodyType = Convert.ToString(bodyType);
+
+                if (bodyType == Body.Limousine)
+                    BodyType = Convert.ToString(bodyType);
+                else if (bodyType == Body.Wagon)
+                    BodyType = Convert.ToString(bodyType);
+                else
+                    throw new ArgumentException($"Error: That option is invalid for model name of type {Name}");
             }
             else if (a5.IsMatch(name))
             {
