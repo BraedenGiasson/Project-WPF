@@ -13,11 +13,13 @@ namespace WPF_Project.Models
         public Inventory()
         {
             inventoryList = new List<Model>( new Model[maxInventory] );
-            //inventoryList.Capacity = maxInventory;
+            ////inventoryList.Capacity = maxInventory;
 
             inventoryList[0] = new Model("A3", "Black");
             inventoryList[1] = new Model("R8", "Blue");
             inventoryList[2] = new Model("A4", "Red");
+
+            GetAllActualCars();
         }
         public static List<Model> Models
         {
@@ -74,14 +76,15 @@ namespace WPF_Project.Models
 
         public void AddItem(Model model)
         {
-            int freeSpot =  GetFirstAvailableParkingSpot();
+            //int freeSpot =  GetFirstAvailableParkingSpot();
 
-            if (freeSpot < 0)
-            {
-                throw new ArgumentOutOfRangeException("Cannot add car because the parking lot is full", "AddItem");
-            }
-                
-            inventoryList[freeSpot] = model;
+            //if (freeSpot < 0)
+            //{
+            //    throw new ArgumentOutOfRangeException("Cannot add car because the parking lot is full", "AddItem");
+            //}
+
+            //inventoryList[freeSpot] = model;
+            inventoryList.Add(model);
         }
 
         public void RemoveItem(Model model)

@@ -25,7 +25,7 @@ namespace WPF_Project
         private bool changedData = false;
         List<string> modelNames;
         int currentConstructorValue;
-        
+
         public AddingWindow(ref List<Model> models)
         {
             
@@ -43,7 +43,7 @@ namespace WPF_Project
                 { "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "R8", "TT", "e-tron", "e-tron GT", "Q4 e-tron" };
 
             InitializeComponent();
-            
+
             // Binding all input fields
             cmbBodyType4.ItemsSource = bodyTypes;
             cmbBodyType2.ItemsSource = bodyTypes;
@@ -160,10 +160,9 @@ namespace WPF_Project
                 {
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem);
                     MessageBox.Show("Cons 4");
-                    
                 }
             }
-            Inventory inventory = sender as Inventory;
+            Inventory inventory = new Inventory();
             inventory.AddItem(model);
             //MainWindow mw = new MainWindow();
             //mw.AddToModels(ref model);
