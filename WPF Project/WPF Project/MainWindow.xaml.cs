@@ -30,8 +30,6 @@ namespace WPF_Project
         private string saveLocation = string.Empty;
         private bool saved = false;
 
-        Inventory inventory = new Inventory();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -55,7 +53,7 @@ namespace WPF_Project
 
         private void btnShowAll_Click(object sender, RoutedEventArgs e)
         {
-            ModelWindow modelWindow = new ModelWindow(inventory);
+            ModelWindow modelWindow = new ModelWindow();
             modelWindow.Show(); // throwing error because initally null
         }
 
