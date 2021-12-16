@@ -19,6 +19,7 @@ namespace WPF_Project.Models
         private double length;
         private string fuelType;
         private string bodyType;
+        //private string engineOption;                          MIGHT HAVE TO BE IMPLEMENTED LATER!!!
 
         private static readonly string makeName = "Audi";
         private static readonly string makeCountry = "Germany";
@@ -435,6 +436,16 @@ namespace WPF_Project.Models
                 bodyType = value;
             }
         }
+        //ALSO IMPLEMEMENT LATER
+        /*public string EngineOption
+        {
+            set
+            {
+                if (!(value == Convert.ToString(Engine.FiftyFive) || value == Convert.ToString(Engine.Fourty) || value == Convert.ToString(Engine.FourtyFive)))
+                    throw new ArgumentException("Engine option does not exist", "EngineOption");
+                engineOption = value;
+            }
+        }*/
 
         public static string MakeName
         {
@@ -450,6 +461,48 @@ namespace WPF_Project.Models
         {
             get { return makeCategory; }
         }
+
+
+        /*private string name;
+        private string colour;
+        private int horsepower;
+        private int torque;
+        private int numberOfSeats;
+        private double height;
+        private double width;
+        private double length;
+        private string fuelType;
+        private string bodyType;*/
+
+
+
+
+
+        //Might be needed for reading and writing to file
+
+        /*public string CSVData
+        {
+            get
+            {
+                return string.Format($"{Name}, {Colour}, {EngineOption}, {BodyType}");
+            }
+            set
+            {
+                //string comma separated and set the fields of the visitor
+                string[] allData = value.Split(',');
+                try
+                {
+                    Name = allData[0];
+                    Colour = allData[1];
+                    EngineOption = allData[2];
+                    BodyType = allData[3];
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("All Data Property value not valid " + ex.Message);
+                }
+            }
+        }*/
 
         public int AvailableQuantity()
         {
