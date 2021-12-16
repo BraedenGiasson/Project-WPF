@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\
+C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\
 WPF_Project
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-J:\WPF-Project\WPF Project\WPF Project\App.xaml
+C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\App.xaml
 3-898989972
 
 10-216443515
 192-1533232326
 AddingWindow.xaml;MainWindow.xaml;ModelWindow.xaml;
 
-True
+False
 
