@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_Project.Models;
 
+
 namespace WPF_Project
 {
     /// <summary>
@@ -20,6 +21,9 @@ namespace WPF_Project
     /// </summary>
     public partial class AddingWindow : Window
     {
+        // Saving For Adding Window
+        private bool changedData = false;
+
         public AddingWindow()
         {
             List<Body> bodyTypes = Enum.GetValues(typeof(Body))
@@ -44,8 +48,21 @@ namespace WPF_Project
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            //NavigationService.Navigate(new MainWindow());
+            if (!changedData) // **** CHANGE TO !
+            {
+                //this.Close();
+                // Double checking if user really wants to go back
+                MessageBoxResult result =
+                    MessageBox.Show("Are you sure you want to go back?", "Unsaved changes", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                // If the result from the user answer is no, return true
+                if (result == MessageBoxResult.No)
+                    return;
+                // If the result from the user answer is yes, save the data
+                if (result == MessageBoxResult.Yes)
+                    this.Close();
+            }
+            
         }
     }
 }

@@ -26,7 +26,7 @@ namespace WPF_Project
         private List<Model> models = new List<Model>();
         List<Body> bodyTypes = new List<Body>();
 
-        // Saving 
+        // Saving For Main Window
         private string saveLocation = string.Empty;
         private bool saved = false;
 
@@ -69,7 +69,7 @@ namespace WPF_Project
         /// <summary>
         /// Saving all the data at the right location
         /// </summary>
-        private void SaveData()
+        public void SaveData()
         {
             // Logic for if the data is being saved for the first time
             if (string.IsNullOrEmpty(saveLocation))
@@ -148,6 +148,21 @@ namespace WPF_Project
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = !ChecktoOpen();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveData();
+        }
+
+        private void menuAboutUs_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCopy_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
