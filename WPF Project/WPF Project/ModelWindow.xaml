@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
-        Title="ModelWindow" Height="450" Width="715"
+        Title="ModelWindow" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
         SizeToContent="Height">
     <Grid>
         <DataGrid x:Name="dgModels" AutoGenerateColumns="False" IsReadOnly="True">
-            <DataGrid.Columns>
+            <DataGrid.Columns x:Uid="grid">
+                <DataGridTextColumn Header="Delete" x:Name="dgDelete" Width="50"/>
                 <DataGridTextColumn Header="Model Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Colour" Binding="{Binding Colour}"/>
                 <DataGridTextColumn Header="Horsepower" Binding="{Binding Horsepower}"/>
@@ -22,7 +23,7 @@
                 <DataGridTextColumn Header="Engine" Binding="{Binding EngineOption}"/>
                 <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}"/>
                 <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity}"/>
+                <DataGridTextColumn Header="Quantity" IsReadOnly="False" Binding="{Binding ModelQuantity}"/>
             </DataGrid.Columns>
 
             <DataGrid.ContextMenu>
