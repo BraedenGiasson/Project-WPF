@@ -28,3 +28,15 @@ C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.pdb
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.genruntimeconfig.cache
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.csproj.AssemblyReference.cache
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.csproj.AssemblyReference.cache
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\AddingWindow.g.cs
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\DeleteWindow.g.cs
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ModelWindow.g.cs
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ShoppingListWindow.g.cs
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\UpdateWindow.g.cs
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\App.g.cs
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project_MarkupCompile.cache
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project_MarkupCompile.lref
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.dll
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.pdb
