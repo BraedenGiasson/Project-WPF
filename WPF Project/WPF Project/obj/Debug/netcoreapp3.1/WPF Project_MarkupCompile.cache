@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\
+C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\
 WPF_Project
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-J:\WPF-ProjectCopy\WPF Project\WPF Project\App.xaml
+C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\App.xaml
 61988823641
 
-13411432655
+1248878822
 192-1533232326
 AddingWindow.xaml;DeleteWindow.xaml;MainWindow.xaml;ModelWindow.xaml;ShoppingListWindow.xaml;UpdateWindow.xaml;
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600"
+        Title="MainWindow" Height="440" Width="600"
         WindowStartupLocation="CenterScreen"
         SizeToContent="Height"
         Closing="Window_Closing">
@@ -41,33 +41,31 @@
         </Menu>
 
         <!-- Tool Bar -->
-        <ToolBar Grid.Row="1" Grid.ColumnSpan="5"  >
+        <ToolBar Grid.Row="1" Grid.ColumnSpan="5" Background="LightGray">
             <Button Click="btnSave_Click">
-                <Image Source="/Images/Save_16x.png" Width="50" Height="35" />
+                <Image Source="/Images/Save_16x.png"/>
             </Button>
             <Separator/>
             <Button Click="btnCopy_Click">
-                <Image Source="/Images/Copy_16x.png" Width="50" Height="35"  />
+                <Image Source="/Images/Copy_16x.png"/>
             </Button>
         </ToolBar>
 
         <!-- Welcoming text -->
         <StackPanel HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" Orientation="Horizontal">
-            <TextBlock Text="Welcome to Audi!" FontSize="35" FontWeight="Bold" Margin="0,15,0,0"/>
+            <TextBlock x:Name="txtWelcomeName" Text="Welcome to " FontSize="35" FontWeight="Bold" Margin="0,15,0,0"/>
         </StackPanel>
 
         <!-- Description -->
         <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Width="300" Grid.Row="3" Margin="0,0,0,30">
-            <TextBlock Text="As an employee of dealership, Audi, you have the ability to manipulate the system!"
+            <TextBlock x:Name="txtDescription" Text=""
                    FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Center"/>
         </StackPanel>
 
         <!-- Buttons -->
-        <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1" Width="100" Height="50" Click="btnAdd_Click"/>
-        <Button Cursor="Hand" Content="Update a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="2" Width="105" Height="50" Click="btnUpdate_Click"/>
-        <Button Cursor="Hand" Content="Delete a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="3" Width="100" Height="50" Click="btnDelete_Click"/>
+        <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="100" Height="50" Margin="0,0,25,0" Click="btnAdd_Click"/>
+        <Button Cursor="Hand" Content="Delete a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Width="100" Height="50" Click="btnDelete_Click"/>
         <Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Width="115" Height="50" Grid.RowSpan="2" Margin="0,0,25,30" Click="btnShowAll_Click"/>
         <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Width="115" Height="50" Grid.RowSpan="2" Margin="0,0,0,30" Click="btnShoppingList_Click"/>
-
     </Grid>
 </Window>

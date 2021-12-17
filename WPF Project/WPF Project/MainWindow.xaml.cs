@@ -30,18 +30,47 @@ namespace WPF_Project
         private string saveLocation = string.Empty;
         private static bool saved = false;
 
+        // Company information
+        private static readonly string makeName = "Audi";
+        private static readonly string makeCountry = "Germany";
+        private static readonly string makeCategory = "luxurious";
+
         public MainWindow()
         {
             InitializeComponent();
-        }
 
+            // Displaying company information
+            txtWelcomeName.Text += $"{makeName}!";
+            txtDescription.Text = $"The most {makeCategory} car company in {makeCountry}!";
+        }
+        /// <summary>
+        /// Window for the 'Adding car'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             AddingWindow addingWindow = new AddingWindow();
             addingWindow.Show();
         }
+        /// <summary>
+        /// Window for the 'Delete car'
+        /// </summary>
+        /// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        //{
+        //    UpdateWindow updateWindow = new UpdateWindow();
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        //    // If model list has cars, show all cars
+        //    if (Inventory.InventoryList.Count != NO_MODELS)
+        //        updateWindow.Show(); // throwing error because initally null
+        //    // If not, give message saying no cars in stock
+        //    else
+        //        MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //}
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             UpdateWindow updateWindow = new UpdateWindow();
 
@@ -52,12 +81,11 @@ namespace WPF_Project
             else
                 MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Displaying everything in inventory in table format
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShowAll_Click(object sender, RoutedEventArgs e)
         {
             ModelWindow modelWindow = new ModelWindow();
@@ -69,13 +97,15 @@ namespace WPF_Project
             else
                 MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-
+        /// <summary>
+        /// Window for the shopping list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShoppingList_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
-
         /// <summary>
         /// Saving all the data at the right location
         /// </summary>
@@ -95,7 +125,6 @@ namespace WPF_Project
             }
             WriteDataToFile();
         }
-
         /// <summary>
         /// Writing the data to the file
         /// </summary>
@@ -106,6 +135,8 @@ namespace WPF_Project
                 try
                 {
                     StringBuilder modelsCSV = new StringBuilder();
+
+                    // Adding each model in the inventory to the list
                     foreach (Model model in Inventory.InventoryList)
                         modelsCSV.AppendLine(model.CSVData);
 
@@ -118,7 +149,6 @@ namespace WPF_Project
                 }
             }
         }
-
         /// <summary>
         /// Checking to see if the file should really be opened (saved)
         /// </summary>
@@ -146,8 +176,7 @@ namespace WPF_Project
             if (result == MessageBoxResult.Yes)
                 SaveData();
 
-            return saved; //if the user saved it mean it ok to open a file and if the user cancels then saved will be false
-
+            return false; //if the user saved it mean it ok to open a file and if the user cancels then saved will be false
         }
 
         /// <summary>
@@ -174,7 +203,9 @@ namespace WPF_Project
         {
 
         }
-
+        /// <summary>
+        /// Property to set the value of saved in other windows
+        /// </summary>
         public static bool Saved
         {
             get { return saved; }
