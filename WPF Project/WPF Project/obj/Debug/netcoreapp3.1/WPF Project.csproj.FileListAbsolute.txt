@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.exe
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.deps.json
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.runtimeconfig.json
@@ -28,36 +27,4 @@ C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.dll
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.pdb
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.genruntimeconfig.cache
-=======
-J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.exe
-J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.deps.json
-J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.runtimeconfig.json
-J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.runtimeconfig.dev.json
-J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.dll
-J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.pdb
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.csproj.AssemblyReference.cache
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\AddingWindow.g.cs
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\DeleteWindow.g.cs
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\MainWindow.g.cs
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ModelWindow.g.cs
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ShoppingListWindow.g.cs
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\UpdateWindow.g.cs
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\App.g.cs
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project_MarkupCompile.cache
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project_MarkupCompile.lref
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\AddingWindow.baml
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\DeleteWindow.baml
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\MainWindow.baml
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ModelWindow.baml
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ShoppingListWindow.baml
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\UpdateWindow.baml
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.g.resources
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.GeneratedMSBuildEditorConfig.editorconfig
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.AssemblyInfoInputs.cache
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.AssemblyInfo.cs
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.csproj.CoreCompileInputs.cache
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.dll
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.pdb
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.genruntimeconfig.cache
->>>>>>> 42e9b502d17de1d36cf2b712c243f34282619263
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.csproj.AssemblyReference.cache

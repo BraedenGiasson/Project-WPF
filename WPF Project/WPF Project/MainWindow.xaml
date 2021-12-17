@@ -53,12 +53,12 @@
 
         <!-- Welcoming text -->
         <StackPanel HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" Orientation="Horizontal">
-            <TextBlock Text="Welcome to Audi!" FontSize="35" FontWeight="Bold" Margin="0,15,0,0"/>
+            <TextBlock x:Name="txtWelcomeName" Text="Welcome to " FontSize="35" FontWeight="Bold" Margin="0,15,0,0"/>
         </StackPanel>
 
         <!-- Description -->
         <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Width="300" Grid.Row="3" Margin="0,0,0,30">
-            <TextBlock Text="As an employee of dealership, Audi, you have the ability to manipulate the system!"
+            <TextBlock x:Name="txtDescription" Text=""
                    FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Center"/>
         </StackPanel>
 

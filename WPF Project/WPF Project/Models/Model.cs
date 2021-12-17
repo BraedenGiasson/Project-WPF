@@ -20,13 +20,8 @@ namespace WPF_Project.Models
         private string fuelType;
         private string bodyType;
         private int modelQuantity = 0;
-        private string engineOption;                          //MIGHT HAVE TO BE IMPLEMENTED LATER!!!
+        private string engineOption;                          
 
-
-
-        private static readonly string makeName = "Audi";
-        private static readonly string makeCountry = "Germany";
-        private static readonly string makeCategory = "luxury";
 
         public Model(string name, string colour, int quantity)        //SAME ENGINE AND ONE BODYTYPE
         {
@@ -478,21 +473,6 @@ namespace WPF_Project.Models
                     throw new ArgumentException("Engine option does not exist", "EngineOption");
                 engineOption = value;
             }
-        }
-
-        public static string MakeName
-        {
-            get { return makeName; }
-        }
-
-        public static string MakeCountry
-        {
-            get { return makeCountry; }
-        }
-
-        public static string MakeCategory
-        {
-            get { return makeCategory; }
         }
 
         //Might be needed for reading and writing to file
