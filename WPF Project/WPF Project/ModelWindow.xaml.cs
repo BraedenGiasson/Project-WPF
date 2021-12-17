@@ -25,26 +25,17 @@ namespace WPF_Project
             // Binding
             dgModels.ItemsSource = Inventory.InventoryList;
         }
-
+        /// <summary>
+        /// Copying the text to clipboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuCopy_Click(object sender, RoutedEventArgs e)
         {
-            //Model temp = lbVisitors.SelectedItem as Model;
+            Model temp = dgModels.SelectedItem as Model;
 
-            //if (temp != null)
-                //Clipboard.SetText(temp.FullInfo);
-        }
-
-        private void menuDelete_Click(object sender, RoutedEventArgs e)
-        {
-            //Model temp = dgModels.SelectedItem as Model;
-
-            //if (temp != null)
-            //{
-                
-            //    .Remove(temp);
-            //    dgModels.Items.Refresh();
-            //    saved = false;
-            //}
+            if (temp != null)
+                Clipboard.SetText(temp.FullInfo);
         }
     }
 }

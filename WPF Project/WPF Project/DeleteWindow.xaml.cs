@@ -20,133 +20,40 @@ namespace WPF_Project
     /// </summary>
     public partial class DeleteWindow : Window
     {
-        // Saving For Adding Window
-        private bool changedData = false;
-        List<string> modelNames;
-        int currentConstructorValue;
-
         public DeleteWindow()
         {
-            List<Body> bodyTypes = Enum.GetValues(typeof(Body))
-                            .Cast<Body>()
-                            .ToList();
-            List<Colour> colourTypes = Enum.GetValues(typeof(Colour))
-                            .Cast<Colour>()
-                            .ToList();
-            List<Engine> engineTypes = Enum.GetValues(typeof(Engine))
-                            .Cast<Engine>()
-                            .ToList();
-
-            modelNames = new List<string>()
-                { "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "R8", "TT", "e-tron", "e-tron GT", "Q4 e-tron" };
-
             InitializeComponent();
 
-            // Binding all input fields
-            cmbBodyType4.ItemsSource = bodyTypes;
-            cmbBodyType2.ItemsSource = bodyTypes;
-            cmbModelNames.ItemsSource = GettingNamesOfModelsInInventory();
-            cmbColours.ItemsSource = colourTypes;
-            cmbEngine.ItemsSource = engineTypes;
-
-            // Hidding all items initally
-            txtColour.Visibility = Visibility.Hidden;
-            cmbColours.Visibility = Visibility.Hidden;
-
-            txtEngine.Visibility = Visibility.Hidden;
-            cmbEngine.Visibility = Visibility.Hidden;
-
-            txtBodyType2.Visibility = Visibility.Hidden;
-            cmbBodyType2.Visibility = Visibility.Hidden;
-
-            txtBodyType4.Visibility = Visibility.Hidden;
-            cmbBodyType4.Visibility = Visibility.Hidden;
-
-            // Setting constructor value
-            currentConstructorValue = 0;
-        }
-        private List<string> GettingNamesOfModelsInInventory() // add validation to avoid duplicates
-        {
-            List<string> names = new List<string>();
-            for (int i = 0; i < Inventory.InventoryList.Count; i++)
-            {
-                if (Inventory.InventoryList[i].Name != "" && !names.Contains(Inventory.InventoryList[i].Name))
-                    names.Add(Inventory.InventoryList[i].Name);
-            }
-            return names;
-        }
-        private List<string> GetColourFromModel(string model) // add validation to avoid duplicates
-        {
-            List<string> colours = new List<string>();
-            for (int i = 0; i < Inventory.InventoryList.Count; i++)
-            {
-                if (Inventory.InventoryList[i].Name == model)
-                {
-                    if (Inventory.InventoryList[i].Colour != "" && !colours.Contains(Inventory.InventoryList[i].Colour))
-                        colours.Add(Inventory.InventoryList[i].Colour);
-                }
-            }
-            return colours;
-        }
-
-        private void cmbModelNames_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ChangeNameWhenFieldIsSelected();
-            string model = cmbModelNames.SelectedValue as string;
-
-            ShowColour();
-            cmbModelNames.ItemsSource = GettingNamesOfModelsInInventory();
-            cmbColours.ItemsSource = GetColourFromModel(model);
-        }
-        private void cmbColours_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string colour = cmbColours.SelectedValue as string;
-
-
-            MessageBox.Show(GetModelInfoFromNameAndColour(), "Hi", MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
-        private string GetModelInfoFromNameAndColour()
-        {
-            string model = cmbModelNames.SelectedValue as string;
-            string colour = cmbColours.SelectedValue as string;
-
-            int index = Inventory.InventoryList.FindIndex(x => x.Name == model && x.Colour == colour);
-            //txtTheText.Text = Inventory.InventoryList[index].ToString();
-            return Inventory.InventoryList[index].EngineOption.ToString();
+            // Binding
+            dgModels.ItemsSource = Inventory.InventoryList;
         }
         /// <summary>
-        /// Showing the color text and dropdown
+        /// Copying the text to clipboard
         /// </summary>
-        private void ShowColour()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuCopy_Click(object sender, RoutedEventArgs e)
         {
-            txtColour.Visibility = Visibility.Visible;
-            cmbColours.Visibility = Visibility.Visible;
+            Model temp = dgModels.SelectedItem as Model;
+
+            if (temp != null)
+                Clipboard.SetText(temp.FullInfo);
         }
+
         /// <summary>
-        /// Changing the name of 'Choose a name' to 'Model Name' when FIRST selection is changed
+        /// Deleting the item from the inventory list
         /// </summary>
-        private void ChangeNameWhenFieldIsSelected()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuDelete_Click(object sender, RoutedEventArgs e)
         {
-            txtCarName.Text = "Model Name";
-        }
+            Model temp = dgModels.SelectedItem as Model;
 
-        private void btnSelectCar_Click(object sender, RoutedEventArgs e)
-        {
-            if (cmbColours.Visibility == Visibility.Visible)
+            if (temp != null)
             {
-
-            }
-            if (cmbEngine.Visibility == Visibility.Visible)
-            {
-
-            }
-            if (cmbBodyType2.Visibility == Visibility.Visible)
-            {
-
-            }
-            if (cmbBodyType4.Visibility == Visibility.Visible)
-            {
-
+                Inventory.InventoryList.Remove(temp);
+                dgModels.Items.Refresh();
+                MainWindow.Saved = false;
             }
         }
     }

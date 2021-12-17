@@ -63,8 +63,9 @@
         </StackPanel>
 
         <!-- Buttons -->
-        <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="100" Height="50" Margin="0,0,25,0" Click="btnAdd_Click"/>
-        <Button Cursor="Hand" Content="Delete a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Width="100" Height="50" Click="btnDelete_Click"/>
+        <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1" Width="100" Height="50" Margin="0,0,0,0" Click="btnAdd_Click"/>
+        <Button Cursor="Hand" Content="Update a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="2"  Width="110" Height="50" Click="btnUpdate_Click"/>
+        <Button Cursor="Hand" Content="Delete a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="3"  Width="100" Height="50" Click="btnDelete_Click"/>
         <Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Width="115" Height="50" Grid.RowSpan="2" Margin="0,0,25,30" Click="btnShowAll_Click"/>
         <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Width="115" Height="50" Grid.RowSpan="2" Margin="0,0,0,30" Click="btnShoppingList_Click"/>
     </Grid>

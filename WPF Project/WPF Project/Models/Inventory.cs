@@ -122,23 +122,6 @@ namespace WPF_Project.Models
             else
                 throw new ArgumentException($"Inventory quantity cannot exceed {MaxInventorySpace}", "AddItem");
         }
-        /// <summary>
-        /// Removing a model at 
-        /// </summary>
-        /// <param name="model"></param>
-        public static void RemoveItem(Model model)
-        {
-            for (int i = 0;i < inventoryList.Capacity; i++)
-            {
-                if (inventoryList[i] == model)
-                {
-                    inventoryList.RemoveAt(i);
-                    model.ModelQuantity--;
-                    return;
-                }
-            }
-        }
-
         public static void UpdateItem(Model model, int quantity)
         {
             if (inventoryList.Count == inventoryList.Capacity)

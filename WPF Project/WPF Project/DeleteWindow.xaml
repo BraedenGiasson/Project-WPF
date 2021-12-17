@@ -5,11 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
-        Title="DeleteWindow" Height="415" Width="450"
+        Title="Delete Window (right click to delete a car)" Height="415" Width="715"
         WindowStartupLocation="CenterScreen"
         SizeToContent="Height">
     <Grid>
-        <Grid.ColumnDefinitions>
+        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Model Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Colour" Binding="{Binding Colour}"/>
+                <DataGridTextColumn Header="Horsepower" Binding="{Binding Horsepower}"/>
+                <DataGridTextColumn Header="Torque" Binding="{Binding Torque}"/>
+                <DataGridTextColumn Header="# of Seats" Binding="{Binding NumberOfSeats}"/>
+                <DataGridTextColumn Header="Height" Binding="{Binding Height}"/>
+                <DataGridTextColumn Header="Width" Binding="{Binding Width}" />
+                <DataGridTextColumn Header="Length" Binding="{Binding Length}"/>
+                <DataGridTextColumn Header="Engine" Binding="{Binding EngineOption}"/>
+                <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}"/>
+                <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity}"/>
+            </DataGrid.Columns>
+
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy" Click="menuCopy_Click"/>
+                    <MenuItem Header="Delete" Click="menuDelete_Click" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        
+        
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="70"/>
             <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="155"/>
@@ -27,11 +52,11 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <!-- Text saying "Update a car" -->
+        --><!-- Text saying "Update a car" --><!--
         <TextBlock Text="Delete a Car" Grid.Column="1" HorizontalAlignment="Left"
                    Grid.Row="1" Grid.ColumnSpan="4" FontSize="30" FontWeight="Bold" Margin="60,0,0,0"/>
 
-        <!-- Name -->
+        --><!-- Name --><!--
         <TextBlock x:Name="txtCarName" Text="Choose a name" Grid.Row="1" Grid.Column="1" 
                    HorizontalAlignment="Center" FontWeight="Bold" Margin="0,30,5,5"
                    VerticalAlignment="Center" Grid.RowSpan="3"/>
@@ -39,7 +64,7 @@
                   VerticalAlignment="Center" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"
                   Width="150" SelectionChanged="cmbModelNames_SelectionChanged"/>
 
-        <!-- Colour -->
+        --><!-- Colour --><!--
         <TextBlock x:Name="txtColour" Text="Colour" FontWeight="Bold" Margin="0,0,5,5"
                    Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" 
                    VerticalAlignment="Center" Grid.RowSpan="2"/>
@@ -47,7 +72,7 @@
                  Grid.Row="3" Height="25" Grid.Column="2" Grid.RowSpan="2"
                   SelectionChanged="cmbColours_SelectionChanged"/>
 
-        <!-- Engine -->
+        --><!-- Engine --><!--
         <TextBlock x:Name="txtEngine" Text="Engine" Grid.Row="4" Grid.Column="1" 
                    HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,5,5"
                    VerticalAlignment="Center" Grid.RowSpan="2"/>
@@ -55,7 +80,7 @@
                   VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"
                   Width="150" Grid.RowSpan="2"/>
 
-        <!-- Body Type (constructor 2) -->
+        --><!-- Body Type (constructor 2) --><!--
         <TextBlock x:Name="txtBodyType2" Text="Body Type" Grid.Row="4" Grid.Column="1" 
                    HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,5,5"
                    VerticalAlignment="Center" Grid.RowSpan="2"/>
@@ -63,7 +88,7 @@
                   VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"
                   Width="150" Grid.RowSpan="2"/>
 
-        <!-- Body Type (constructor 4) -->
+        --><!-- Body Type (constructor 4) --><!--
         <TextBlock x:Name="txtBodyType4" Text="Body Type" Grid.Row="5" Grid.Column="1" 
                    HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,5,5"
                    VerticalAlignment="Center" Grid.RowSpan="2"/>
@@ -71,7 +96,7 @@
                   VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"
                   Width="150" Grid.RowSpan="2"/>
 
-        <!-- Current quantity -->
+        --><!-- Current quantity -->
         <!--<TextBlock x:Name="txtCurrentQuantity" Text="Current Quantity:" Grid.Row="6" Grid.Column="1" 
                    HorizontalAlignment="Center" FontWeight="DemiBold" Margin="0,0,70,20" 
                    VerticalAlignment="Center" Grid.RowSpan="2" FontSize="12" Grid.ColumnSpan="2"/>-->
@@ -80,15 +105,15 @@
         <!-- Change quantity (set limit for available) -->
         <!--<TextBox PreviewTextInput="PreviewTextInput" />-->
 
-        <!-- Update Car Button -->
+        <!-- Update Car Button --><!--
         <Button Content="Select car" Grid.Column="1" Grid.Row="6"
                 VerticalAlignment="Center" Width="90" FontSize="15" FontWeight="SemiBold"
                 Margin="0,30,120,0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
-        <!-- Cancel Button -->
+        --><!-- Cancel Button --><!--
         <Button Content="Cancel" Grid.Column="2" Grid.Row="6"
                 VerticalAlignment="Center" Width="75" FontSize="15" FontWeight="SemiBold"
                 Margin="0,30,20,0" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                Click="btnSelectCar_Click"/>
+                Click="btnSelectCar_Click"/>-->
     </Grid>
 </Window>

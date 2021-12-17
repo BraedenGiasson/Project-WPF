@@ -25,12 +25,11 @@
                 <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity}"/>
             </DataGrid.Columns>
 
-            <!--<DataGrid.ContextMenu>
+            <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Copy" Click="menuCopy_Click"/>
-                    <MenuItem Header="Delete" Click="menuDelete_Click" />
                 </ContextMenu>
-            </DataGrid.ContextMenu>-->
+            </DataGrid.ContextMenu>
         </DataGrid>
     </Grid>
 </Window>
