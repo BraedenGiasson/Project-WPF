@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
-        Title="ModelWindow" Height="450" Width="715"
+        Title="ModelWindow" Height="450" Width="750"
         WindowStartupLocation="CenterScreen"
         SizeToContent="Height">
     <Grid>
@@ -23,6 +23,7 @@
                 <DataGridTextColumn Header="Engine" Binding="{Binding EngineOption}"/>
                 <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}"/>
                 <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity}"/>
             </DataGrid.Columns>
 
             <DataGrid.ContextMenu>

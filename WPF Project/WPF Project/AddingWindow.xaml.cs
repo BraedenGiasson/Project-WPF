@@ -154,7 +154,7 @@ namespace WPF_Project
                 // Create new model (car) object if constructor needed is 1
                 if (ValidatingInputFields())
                 {
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, CheckQuantity(tbQuantity.Text));
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, Convert.ToInt32(tbQuantity.Text));
                     ShowStatusMessage();
                 }
             }
@@ -163,7 +163,7 @@ namespace WPF_Project
                 // Create new model (car) object if constructor needed is 2
                 if (ValidatingInputFields())
                 {
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem, CheckQuantity(tbQuantity.Text));
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem, Convert.ToInt32(tbQuantity.Text));
                     ShowStatusMessage();
                 }
             }
@@ -172,7 +172,7 @@ namespace WPF_Project
                 // Create new model (car) object if constructor needed is 3
                 if (ValidatingInputFields())
                 {
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, CheckQuantity(tbQuantity.Text));
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, Convert.ToInt32(tbQuantity.Text));
                     ShowStatusMessage();
                 }
             }
@@ -181,23 +181,11 @@ namespace WPF_Project
                 // Create new model (car) object if constructor needed is 4
                 if (ValidatingInputFields())
                 {
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, CheckQuantity(tbQuantity.Text));
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, Convert.ToInt32(tbQuantity.Text));
                     ShowStatusMessage();
                 }
             }
             Inventory.AddItem(model);
-        }
-        private int CheckQuantity(string quantityAsString)
-        {
-            int temp = -1;
-            if (!int.TryParse(quantityAsString, out temp)) 
-            {
-                //throw new ArgumentException("Quantity must be a valid number");
-                MessageBox.Show("Not a valid number");
-                return -1;
-            }
-
-            return temp;
         }
         /// <summary>
         /// Printing successful adding car status message
@@ -433,7 +421,11 @@ namespace WPF_Project
             txtModelQuantity.Visibility = Visibility.Visible;
             tbQuantity.Visibility = Visibility.Visible;
         }
-
+        /// <summary>
+        /// Preventing the user from typing in non numeric values
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]");

@@ -460,7 +460,7 @@ namespace WPF_Project.Models
             {
                 if(value < 0)
                     throw new ArgumentException("Quantity cannot be negative", "ModelQuantity");
-                if (value < Inventory.MaxInventorySpace)
+                if (value > Inventory.MaxInventorySpace)
                     throw new ArgumentException($"Quantity cannot be exceed {Inventory.MaxInventorySpace}", "ModelQuantity");
                 modelQuantity = value;
             }
