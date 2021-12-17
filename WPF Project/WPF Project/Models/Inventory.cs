@@ -35,65 +35,10 @@ namespace WPF_Project.Models
         {
             get { return maxInventory; }
         }
-
-        /*public static int GetAvailableParkingSpots()
-        {
-            return inventoryList.Capacity - inventoryList.Count;
-        }*/
-
-        /*public static int GetFirstAvailableParkingSpot()
-        {
-            for (int i = 0; i < inventoryList.Count; i++)
-            {
-                //bool isEmpty = !inventoryList.Any();
-                if (inventoryList[i] == null)
-                    return i;
-            }
-            return -1;
-<<<<<<< HEAD
-        }
         /// <summary>
         /// Adding item to inventory list
         /// </summary>
         /// <param name="model"> Model (car) to be added </param>
-=======
-        }*/
-        public static List<Model> GetAllActualCars()
-        {
-            List<Model> availableList = new List<Model>();
-            foreach (Model model in inventoryList)
-            {
-                if (model != null)
-                    availableList.Add(model);
-            }
-            return availableList;
-        }
-
-        /*public static bool SetParkingSpot(Model model, int freeSpot)
-        {
-            if (freeSpot < 0)
-                return false;
-            else
-            {
-                inventoryList[freeSpot] = model;
-                return true;
-            }
-        }
-
-        public static bool FreeParkingSpot(Model model)
-        {
-            for (int i = 0;i < inventoryList.Capacity; i++)
-            {
-                if (inventoryList[i] == model)
-                {
-                    inventoryList.RemoveAt(i);
-                    return true;
-                }
-            }
-            return false;
-        }*/
-
->>>>>>> 3757c843fa3ffc8622a4c20062a89bb5ac8fb320
         public static void AddItem(Model model)
         {
             quantityTracker += model.ModelQuantity; // change to use Interface
