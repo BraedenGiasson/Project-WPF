@@ -8,7 +8,7 @@ namespace WPF_Project.Models
 {
     public class Inventory : IQuantity
     {
-        private static readonly int maxInventory = 4;
+        private static readonly int maxInventory = 100;
         private static List<Model> inventoryList;
 
         static Inventory()
@@ -28,6 +28,10 @@ namespace WPF_Project.Models
         public static List<Model> InventoryList
         {
             get { return inventoryList; }
+        }
+        public static int MaxInventorySpace
+        {
+            get { return maxInventory; }
         }
 
         public static int GetAvailableParkingSpots()

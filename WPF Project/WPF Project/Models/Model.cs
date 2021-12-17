@@ -26,7 +26,7 @@ namespace WPF_Project.Models
         private static readonly string makeCountry = "Germany";
         private static readonly string makeCategory = "luxury";
 
-        public Model(string name, string colour)        //SAME ENGINE AND ONE BODYTYPE
+        public Model(string name, string colour, int quantity)        //SAME ENGINE AND ONE BODYTYPE
         {
             Regex a3 = new Regex("A3", RegexOptions.IgnoreCase);
             Regex a7 = new Regex("A7", RegexOptions.IgnoreCase);
@@ -49,6 +49,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.Limousine);
                 EngineOption = Convert.ToString(Models.Engine.Fourty);
+                ModelQuantity = quantity;
             }
             else if (a7.IsMatch(name))
             {
@@ -63,6 +64,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.Limousine);
                 EngineOption = Convert.ToString(Models.Engine.FiftyFive);
+                ModelQuantity = quantity;
             }
             else if (a8.IsMatch(name))
             {
@@ -77,6 +79,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.Limousine);
                 EngineOption = Convert.ToString(Models.Engine.FiftyFive);
+                ModelQuantity = quantity;
             }
             else if (Q5.IsMatch(name))
             {
@@ -91,6 +94,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.SUV);
                 EngineOption = Convert.ToString(Models.Engine.FourtyFive);
+                ModelQuantity = quantity;
             }
             else if (Q8.IsMatch(name))
             {
@@ -105,6 +109,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.SUV);
                 EngineOption = Convert.ToString(Models.Engine.FiftyFive);
+                ModelQuantity = quantity;
             }
             else if (etronGT.IsMatch(name))
             {
@@ -119,10 +124,11 @@ namespace WPF_Project.Models
                 FuelType = "Electric";
                 BodyType = Convert.ToString(Models.Body.Limousine);
                 EngineOption = Convert.ToString(Models.Engine.Electric);
+                ModelQuantity = quantity;
             }
         }
 
-        public Model(string name, string colour, Body bodyType)     //SAME ENGINE DIFFERENT BODY TYPE
+        public Model(string name, string colour, Body bodyType, int quantity)     //SAME ENGINE DIFFERENT BODY TYPE
         {
             Regex a5 = new Regex("A5", RegexOptions.IgnoreCase);
             Regex R8 = new Regex("R8", RegexOptions.IgnoreCase);
@@ -147,6 +153,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(bodyType);
                 EngineOption = Convert.ToString(Models.Engine.FourtyFive);
+                ModelQuantity = quantity;
             }
             else if (R8.IsMatch(name))
             {
@@ -161,6 +168,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(bodyType);
                 EngineOption = Convert.ToString(Models.Engine.V10);
+                ModelQuantity = quantity;
             }
             else if (TT.IsMatch(name))
             {
@@ -175,6 +183,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(bodyType);
                 EngineOption = Convert.ToString(Models.Engine.FourtyFive);
+                ModelQuantity = quantity;
             }
             else if (etron.IsMatch(name))
             {
@@ -189,6 +198,7 @@ namespace WPF_Project.Models
                 FuelType = "Electric";
                 BodyType = Convert.ToString(bodyType);
                 EngineOption = Convert.ToString(Models.Engine.Electric);
+                ModelQuantity = quantity;
             }
             else if (Q4etron.IsMatch(name))
             {
@@ -203,11 +213,12 @@ namespace WPF_Project.Models
                 FuelType = "Electric";
                 BodyType = Convert.ToString(bodyType);
                 EngineOption = Convert.ToString(Models.Engine.Electric);
+                ModelQuantity = quantity;
             }
         }
 
 
-        public Model(string name, string colour, Engine engineOption)      //DIFFERENT ENGINE BUT ONE BODY TYPE
+        public Model(string name, string colour, Engine engineOption, int quantity)      //DIFFERENT ENGINE BUT ONE BODY TYPE
         {
 
             Regex Q3 = new Regex("Q3", RegexOptions.IgnoreCase);
@@ -235,6 +246,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.SUV);
                 EngineOption = Convert.ToString(engineOption);
+                ModelQuantity = quantity;
             }
             else if (Q7.IsMatch(name))
             {
@@ -257,13 +269,14 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(Models.Body.SUV);
                 EngineOption = Convert.ToString(engineOption);
+                ModelQuantity = quantity;
             }
         }
 
 
 
 
-        public Model(string name, string colour, Engine engineOption, Body bodyType)        //DIFFERENT ENGINE AND DIFFERENT BODY TYPE
+        public Model(string name, string colour, Engine engineOption, Body bodyType, int quantity)        //DIFFERENT ENGINE AND DIFFERENT BODY TYPE
         {
             Regex a4 = new Regex("A4", RegexOptions.IgnoreCase);
             Regex a6 = new Regex("A6", RegexOptions.IgnoreCase);
@@ -281,6 +294,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(bodyType);
                 EngineOption = Convert.ToString(engineOption);
+                ModelQuantity = quantity;
             }
             else if (a6.IsMatch(name))
             {
@@ -312,6 +326,7 @@ namespace WPF_Project.Models
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(bodyType);
                 EngineOption = Convert.ToString(engineOption);
+                ModelQuantity = quantity;
             }
         }
 
@@ -445,6 +460,8 @@ namespace WPF_Project.Models
             {
                 if(value < 0)
                     throw new ArgumentException("Quantity cannot be negative", "ModelQuantity");
+                if (value < Inventory.MaxInventorySpace)
+                    throw new ArgumentException($"Quantity cannot be exceed {Inventory.MaxInventorySpace}", "ModelQuantity");
                 modelQuantity = value;
             }
         }
@@ -510,22 +527,22 @@ namespace WPF_Project.Models
             {
                 if (allData.Length == 2)
                 {
-                    Model model = new Model(allData[0], allData[1]);
+                    Model model = new Model(allData[0], allData[1], Convert.ToInt32(allData[2]));
                     return model;
                 }
                 else if (allData.Length == 3 && (allData[2] == Convert.ToString(Body.Convertible) || allData[2] == Convert.ToString(Body.Coupe) || allData[2] == Convert.ToString(Body.Limousine) || allData[2] == Convert.ToString(Body.SUV) || allData[2] == Convert.ToString(Body.Wagon)))
                 {
-                    Model model = new Model(allData[0], allData[1], (Body)Enum.Parse(typeof(Body), allData[2], true));
+                    Model model = new Model(allData[0], allData[1], (Body)Enum.Parse(typeof(Body), allData[2], true), Convert.ToInt32(allData[2]));
                     return model;
                 }
                 else if (allData.Length == 3 && (allData[2] == Convert.ToString(Engine.FiftyFive) || allData[2] == Convert.ToString(Engine.Fourty) || allData[2] == Convert.ToString(Engine.FourtyFive) || allData[2] == Convert.ToString(Engine.V10) || allData[2] == Convert.ToString(Engine.Electric)))
                 {
-                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true));
+                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true), Convert.ToInt32(allData[2]));
                     return model;
                 }
                 else if (allData.Length == 4 && (allData[2] == Convert.ToString(Engine.FiftyFive) || allData[2] == Convert.ToString(Engine.Fourty) || allData[2] == Convert.ToString(Engine.FourtyFive) || allData[2] == Convert.ToString(Engine.V10) || allData[2] == Convert.ToString(Engine.Electric)) && (allData[2] == Convert.ToString(Body.Convertible)) || allData[2] == Convert.ToString(Body.Coupe) || allData[2] == Convert.ToString(Body.Limousine) || allData[2] == Convert.ToString(Body.SUV) || allData[2] == Convert.ToString(Body.Wagon))
                 {
-                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true), (Body)Enum.Parse(typeof(Body), allData[2], true));
+                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true), (Body)Enum.Parse(typeof(Body), allData[2], true), Convert.ToInt32(allData[2]));
                     return model;
                 }
                 return null;

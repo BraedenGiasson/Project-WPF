@@ -79,7 +79,8 @@
                   Width="150" Grid.RowSpan="2"/>-->
         <TextBox x:Name="tbQuantity" Grid.Row="6" Grid.Column="2" 
                    HorizontalAlignment="Center" FontWeight="Bold" Margin="0,25,0,5"
-                   VerticalAlignment="Center" Grid.RowSpan="2" Width="150"/>
+                   VerticalAlignment="Center" Grid.RowSpan="2" Width="150"
+                 PreviewTextInput="tbQuantity_PreviewTextInput"/>
 
         <!-- Add Car Button -->
         <Button Content="Add car" Click="btnAddCar_Click" Grid.Column="1" Grid.Row="8"

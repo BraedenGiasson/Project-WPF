@@ -154,7 +154,7 @@ namespace WPF_Project
                 // Create new model (car) object if constructor needed is 1
                 if (ValidatingInputFields())
                 {
-                    model = new Model(cmbModelNames.Text, cmbColours.Text);
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, CheckQuantity(tbQuantity.Text));
                     ShowStatusMessage();
                 }
             }
@@ -163,7 +163,7 @@ namespace WPF_Project
                 // Create new model (car) object if constructor needed is 2
                 if (ValidatingInputFields())
                 {
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem);
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem, CheckQuantity(tbQuantity.Text));
                     ShowStatusMessage();
                 }
             }
@@ -172,7 +172,7 @@ namespace WPF_Project
                 // Create new model (car) object if constructor needed is 3
                 if (ValidatingInputFields())
                 {
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem);
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, CheckQuantity(tbQuantity.Text));
                     ShowStatusMessage();
                 }
             }
@@ -181,12 +181,27 @@ namespace WPF_Project
                 // Create new model (car) object if constructor needed is 4
                 if (ValidatingInputFields())
                 {
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem);
+                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, CheckQuantity(tbQuantity.Text));
                     ShowStatusMessage();
                 }
             }
             Inventory.AddItem(model);
         }
+        private int CheckQuantity(string quantityAsString)
+        {
+            int temp = -1;
+            if (!int.TryParse(quantityAsString, out temp)) 
+            {
+                //throw new ArgumentException("Quantity must be a valid number");
+                MessageBox.Show("Not a valid number");
+                return -1;
+            }
+
+            return temp;
+        }
+        /// <summary>
+        /// Printing successful adding car status message
+        /// </summary>
         private void ShowStatusMessage()
         {
             MessageBox.Show("Successfully added car!");
@@ -417,6 +432,12 @@ namespace WPF_Project
         {
             txtModelQuantity.Visibility = Visibility.Visible;
             tbQuantity.Visibility = Visibility.Visible;
+        }
+
+        private void tbQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
