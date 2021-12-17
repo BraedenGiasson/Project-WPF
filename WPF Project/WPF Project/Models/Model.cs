@@ -443,6 +443,8 @@ namespace WPF_Project.Models
             get { return modelQuantity; }
             set
             {
+                if(value < 0)
+                    throw new ArgumentException("Quantity cannot be negative", "ModelQuantity");
                 modelQuantity = value;
             }
         }
@@ -551,8 +553,6 @@ namespace WPF_Project.Models
             throw new NotImplementedException();
         }
     }
-
-
 
     /// <summary>
     /// Enum options for the car Body Type

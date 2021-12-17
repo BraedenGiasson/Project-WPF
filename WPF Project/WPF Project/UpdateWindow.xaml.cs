@@ -70,18 +70,21 @@ namespace WPF_Project
             List<string> names = new List<string>();
             for (int i = 0; i < Inventory.InventoryList.Count; i++)
             {
-                if (Inventory.InventoryList[i].Name != "")
+                if (Inventory.InventoryList[i].Name != "" && !names.Contains(Inventory.InventoryList[i].Name))
                     names.Add(Inventory.InventoryList[i].Name);
             }
             return names;
         }
-        private List<string> GetColourFromModel() // add validation to avoid duplicates
+        private List<string> GetColourFromModel(string model) // add validation to avoid duplicates
         {
             List<string> colours = new List<string>();
             for (int i = 0; i < Inventory.InventoryList.Count; i++)
             {
-                if (Inventory.InventoryList[i].Colour != "" && !colours.Contains(Inventory.InventoryList[i].Colour))
-                    colours.Add(Inventory.InventoryList[i].Colour);
+                if (Inventory.InventoryList[i].Name == model)
+                {
+                    if (Inventory.InventoryList[i].Colour != "" && !colours.Contains(Inventory.InventoryList[i].Colour))
+                        colours.Add(Inventory.InventoryList[i].Colour);
+                }
             }
             return colours;
         }
@@ -92,11 +95,13 @@ namespace WPF_Project
             string model = cmbModelNames.SelectedValue as string;
 
             ShowColour();
-            cmbColours.ItemsSource = GetColourFromModel();
+            cmbModelNames.ItemsSource = GettingNamesOfModelsInInventory();
+            cmbColours.ItemsSource = GetColourFromModel(model);
         }
         private void cmbColours_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string colour = cmbColours.SelectedValue as string;
+            
 
             MessageBox.Show(GetModelInfoFromNameAndColour(), "Hi", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
@@ -107,7 +112,7 @@ namespace WPF_Project
 
             int index = Inventory.InventoryList.FindIndex(x => x.Name == model && x.Colour == colour);
             //txtTheText.Text = Inventory.InventoryList[index].ToString();
-            return txtTheText.Text = Inventory.InventoryList[index].EngineOption.ToString();
+            return Inventory.InventoryList[index].EngineOption.ToString();
         }
         /// <summary>
         /// Showing the color text and dropdown
@@ -123,6 +128,26 @@ namespace WPF_Project
         private void ChangeNameWhenFieldIsSelected()
         {
             txtCarName.Text = "Model Name";
+        }
+
+        private void btnSelectCar_Click(object sender, RoutedEventArgs e)
+        {
+            if (cmbColours.Visibility == Visibility.Visible)
+            {
+
+            }
+            if (cmbEngine.Visibility == Visibility.Visible)
+            {
+
+            }
+            if (cmbBodyType2.Visibility == Visibility.Visible)
+            {
+
+            }
+            if (cmbBodyType4.Visibility == Visibility.Visible)
+            {
+
+            }
         }
     }
 }

@@ -126,7 +126,7 @@ namespace WPF_Project.Models
             string car = "a3, red";
 
             Model model = Model.FromCSV(car);
-            Inventory.AddItem(model);
+            //Inventory.AddItem(model); // was adding straight to model
 
            // Model.FromCSV(Inventory.me);
         }

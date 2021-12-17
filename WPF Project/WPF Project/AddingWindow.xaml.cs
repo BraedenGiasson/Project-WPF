@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -26,7 +27,7 @@ namespace WPF_Project
         List<string> modelNames;
         int currentConstructorValue;
 
-        public AddingWindow(ref List<Model> models)
+        public AddingWindow()
         {
             List<Body> bodyTypes = Enum.GetValues(typeof(Body))
                             .Cast<Body>()
@@ -62,6 +63,9 @@ namespace WPF_Project
 
             txtBodyType4.Visibility = Visibility.Hidden;
             cmbBodyType4.Visibility = Visibility.Hidden;
+
+            txtModelQuantity.Visibility = Visibility.Hidden;
+            tbQuantity.Visibility = Visibility.Hidden;
 
             // Setting constructor value
             currentConstructorValue = 0;
@@ -138,7 +142,7 @@ namespace WPF_Project
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddCar_Click(object sender, RoutedEventArgs e)
+        private void btnAddCar_Click(object sender, RoutedEventArgs e) 
         {
             Model model = null; // maybe take off null
 
@@ -151,7 +155,7 @@ namespace WPF_Project
                 if (ValidatingInputFields())
                 {
                     model = new Model(cmbModelNames.Text, cmbColours.Text);
-                    MessageBox.Show("Cons 1");
+                    ShowStatusMessage();
                 }
             }
             else if (currentConstructorValue == 2)
@@ -160,7 +164,7 @@ namespace WPF_Project
                 if (ValidatingInputFields())
                 {
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem);
-                    MessageBox.Show("Cons 2");
+                    ShowStatusMessage();
                 }
             }
             else if(currentConstructorValue == 3)
@@ -169,7 +173,7 @@ namespace WPF_Project
                 if (ValidatingInputFields())
                 {
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem);
-                    MessageBox.Show("Cons 3");
+                    ShowStatusMessage();
                 }
             }
             else if (currentConstructorValue == 4)
@@ -178,13 +182,14 @@ namespace WPF_Project
                 if (ValidatingInputFields())
                 {
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem);
-                    MessageBox.Show("Cons 4");
+                    ShowStatusMessage();
                 }
             }
-            //Inventory inventory = new Inventory();
             Inventory.AddItem(model);
-            //MainWindow mw = new MainWindow();
-            //mw.AddToModels(ref model);
+        }
+        private void ShowStatusMessage()
+        {
+            MessageBox.Show("Successfully added car!");
         }
         private bool ValidatingInputFields()
         {
@@ -210,6 +215,8 @@ namespace WPF_Project
                     CheckEngineField(ref errorMessage);
                     CheckBodyTypeField(ref errorMessage, cmbBodyType4);
                 }
+
+                CheckQuantityField(ref errorMessage);
             }
 
             // If no errors, return true with no message
@@ -257,7 +264,16 @@ namespace WPF_Project
             if(string.IsNullOrEmpty(cmbEngine.Text))
                 errorMessage.AppendLine("Engine is a required field");
         }
-        
+        /// <summary>
+        /// Validating the model quantity field
+        /// </summary>
+        /// <param name="errorMessage"> Reference to the error message stringbuilder </param>
+        private void CheckQuantityField(ref StringBuilder errorMessage)
+        {
+            if (string.IsNullOrEmpty(tbQuantity.Text))
+                errorMessage.AppendLine("Model Quantity is a required field");
+        }
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             if (!changedData) // **** CHANGE TO !
@@ -302,6 +318,7 @@ namespace WPF_Project
             ShowColour();
             HideEngine();
             HideBodyType();
+            ShowModelQuantity();
         }
         /// <summary>
         /// Showing the options for the 2nd type of constructor
@@ -314,6 +331,7 @@ namespace WPF_Project
             HideEngine();
             HideBodyType();
             ShowBodyType(txtBodyType2, cmbBodyType2);
+            ShowModelQuantity();
         }
         /// <summary>
         /// Showing the options for the 3rd type of constructor
@@ -325,6 +343,7 @@ namespace WPF_Project
             ShowColour();
             ShowEngine();
             HideBodyType();
+            ShowModelQuantity();
         }
         /// <summary>
         /// Showing the options for the 4th type of constructor
@@ -337,6 +356,7 @@ namespace WPF_Project
             HideBodyType();
             ShowEngine();
             ShowBodyType(txtBodyType4, cmbBodyType4);
+            ShowModelQuantity();
         }
         /// <summary>
         /// Showing the color text and dropdown
@@ -389,6 +409,14 @@ namespace WPF_Project
         private void ChangeNameWhenFieldIsSelected()
         {
             txtCarName.Text = "Model Name";
+        }
+        /// <summary>
+        /// Showing the model quantity text and input field
+        /// </summary>
+        private void ShowModelQuantity()
+        {
+            txtModelQuantity.Visibility = Visibility.Visible;
+            tbQuantity.Visibility = Visibility.Visible;
         }
     }
 }

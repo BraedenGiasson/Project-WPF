@@ -37,7 +37,7 @@ namespace WPF_Project
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddingWindow addingWindow = new AddingWindow(ref models);
+            AddingWindow addingWindow = new AddingWindow();
             addingWindow.Show();
         }
 
@@ -60,7 +60,6 @@ namespace WPF_Project
 
         private void btnShowAll_Click(object sender, RoutedEventArgs e)
         {
-            //if(!)
             ModelWindow modelWindow = new ModelWindow();
             
             // If model list has cars, show all cars
