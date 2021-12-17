@@ -28,7 +28,7 @@ namespace WPF_Project
 
         // Saving For Main Window
         private string saveLocation = string.Empty;
-        private bool saved = false;
+        private static bool saved = false;
 
         public MainWindow()
         {
@@ -106,7 +106,7 @@ namespace WPF_Project
                 try
                 {
                     StringBuilder modelsCSV = new StringBuilder();
-                    foreach (Model model in models)
+                    foreach (Model model in Inventory.InventoryList)
                         modelsCSV.AppendLine(model.CSVData);
 
                     File.WriteAllText(saveLocation, modelsCSV.ToString()); // writing all the text to the file (at the right location)
@@ -173,6 +173,12 @@ namespace WPF_Project
         private void btnCopy_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        public static bool Saved
+        {
+            get { return saved; }
+            set { saved = value; }
         }
     }
 }

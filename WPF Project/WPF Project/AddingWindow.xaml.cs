@@ -174,6 +174,8 @@ namespace WPF_Project
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, Convert.ToInt32(tbQuantity.Text));
             }
             Inventory.AddItem(model);
+
+            MainWindow.Saved = false;
         }
         private bool ValidatingInputFields()
         {
