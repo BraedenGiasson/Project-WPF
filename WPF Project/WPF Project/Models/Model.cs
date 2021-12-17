@@ -526,6 +526,27 @@ namespace WPF_Project.Models
             }
 
         }
+        public string FullInfo
+        {
+            get
+            {
+                return string.Format(
+                "{0,-20}" + Name + "\n" +
+                "{1,-21}" + Colour + "\n" +
+                "{2,-21}" + Horsepower + "\n" +
+                "{3,-21}" + Torque + "\n" +
+                "{4,-20}" + NumberOfSeats + "\n" +
+                "{5,-21}" + Height + "\n" +
+                "{6,-20}" + Width + "\n" +
+                "{7,-20}" + Length,
+                "{8,-20}" + FuelType,
+                "{9,-20}" + BodyType,
+                "{10,-20}" + EngineOption,
+                "{11,-20}" + ModelQuantity,
+                "Name:", "Colour:", "Horsepower:", "Torque:", "NumberOfSeats:", "Height:",
+                "Width:", "Length:", "FuelType:", "BodyType:", "EngineOption:", "ModelQuantity:");
+            }
+        }
 
 
         public int AvailableQuantity()

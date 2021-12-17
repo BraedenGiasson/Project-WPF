@@ -144,39 +144,32 @@ namespace WPF_Project
         /// <param name="e"></param>
         private void btnAddCar_Click(object sender, RoutedEventArgs e) 
         {
-            Model model = null; // maybe take off null
+            Model model = null; 
 
-            if (string.IsNullOrEmpty(cmbModelNames.Text))
-                ValidatingInputFields();
-
-            if ( currentConstructorValue == 1 )
+            // Validating all input fields
+            if (ValidatingInputFields())
             {
-                // Create new model (car) object if constructor needed is 1
-                if (ValidatingInputFields())
+                // 1st constructor
+                if (currentConstructorValue == 1)
                     model = new Model(cmbModelNames.Text, cmbColours.Text, Convert.ToInt32(tbQuantity.Text));
-            }
-            else if (currentConstructorValue == 2)
-            {
-                // Create new model (car) object if constructor needed is 2
-                if (ValidatingInputFields())
+                // 2nd constructor
+                else if (currentConstructorValue == 2)
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem, Convert.ToInt32(tbQuantity.Text));
-            }
-            else if(currentConstructorValue == 3)
-            {
-                // Create new model (car) object if constructor needed is 3
-                if (ValidatingInputFields())
+                // 3rd constructor
+                else if (currentConstructorValue == 3)
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, Convert.ToInt32(tbQuantity.Text));
-            }
-            else if (currentConstructorValue == 4)
-            {
-                // Create new model (car) object if constructor needed is 4
-                if (ValidatingInputFields())
+                // 4th constructor
+                else if (currentConstructorValue == 4)
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, Convert.ToInt32(tbQuantity.Text));
-            }
-            Inventory.AddItem(model);
 
-            MainWindow.Saved = false;
+                Inventory.AddItem(model); // adding item
+                MainWindow.Saved = false; // state now false
+            }
         }
+        /// <summary>
+        /// Validating all input fields on screen
+        /// </summary>
+        /// <returns> boolean </returns>
         private bool ValidatingInputFields()
         {
             StringBuilder errorMessage = new StringBuilder();
