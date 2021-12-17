@@ -54,29 +54,33 @@ namespace WPF_Project
             addingWindow.Show();
         }
         /// <summary>
-        /// Window for the 'Delete car'
+        /// Window for the 'Update car'
         /// </summary>
         /// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        //{
-        //    UpdateWindow updateWindow = new UpdateWindow();
-
-        //    // If model list has cars, show all cars
-        //    if (Inventory.InventoryList.Count != NO_MODELS)
-        //        updateWindow.Show(); // throwing error because initally null
-        //    // If not, give message saying no cars in stock
-        //    else
-        //        MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //}
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        /// <param name="e"></param>
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             UpdateWindow updateWindow = new UpdateWindow();
 
             // If model list has cars, show all cars
             if (Inventory.InventoryList.Count != NO_MODELS)
                 updateWindow.Show(); // throwing error because initally null
+            // If not, give message saying no cars in stock
+            else
+                MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+        /// <summary>
+        /// Window for the 'Delete car'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteWindow deleteWindow = new DeleteWindow();
+
+            // If model list has cars, show all cars
+            if (Inventory.InventoryList.Count != NO_MODELS)
+                deleteWindow.Show(); // throwing error because initally null
             // If not, give message saying no cars in stock
             else
                 MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
