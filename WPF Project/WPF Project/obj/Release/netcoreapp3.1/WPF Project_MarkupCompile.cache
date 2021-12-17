@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Release\netcoreapp3.1\
 WPF_Project
 none
 false
-TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
+TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1;
 J:\WPF-ProjectCopy\WPF Project\WPF Project\App.xaml
 61988823641
 
