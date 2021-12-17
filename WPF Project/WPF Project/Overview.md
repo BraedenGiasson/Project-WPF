@@ -34,38 +34,31 @@ Our plan is to create an inventory tracker for cars.
   - Horsepower
   - Torque
   - Number of seats
-  - Trunk volume
   - Width of Vehicle
   - Height of Vehicle
   - Length of Vehicle
-  - Fuel Type (enum)
-  - Body Type (enum) 
-  - Parking Spots
-- *Make* class
-  - Name (Audi)
-  - Country (Deutschland)
-  - Category (Sports car)
-- *ParkingSpace* class
-  - parkingSpots
-  - Get Available Spots
-  - Get First Available Spot
-  - Set Parking Spot
+  - FuelType
+  - Body (enum) 
+  - Engine (enum)
+
+
 - *Inventory* class
-  - Add item
-  - Remove item
-  - Update item
-  - Shopping List
-  - General Report
-  - Load items
-  - Save items
   - Max Quantity
+  - quantity tracker
+  - Add item()
+  - Remove item()
+  - Update item()
+  - Shopping List()
+  - General Report()
+  - Load items()
+  - Save items()
+
 
 ## Interface
 
 - int AvailableQuantity();
 - int MinimimQuantity();
 - bool CheckQuantity();
-  - Can't go pass 0
 
 ## Development Approach 
 
@@ -75,7 +68,7 @@ Our plan is to create an inventory tracker for cars.
 
 2. **Formulating the problem.** 
 
-   Input: The car the person wants
+   Input: The car the dealership wants to add to its inventory
 
    Output: A list of cars available at the dealership
 
@@ -93,3 +86,4 @@ Our plan is to create an inventory tracker for cars.
 
 ## Future Work
 We want to be able to have a list to be able to create your own car (customize).
+It is also possible to increase the size of the dealership later on or add more car models if new ones were to come out.
