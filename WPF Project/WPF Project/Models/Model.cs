@@ -497,53 +497,45 @@ namespace WPF_Project.Models
 
         //Might be needed for reading and writing to file
 
-        /*public string CSVData
+        public string CSVData
         {
             get
             {
-                return string.Format($"{Name}, {Colour}, {EngineOption}, {BodyType}");
+                return string.Format($"{Name}, {Colour}, {EngineOption}, {BodyType}, {ModelQuantity}");
             }
-            set
-            {
-                //string comma separated and set the fields of the visitor
-                string[] allData = value.Split(',');
-                try
-                {
-                    Name = allData[0];
-                    Colour = allData[1];
-                    EngineOption = allData[2];
-                    BodyType = allData[3];
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("All Data Property value not valid " + ex.Message);
-                }
-            }
-        }*/
+        }
+
 
         public static Model FromCSV(string csvLine)
         {
             string[] allData = csvLine.Split(',');
             try
             {
-                if (allData.Length == 2)
+                if (allData.Length == 3)
                 {
                     Model model = new Model(allData[0], allData[1], Convert.ToInt32(allData[2]));
                     return model;
                 }
-                else if (allData.Length == 3 && (allData[2] == Convert.ToString(Body.Convertible) || allData[2] == Convert.ToString(Body.Coupe) || allData[2] == Convert.ToString(Body.Limousine) || allData[2] == Convert.ToString(Body.SUV) || allData[2] == Convert.ToString(Body.Wagon)))
+                else if (allData.Length == 4 && (allData[2] == Convert.ToString(Body.Convertible) || allData[2] == Convert.ToString(Body.Coupe)
+                    || allData[2] == Convert.ToString(Body.Limousine) || allData[2] == Convert.ToString(Body.SUV) || allData[2] == Convert.ToString(Body.Wagon)))
                 {
-                    Model model = new Model(allData[0], allData[1], (Body)Enum.Parse(typeof(Body), allData[2], true), Convert.ToInt32(allData[2]));
+                    Model model = new Model(allData[0], allData[1], (Body)Enum.Parse(typeof(Body), allData[2], true), Convert.ToInt32(allData[3]));
                     return model;
                 }
-                else if (allData.Length == 3 && (allData[2] == Convert.ToString(Engine.FiftyFive) || allData[2] == Convert.ToString(Engine.Fourty) || allData[2] == Convert.ToString(Engine.FourtyFive) || allData[2] == Convert.ToString(Engine.V10) || allData[2] == Convert.ToString(Engine.Electric)))
+                else if (allData.Length == 4 && (allData[2] == Convert.ToString(Engine.FiftyFive) || allData[2] == Convert.ToString(Engine.Fourty)
+                    || allData[2] == Convert.ToString(Engine.FourtyFive) || allData[2] == Convert.ToString(Engine.V10) || allData[2] == Convert.ToString(Engine.Electric)))
                 {
-                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true), Convert.ToInt32(allData[2]));
+                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true), Convert.ToInt32(allData[3]));
                     return model;
                 }
-                else if (allData.Length == 4 && (allData[2] == Convert.ToString(Engine.FiftyFive) || allData[2] == Convert.ToString(Engine.Fourty) || allData[2] == Convert.ToString(Engine.FourtyFive) || allData[2] == Convert.ToString(Engine.V10) || allData[2] == Convert.ToString(Engine.Electric)) && (allData[2] == Convert.ToString(Body.Convertible)) || allData[2] == Convert.ToString(Body.Coupe) || allData[2] == Convert.ToString(Body.Limousine) || allData[2] == Convert.ToString(Body.SUV) || allData[2] == Convert.ToString(Body.Wagon))
+                else if (allData.Length == 5 && (allData[2] == Convert.ToString(Engine.FiftyFive) || allData[2] == Convert.ToString(Engine.Fourty)
+                    || allData[2] == Convert.ToString(Engine.FourtyFive) || allData[2] == Convert.ToString(Engine.V10)
+                    || allData[2] == Convert.ToString(Engine.Electric)) && (allData[2] == Convert.ToString(Body.Convertible))
+                    || allData[2] == Convert.ToString(Body.Coupe) || allData[2] == Convert.ToString(Body.Limousine) ||
+                    allData[2] == Convert.ToString(Body.SUV) || allData[2] == Convert.ToString(Body.Wagon))
                 {
-                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true), (Body)Enum.Parse(typeof(Body), allData[2], true), Convert.ToInt32(allData[2]));
+                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true),
+                        (Body)Enum.Parse(typeof(Body), allData[2], true), Convert.ToInt32(allData[3]));
                     return model;
                 }
                 return null;
@@ -552,7 +544,10 @@ namespace WPF_Project.Models
             {
                 throw new ArgumentException("All Data Property value not valid " + ex.Message);
             }
+
         }
+
+
         public int AvailableQuantity()
         {
             throw new NotImplementedException();
