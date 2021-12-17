@@ -36,12 +36,12 @@ namespace WPF_Project.Models
             get { return maxInventory; }
         }
 
-        public static int GetAvailableParkingSpots()
+        /*public static int GetAvailableParkingSpots()
         {
             return inventoryList.Capacity - inventoryList.Count;
-        }
+        }*/
 
-        public static int GetFirstAvailableParkingSpot()
+        /*public static int GetFirstAvailableParkingSpot()
         {
             for (int i = 0; i < inventoryList.Count; i++)
             {
@@ -50,7 +50,7 @@ namespace WPF_Project.Models
                     return i;
             }
             return -1;
-        }
+        }*/
         public static List<Model> GetAllActualCars()
         {
             List<Model> availableList = new List<Model>();
