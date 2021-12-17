@@ -31,17 +31,19 @@ namespace WPF_Project
         private static bool saved = false;
 
         // Company information
-        private static readonly string makeName = "Audi";
+        /*private static readonly string makeName = "Audi";
         private static readonly string makeCountry = "Germany";
-        private static readonly string makeCategory = "luxurious";
+        private static readonly string makeCategory = "luxurious";*/
 
         public MainWindow()
         {
             InitializeComponent();
 
+            dgModels.ItemsSource = Inventory.InventoryList;
+
             // Displaying company information
-            txtWelcomeName.Text += $"{makeName}!";
-            txtDescription.Text = $"The most {makeCategory} car company in {makeCountry}!";
+            /*txtWelcomeName.Text += $"{makeName}!";
+            txtDescription.Text = $"The most {makeCategory} car company in {makeCountry}!";*/
         }
         /// <summary>
         /// Window for the 'Adding car'
@@ -201,6 +203,53 @@ namespace WPF_Project
         private void menuAboutUs_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("We are the best team!");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOpen_Click(object sender, RoutedEventArgs e)
+        {
+            if (ChecktoOpen())
+            {
+                OpenFileDialog open = new OpenFileDialog();
+                open.Filter = "CVS Files|*.csv";
+                if (open.ShowDialog() == true)
+                {
+                    //save location
+                    saveLocation = open.FileName;
+                    //clear current list
+                    Inventory.InventoryList.Clear();
+                    //read from file
+                    ReadVisitorsFromFile();
+                    //update UI
+                    //lbVisitors.Items.Refresh();             //NOT SURE WHAT TO PUT HERE
+                    saved = true;
+                }
+            }
+        }
+
+        private void ReadVisitorsFromFile()
+        {
+            try
+            {
+                string[] allValues = File.ReadAllLines(saveLocation);
+                //create visitor objects and add them to list
+                foreach (string modelInfo in allValues)
+                {
+                    //visitors.Add(new Visitor() { CSVData = visitorInfo });
+                    Model temp = new Model();
+                     temp.CSVData = modelInfo;
+                    //Inventory.InventoryList.Add(temp);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         /// <summary>

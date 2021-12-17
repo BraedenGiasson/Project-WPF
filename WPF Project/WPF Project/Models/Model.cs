@@ -23,6 +23,12 @@ namespace WPF_Project.Models
         private string engineOption;                          
 
 
+        public Model()
+        {
+
+        }
+
+
         public Model(string name, string colour, int quantity)        //SAME ENGINE AND ONE BODYTYPE
         {
             Regex a3 = new Regex("A3", RegexOptions.IgnoreCase);
@@ -130,7 +136,7 @@ namespace WPF_Project.Models
             Regex a5 = new Regex("A5", RegexOptions.IgnoreCase);
             Regex R8 = new Regex("R8", RegexOptions.IgnoreCase);
             Regex TT = new Regex("TT", RegexOptions.IgnoreCase);
-            Regex etron = new Regex("e-tron", RegexOptions.IgnoreCase);
+            Regex etron = new Regex("^e-tron$", RegexOptions.IgnoreCase);
             Regex Q4etron = new Regex("Q4 e-tron", RegexOptions.IgnoreCase);
 
             
@@ -171,12 +177,12 @@ namespace WPF_Project.Models
             {
                 Name = name;
                 Colour = colour;
-                Horsepower = 602;
-                Torque = 413;
+                Horsepower = 228;
+                Torque = 258;
                 NumberOfSeats = 2;
-                Height = 1252;
-                Width = 1940;
-                Length = 4429;
+                Height = 1354;
+                Width = 1831;
+                Length = 4191;
                 FuelType = "Gasoline";
                 BodyType = Convert.ToString(bodyType);
                 EngineOption = Convert.ToString(Models.Engine.FourtyFive);
@@ -282,8 +288,16 @@ namespace WPF_Project.Models
             {
                 Name = name;
                 Colour = colour;
-                Horsepower = 201;
-                Torque = 236;
+                if (engineOption == Engine.Fourty)
+                {
+                    Horsepower = 201;
+                    Torque = 236;
+                }
+                else if (engineOption == Engine.FourtyFive)
+                {
+                    Horsepower = 261;
+                    Torque = 273;
+                }
                 NumberOfSeats = 5;
                 Height = 1493;
                 Width = 1847;
@@ -483,10 +497,113 @@ namespace WPF_Project.Models
             {
                 return string.Format($"{Name}, {Colour}, {EngineOption}, {BodyType}, {ModelQuantity}");
             }
+            set
+            {
+                //string comma separated and set the fields of the visitor
+                string[] allData = value.Split(',');
+                try
+                {
+                    /*Name = allData[0];
+                    Colour = allData[1];
+                    EngineOption = allData[2];
+                    BodyType = allData[3];
+                    ModelQuantity = Convert.ToInt32(allData[4]);*/
+
+                    Regex a4 = new Regex("A4", RegexOptions.IgnoreCase);
+                    Regex a6 = new Regex("A6", RegexOptions.IgnoreCase);
+                    Regex Q3 = new Regex("Q3", RegexOptions.IgnoreCase);
+                    Regex Q7 = new Regex("Q7", RegexOptions.IgnoreCase);
+                    Regex a5 = new Regex("A5", RegexOptions.IgnoreCase);
+                    Regex R8 = new Regex("R8", RegexOptions.IgnoreCase);
+                    Regex TT = new Regex("TT", RegexOptions.IgnoreCase);
+                    Regex etron = new Regex("^e-tron$", RegexOptions.IgnoreCase);
+                    Regex Q4etron = new Regex("Q4 e-tron", RegexOptions.IgnoreCase);
+                    Regex a3 = new Regex("A3", RegexOptions.IgnoreCase);
+                    Regex a7 = new Regex("A7", RegexOptions.IgnoreCase);
+                    Regex a8 = new Regex("A8", RegexOptions.IgnoreCase);
+                    Regex Q5 = new Regex("Q5", RegexOptions.IgnoreCase);
+                    Regex Q8 = new Regex("Q8", RegexOptions.IgnoreCase);
+                    Regex etronGT = new Regex("^e-tron GT$", RegexOptions.IgnoreCase);
+
+
+                    
+
+                    Model model = null;
+
+                    if (a6.IsMatch(allData[0]) || a4.IsMatch(allData[0]))
+                    {
+                        Enum.TryParse<Engine>(allData[2], out Engine resultEngine);
+                        Enum.TryParse<Body>(allData[3], out Body resultBody);
+                        model = new Model(allData[0], allData[1], resultEngine, resultBody, Convert.ToInt32(allData[4]));
+                    }
+                    else if (Q3.IsMatch(allData[0]) || Q7.IsMatch(allData[0]))
+                    {
+                        Enum.TryParse<Engine>(allData[2], out Engine resultEngine);
+                        model = new Model(allData[0], allData[1], resultEngine, Convert.ToInt32(allData[4]));
+                    }
+                    else if (a5.IsMatch(allData[0]) || R8.IsMatch(allData[0]) || TT.IsMatch(allData[0]) || etron.IsMatch(allData[0]) || Q4etron.IsMatch(allData[0]))
+                    {
+                        Enum.TryParse<Body>(allData[3], out Body resultBody);
+                        model = new Model(allData[0], allData[1], resultBody, Convert.ToInt32(allData[4]));
+                    }
+                    else if (a3.IsMatch(allData[0]) || a7.IsMatch(allData[0]) || a8.IsMatch(allData[0]) || Q5.IsMatch(allData[0]) || Q8.IsMatch(allData[0]) || etronGT.IsMatch(allData[0]))
+                    {
+                        model = new Model(allData[0], allData[1], Convert.ToInt32(allData[4]));
+                    }
+                    else if (string.IsNullOrEmpty(allData[0]))
+                        return;
+
+                        Inventory.AddItem(model);
+
+
+                    /*if (a6.IsMatch(allData[0]))
+                    {
+                        Model model = new Model();
+                    }*/
+
+                    /*Engine tryParseResult1;
+                    Body tryParseResult2;
+
+                    Name = allData[0];
+                    Colour = allData[1];
+                    if (Enum.TryParse<Engine>(allData[2], out tryParseResult1) && tryParseResult1 == Engine.FourtyFive)
+                    {
+                        Horsepower = 261;
+                        Torque = 273;
+                    }
+                    else if (Enum.TryParse<Engine>(allData[2], out tryParseResult1) && tryParseResult1 == Engine.FiftyFive)
+                    {
+                        Horsepower = 335;
+                        Torque = 369;
+                    }
+                    NumberOfSeats = 5;
+                    if (Enum.TryParse<Body>(allData[3], out tryParseResult2) && tryParseResult2 == Body.Limousine)
+                    {
+                        Height = 1457;
+                        Width = 1886;
+                        Length = 4939;
+                    }
+                    else if (Enum.TryParse<Body>(allData[3], out tryParseResult2) && tryParseResult2 == Body.Wagon)
+                    {
+                        Height = 1497;
+                        Width = 1902;
+                        Length = 4951;
+                    }
+                    FuelType = "Gasoline";
+                    BodyType = Convert.ToString(tryParseResult2);
+                    EngineOption = Convert.ToString(tryParseResult1);
+                    ModelQuantity = Convert.ToInt32(allData[4]);*/
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("All Data Property value not valid " + ex.Message);
+                }
+            }
         }
 
 
-        public static Model FromCSV(string csvLine)
+        /*public static Model FromCSV(string csvLine)
         {
             string[] allData = csvLine.Split(',');
             try
@@ -525,7 +642,7 @@ namespace WPF_Project.Models
                 throw new ArgumentException("All Data Property value not valid " + ex.Message);
             }
 
-        }
+        }*/
         public string FullInfo
         {
             get

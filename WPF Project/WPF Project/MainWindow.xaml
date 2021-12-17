@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="440" Width="600"
+        Title="MainWindow" Height="480" Width="1080"
         WindowStartupLocation="CenterScreen"
         SizeToContent="Height"
         Closing="Window_Closing">
@@ -13,9 +13,9 @@
         <!-- Defining Columns -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="2*"/>
+            <!--<ColumnDefinition Width="1*"/>-->
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
         <!-- Defining Rows -->
@@ -27,7 +27,8 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="10"/>
+
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
 
         <!-- Menu -->
@@ -45,24 +46,49 @@
             <Button Click="btnSave_Click">
                 <Image Source="/Images/Save_16x.png"/>
             </Button>
+            <!--<Button Content="Open" Width="80" Grid.Column="1" Click="btnOpen_Click"/>-->
         </ToolBar>
 
         <!-- Welcoming text -->
-        <StackPanel HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" Orientation="Horizontal">
-            <TextBlock x:Name="txtWelcomeName" Text="Welcome to " FontSize="35" FontWeight="Bold" Margin="0,15,0,0"/>
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock x:Name="txtWelcomeName" Text="Audi Inventory Tracker " FontSize="35" FontWeight="Bold" Margin="0,15,0,0"/>
         </StackPanel>
 
         <!-- Description -->
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Width="300" Grid.Row="3" Margin="0,0,0,30">
+        <!--<StackPanel Grid.Column="1" Grid.ColumnSpan="3" Width="300" Grid.Row="3" Margin="0,0,0,30">
             <TextBlock x:Name="txtDescription" Text=""
                    FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Center"/>
-        </StackPanel>
+        </StackPanel>-->
+
+        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="2" Grid.Row="3" Grid.RowSpan="4" >
+            <DataGrid.Columns x:Uid="grid">
+                <DataGridTextColumn Header="Delete" x:Name="dgDelete" Width="50"/>
+                <DataGridTextColumn Header="Model Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Colour" Binding="{Binding Colour}"/>
+                <DataGridTextColumn Header="Horsepower" Binding="{Binding Horsepower}"/>
+                <DataGridTextColumn Header="Torque" Binding="{Binding Torque}"/>
+                <DataGridTextColumn Header="# of Seats" Binding="{Binding NumberOfSeats}"/>
+                <DataGridTextColumn Header="Height" Binding="{Binding Height}"/>
+                <DataGridTextColumn Header="Width" Binding="{Binding Width}" />
+                <DataGridTextColumn Header="Length" Binding="{Binding Length}"/>
+                <DataGridTextColumn Header="Engine" Binding="{Binding EngineOption}"/>
+                <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}"/>
+                <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}"/>
+                <DataGridTextColumn Header="Quantity" IsReadOnly="False" Binding="{Binding ModelQuantity}"/>
+            </DataGrid.Columns>
+
+            <!--<DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy" Click="menuCopy_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>-->
+        </DataGrid>
 
         <!-- Buttons -->
-        <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1" Width="100" Height="50" Margin="0,0,0,0" Click="btnAdd_Click"/>
-        <Button Cursor="Hand" Content="Update a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="2"  Width="110" Height="50" Click="btnUpdate_Click"/>
-        <Button Cursor="Hand" Content="Delete a car" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="3"  Width="100" Height="50" Click="btnDelete_Click"/>
-        <Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Width="115" Height="50" Grid.RowSpan="2" Margin="0,0,25,30" Click="btnShowAll_Click"/>
-        <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Width="115" Height="50" Grid.RowSpan="2" Margin="0,0,0,30" Click="btnShoppingList_Click"/>
+        <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="3" Grid.Column="1" Width="120" Height="50" Margin="0,0,0,0" Click="btnAdd_Click"/>
+        <Button Cursor="Hand" Content="Manage Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnUpdate_Click"/>
+        <Button Cursor="Hand" Content="Load Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="1"  Width="120" Height="50" Click="btnOpen_Click"/>
+        <!--<Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" Grid.Row="6" Grid.Column="1"  Width="120" Height="50"   Click="btnShowAll_Click"/>-->
+        <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" Grid.Row="6" Grid.Column="1"  Width="120" Height="50"   Click="btnShoppingList_Click"/>
     </Grid>
 </Window>
