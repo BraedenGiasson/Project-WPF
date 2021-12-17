@@ -40,3 +40,21 @@ J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project_M
 J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project_MarkupCompile.lref
 J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.dll
 J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.pdb
+J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.exe
+J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.deps.json
+J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.runtimeconfig.json
+J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.runtimeconfig.dev.json
+J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.dll
+J:\WPF-ProjectCopy\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.pdb
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\AddingWindow.baml
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\DeleteWindow.baml
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\MainWindow.baml
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ModelWindow.baml
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ShoppingListWindow.baml
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\UpdateWindow.baml
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.g.resources
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.GeneratedMSBuildEditorConfig.editorconfig
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.AssemblyInfoInputs.cache
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.AssemblyInfo.cs
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.csproj.CoreCompileInputs.cache
+J:\WPF-ProjectCopy\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.genruntimeconfig.cache

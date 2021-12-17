@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WPF Project",
+    "\\WPF Project\\WPF Project",
+    "\\WPF Project\\WPF Project\\Models"
   ],
-  "SelectedNode": "\\WPF Project.sln",
+  "SelectedNode": "\\WPF Project\\WPF Project\\Models\\Inventory.cs",
   "PreviewInSolutionExplorer": false
 }
