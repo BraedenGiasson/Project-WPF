@@ -20,7 +20,9 @@ namespace WPF_Project.Models
         private string fuelType;
         private string bodyType;
         private int modelQuantity = 0;
-        private string engineOption;                          
+        private string engineOption;                          //MIGHT HAVE TO BE IMPLEMENTED LATER!!!
+
+
 
         private static readonly string makeName = "Audi";
         private static readonly string makeCountry = "Germany";

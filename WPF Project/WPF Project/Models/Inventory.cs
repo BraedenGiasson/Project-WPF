@@ -86,6 +86,8 @@ namespace WPF_Project.Models
 
         public static void AddItem(Model model)
         {
+
+
             //int freeSpot = GetFirstAvailableParkingSpot();
 
             //if (freeSpot < 0)
@@ -95,10 +97,11 @@ namespace WPF_Project.Models
 
             //inventoryList[freeSpot] = model;
 
+
             //if (inventoryList.Contains(model))
-               // model.ModelQuantity++;
-            
-            
+            // model.ModelQuantity++;
+
+
             if(inventoryList.Count < inventoryList.Capacity)
                 inventoryList.Add(model);
         }
@@ -113,6 +116,9 @@ namespace WPF_Project.Models
                     model.ModelQuantity--;
                 }
                 return;
+
+                    //inventoryList.RemoveAt(i); // make it null
+
             }
         }
 

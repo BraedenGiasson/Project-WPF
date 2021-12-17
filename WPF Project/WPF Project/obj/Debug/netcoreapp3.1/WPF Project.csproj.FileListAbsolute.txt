@@ -59,3 +59,9 @@ C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ShoppingListWindow.baml
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\UpdateWindow.baml
 >>>>>>> 850ecb03c0f2fec06ac075accf776d08292c2f12
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\DeleteWindow.g.cs
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ShoppingListWindow.g.cs
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\UpdateWindow.g.cs
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\DeleteWindow.baml
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ShoppingListWindow.baml
+J:\WPF-Project\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\UpdateWindow.baml
