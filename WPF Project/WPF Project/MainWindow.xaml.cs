@@ -51,7 +51,7 @@ namespace WPF_Project
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             AddingWindow addingWindow = new AddingWindow();
-            addingWindow.Show();
+            addingWindow.ShowDialog();
         }
         /// <summary>
         /// Window for the 'Update car'
@@ -64,7 +64,7 @@ namespace WPF_Project
 
             // If model list has cars, show all cars
             if (Inventory.InventoryList.Count != NO_MODELS)
-                updateWindow.Show(); // throwing error because initally null
+                updateWindow.ShowDialog(); // throwing error because initally null
             // If not, give message saying no cars in stock
             else
                 MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -80,7 +80,7 @@ namespace WPF_Project
 
             // If model list has cars, show all cars
             if (Inventory.InventoryList.Count != NO_MODELS)
-                deleteWindow.Show(); // throwing error because initally null
+                deleteWindow.ShowDialog(); // throwing error because initally null
             // If not, give message saying no cars in stock
             else
                 MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -96,7 +96,7 @@ namespace WPF_Project
             
             // If model list has cars, show all cars
             if (Inventory.InventoryList.Count != NO_MODELS)
-                modelWindow.Show(); // throwing error because initally null
+                modelWindow.ShowDialog(); // throwing error because initally null
             // If not, give message saying no cars in stock
             else
                 MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
