@@ -45,10 +45,6 @@
             <Button Click="btnSave_Click">
                 <Image Source="/Images/Save_16x.png"/>
             </Button>
-            <Separator/>
-            <Button Click="btnCopy_Click">
-                <Image Source="/Images/Copy_16x.png"/>
-            </Button>
         </ToolBar>
 
         <!-- Welcoming text -->
