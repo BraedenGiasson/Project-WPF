@@ -153,46 +153,27 @@ namespace WPF_Project
             {
                 // Create new model (car) object if constructor needed is 1
                 if (ValidatingInputFields())
-                {
                     model = new Model(cmbModelNames.Text, cmbColours.Text, Convert.ToInt32(tbQuantity.Text));
-                    ShowStatusMessage();
-                }
             }
             else if (currentConstructorValue == 2)
             {
                 // Create new model (car) object if constructor needed is 2
                 if (ValidatingInputFields())
-                {
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem, Convert.ToInt32(tbQuantity.Text));
-                    ShowStatusMessage();
-                }
             }
             else if(currentConstructorValue == 3)
             {
                 // Create new model (car) object if constructor needed is 3
                 if (ValidatingInputFields())
-                {
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, Convert.ToInt32(tbQuantity.Text));
-                    ShowStatusMessage();
-                }
             }
             else if (currentConstructorValue == 4)
             {
                 // Create new model (car) object if constructor needed is 4
                 if (ValidatingInputFields())
-                {
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, Convert.ToInt32(tbQuantity.Text));
-                    ShowStatusMessage();
-                }
             }
             Inventory.AddItem(model);
-        }
-        /// <summary>
-        /// Printing successful adding car status message
-        /// </summary>
-        private void ShowStatusMessage()
-        {
-            MessageBox.Show("Successfully added car!");
         }
         private bool ValidatingInputFields()
         {

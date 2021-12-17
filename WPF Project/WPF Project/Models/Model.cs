@@ -460,7 +460,7 @@ namespace WPF_Project.Models
             get { return modelQuantity; }
             set
             {
-                if(value < 0)
+                if(value < 0) // change to constant
                     throw new ArgumentException("Quantity cannot be negative", "ModelQuantity");
                 if (value > Inventory.MaxInventorySpace)
                     throw new ArgumentException($"Quantity cannot be exceed {Inventory.MaxInventorySpace}", "ModelQuantity");
@@ -468,7 +468,6 @@ namespace WPF_Project.Models
             }
         }
 
-        //ALSO IMPLEMEMENT LATER
         public string EngineOption
         {
             get { return engineOption; }
@@ -553,10 +552,7 @@ namespace WPF_Project.Models
             {
                 throw new ArgumentException("All Data Property value not valid " + ex.Message);
             }
-
         }
-
-
         public int AvailableQuantity()
         {
             throw new NotImplementedException();

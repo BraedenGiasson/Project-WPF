@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using WPF_Project.Interfaces;
 using System.Linq;
+using System.Windows;
 
 namespace WPF_Project.Models
 {
@@ -10,6 +11,7 @@ namespace WPF_Project.Models
     {
         private static readonly int maxInventory = 100;
         private static List<Model> inventoryList;
+        private static int quantityTracker = 0;
 
         static Inventory()
         {
@@ -101,9 +103,63 @@ namespace WPF_Project.Models
             //if (inventoryList.Contains(model))
             // model.ModelQuantity++;
 
+            quantityTracker += model.ModelQuantity;
 
-            if(inventoryList.Count < inventoryList.Capacity)
+
+            if (inventoryList.Count == 0) 
+            {
                 inventoryList.Add(model);
+                ShowStatusMessage("Successfully added car first car!");
+            }
+            else
+            {
+                if (quantityTracker < maxInventory)
+                {
+                    //if (!InventoryList.Contains(model))
+                    //{
+                    //    inventoryList.Add(model);
+                    //    ShowStatusMessage("Successfully added car!");
+                    //}
+                    //else
+                    //{
+                    //    int index = InventoryList.FindIndex(x => x == model);
+                    //    inventoryList[index].ModelQuantity += model.ModelQuantity;
+                    //    ShowStatusMessage("Updated quantity!");
+                    //}
+                    bool notInList = false;
+
+                    for (int i = 0; i < inventoryList.Count; i++)
+                    {
+                        if (model.Name != inventoryList[i].Name
+                            || model.Colour != inventoryList[i].Colour
+                            || model.EngineOption != inventoryList[i].EngineOption
+                            || model.BodyType != inventoryList[i].BodyType)
+                        {
+                            notInList = true;
+                            break;
+                        }
+                    }
+
+                    if (notInList)
+                    {
+                        inventoryList.Add(model);
+                        ShowStatusMessage("Successfully added car!");
+                    }
+                    else if (!notInList)
+                    {
+                        int index = InventoryList.FindIndex(
+                                x => (x.Name == model.Name)
+                                && (x.Colour == model.Colour)
+                                && (x.EngineOption == model.EngineOption)
+                                && (x.BodyType == model.BodyType)
+                                );
+                        inventoryList[index].ModelQuantity += model.ModelQuantity;
+                        ShowStatusMessage("Updated quantity!");
+                    }
+                }
+                else
+                    throw new ArgumentException($"Inventory quantity cannot exceed {MaxInventorySpace}", "AddItem");
+            }
         }
 
         public static void RemoveItem(Model model)
@@ -114,11 +170,8 @@ namespace WPF_Project.Models
                 {
                     inventoryList.RemoveAt(i);
                     model.ModelQuantity--;
+                    return;
                 }
-                return;
-
-                    //inventoryList.RemoveAt(i); // make it null
-
             }
         }
 
@@ -166,7 +219,13 @@ namespace WPF_Project.Models
                 }
             }
         }*/
-
+        /// <summary>
+        /// Printing successful adding car status message
+        /// </summary>
+        private static void ShowStatusMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
 
 
         public int AvailableQuantity()
