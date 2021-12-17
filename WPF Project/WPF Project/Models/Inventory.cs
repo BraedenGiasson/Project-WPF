@@ -139,6 +139,12 @@ namespace WPF_Project.Models
                             break;
                         }
                     }
+                      
+                    /* PROBLEM:
+                        When I add a car and then add another one the exact same after, it works,
+                        BUT, if I add a car with colour red, then one with yellow, then another one with red, it stills adds it
+                        as another car instead of updating the quanitity 
+                     */
 
                     if (notInList)
                     {
