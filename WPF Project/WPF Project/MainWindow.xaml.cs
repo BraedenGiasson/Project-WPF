@@ -200,13 +200,9 @@ namespace WPF_Project
 
         private void menuAboutUs_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("We are the best team!");
         }
 
-        private void btnCopy_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         /// <summary>
         /// Property to set the value of saved in other windows
         /// </summary>
