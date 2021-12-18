@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="480" Width="1080"
         WindowStartupLocation="CenterScreen"
-        SizeToContent="Height"
+        SizeToContent="WidthAndHeight"
         Closing="Window_Closing">
     <Grid Background="LightGray">
         <!-- Defining Columns -->
@@ -60,21 +60,20 @@
                    FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Center"/>
         </StackPanel>-->
 
-        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="2" Grid.Row="3" Grid.RowSpan="4" >
+        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="3" Grid.RowSpan="4" CanUserDeleteRows="True">
             <DataGrid.Columns x:Uid="grid">
-                <DataGridTextColumn Header="Delete" x:Name="dgDelete" Width="50"/>
-                <DataGridTextColumn Header="Model Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Colour" Binding="{Binding Colour}"/>
-                <DataGridTextColumn Header="Horsepower" Binding="{Binding Horsepower}"/>
+                <DataGridTextColumn Header="Model Name" Binding="{Binding Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Colour" Binding="{Binding Colour}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Horsepower" Binding="{Binding Horsepower}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Torque" Binding="{Binding Torque}"/>
-                <DataGridTextColumn Header="# of Seats" Binding="{Binding NumberOfSeats}"/>
-                <DataGridTextColumn Header="Height" Binding="{Binding Height}"/>
-                <DataGridTextColumn Header="Width" Binding="{Binding Width}" />
-                <DataGridTextColumn Header="Length" Binding="{Binding Length}"/>
-                <DataGridTextColumn Header="Engine" Binding="{Binding EngineOption}"/>
-                <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}"/>
-                <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}"/>
-                <DataGridTextColumn Header="Quantity" IsReadOnly="False" Binding="{Binding ModelQuantity}"/>
+                <DataGridTextColumn Header="# of Seats" Binding="{Binding NumberOfSeats}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Height" Binding="{Binding Height}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Width" Binding="{Binding Width}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Length" Binding="{Binding Length}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Engine" Binding="{Binding EngineOption}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity}"/> <!--Commented read only to prevent error-->
             </DataGrid.Columns>
 
             <!--<DataGrid.ContextMenu>

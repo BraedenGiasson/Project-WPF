@@ -28,6 +28,17 @@ namespace WPF_Project.Models
         {
             get { return inventoryList; }
         }
+
+        public static int QuantityTracker
+        {
+            get { return quantityTracker; }
+            set
+            {
+                if (!value.ToString().Any(char.IsDigit))
+                    throw new ArgumentException("Value has to be numeric", "QuantityTracker");
+                quantityTracker = value;
+            }
+        }
         /// <summary>
         /// Property to get the maximum space allowed for the dealership
         /// </summary>

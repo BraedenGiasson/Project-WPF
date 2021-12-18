@@ -163,7 +163,11 @@ namespace WPF_Project
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, Convert.ToInt32(tbQuantity.Text));
 
                 Inventory.AddItem(model); // adding item
+                Inventory.QuantityTracker++; //adding a car to qunatityTracker when adding through addwindow
                 MainWindow.Saved = false; // state now false
+                MainWindow window = new MainWindow();
+                window.dgModels.Items.Refresh();
+                this.Close();
             }
         }
         /// <summary>

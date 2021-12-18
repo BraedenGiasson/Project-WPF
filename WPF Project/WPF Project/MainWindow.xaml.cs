@@ -225,7 +225,7 @@ namespace WPF_Project
                     //read from file
                     ReadVisitorsFromFile();
                     //update UI
-                    //lbVisitors.Items.Refresh();             //NOT SURE WHAT TO PUT HERE
+                    dgModels.Items.Refresh();             //NOT SURE WHAT TO PUT HERE
                     saved = true;
                 }
             }
@@ -242,6 +242,7 @@ namespace WPF_Project
                     //visitors.Add(new Visitor() { CSVData = visitorInfo });
                     Model temp = new Model();
                      temp.CSVData = modelInfo;
+                    Inventory.QuantityTracker++;
                     //Inventory.InventoryList.Add(temp);
                 }
             }
