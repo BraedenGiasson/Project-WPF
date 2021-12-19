@@ -105,6 +105,8 @@ namespace WPF_Project.Models
             }
             else
                 throw new ArgumentException($"Inventory quantity cannot exceed {MaxInventorySpace}", "AddItem");
+
+            
         }
         public static void UpdateItem(Model model, int quantity)
         {

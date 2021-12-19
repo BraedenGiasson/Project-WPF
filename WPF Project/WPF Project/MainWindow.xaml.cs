@@ -95,10 +95,12 @@ namespace WPF_Project
         private void btnShowAll_Click(object sender, RoutedEventArgs e)
         {
             ModelWindow modelWindow = new ModelWindow();
-            
+
             // If model list has cars, show all cars
             if (Inventory.InventoryList.Count != NO_MODELS)
+            {
                 modelWindow.ShowDialog(); // throwing error because initally null
+            }
             // If not, give message saying no cars in stock
             else
                 MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);

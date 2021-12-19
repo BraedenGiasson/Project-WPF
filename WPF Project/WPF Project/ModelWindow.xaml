@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         SizeToContent="Height">
     <Grid>
-        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" IsReadOnly="True" x:FieldModifier="public">
             <DataGrid.Columns x:Uid="grid">
                 <DataGridTextColumn Header="Delete" x:Name="dgDelete" Width="50"/>
                 <DataGridTextColumn Header="Model Name" Binding="{Binding Name}"/>
