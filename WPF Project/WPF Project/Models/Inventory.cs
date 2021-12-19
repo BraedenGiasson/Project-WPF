@@ -52,7 +52,9 @@ namespace WPF_Project.Models
         /// <param name="model"> Model (car) to be added </param>
         public static void AddItem(Model model)
         {
-            quantityTracker += model.ModelQuantity; // change to use Interface
+            QuantityTracker += model.ModelQuantity; // change to use Interface
+
+            int index = 0;
 
             // If no models in inventory, add first car
             if (inventoryList.Count == NO_MODELS) 
@@ -61,7 +63,7 @@ namespace WPF_Project.Models
                 ShowStatusMessage("Successfully added car first car!");
             }
             // Making sure the quantity for the dealership is below the max allowed
-            else if (quantityTracker < maxInventory)
+            else if (quantityTracker <= maxInventory)
             {
                 //if (!InventoryList.Contains(model))
                 //{
@@ -79,20 +81,25 @@ namespace WPF_Project.Models
                 for (int i = 0; i < inventoryList.Count; i++)
                 {
                     // Checking if item to be added isn't already in the inventory list
-                    if (model.Name != inventoryList[i].Name
+                    /*if (model.Name != inventoryList[i].Name
                         || model.Colour != inventoryList[i].Colour
                         || model.EngineOption != inventoryList[i].EngineOption
-                        || model.BodyType != inventoryList[i].BodyType)
+                        || model.BodyType != inventoryList[i].BodyType)*/
+                    if (!IsEqualTo(inventoryList[i], model))
                     {
                         notInList = true;
+                    }
+                    else
+                    {
+                        index = i;
                         break;
                     }
                 }
 
-                /* PROBLEM:
+                /* PROBLEM: HAS BEEN FIXED
                     When I add a car and then add another one the exact same after, it works,
                     BUT, if I add a car with colour red, then one with yellow, then another one with red, it stills adds it
-                    as another car instead of updating the quanitity 
+                    as another car instead of updating the quantity 
                  */
 
                 // If it's not in the list, add it to the inventory
@@ -104,26 +111,43 @@ namespace WPF_Project.Models
                 else if (!notInList)
                 {
                     // Finding where it is in the list, and updating the quantity for the model (since we don't want to have duplicates in the table)
-                    int index = InventoryList.FindIndex(
-                            x => (x.Name == model.Name)
-                            && (x.Colour == model.Colour)
-                            && (x.EngineOption == model.EngineOption)
-                            && (x.BodyType == model.BodyType)
-                            );
                     inventoryList[index].ModelQuantity += model.ModelQuantity;
+
                     ShowStatusMessage("Updated quantity!");
                 }
             }
             else
                 throw new ArgumentException($"Inventory quantity cannot exceed {MaxInventorySpace}", "AddItem");
         }
-        public static void UpdateItem(Model model, int quantity)
+
+        public static bool IsEqualTo(Model model, Model secondModel)
+        {
+            bool answer;
+            if (model.Name == secondModel.Name && model.Colour == secondModel.Colour && model.EngineOption == secondModel.EngineOption && model.BodyType == secondModel.BodyType)
+            {
+                answer = true;
+            }
+            else
+                answer = false;
+
+            //return (model.Name.Equals(secondModel.Name));
+            return answer;
+        }
+
+
+
+        public static void UpdateItem(Model model, int quantity)    //NEEDS TO BE IMPLEMENTED OR DELETED
         {
             if (inventoryList.Count == inventoryList.Capacity)
                 throw new ArgumentException("You cannot add this many cars. Your parking lot is full!", "UpdateItem");
 
             model.ModelQuantity = quantity;
         }
+
+        /*public static List CreateShoppingList(List<Model> models)
+        {
+
+        }*/
 
 
         /*public static void LoadItems()                    CAN EVENTUALLY PROBABLY BE DELETED
@@ -148,14 +172,11 @@ namespace WPF_Project.Models
             return quantityTracker;
         }
 
-        public int MinimumQuanitity()
+        public bool MinimumQuanitity()
         {
             throw new NotImplementedException();
         }
 
-        public bool QuantityIsValid()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

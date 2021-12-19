@@ -144,7 +144,9 @@ namespace WPF_Project
         /// <param name="e"></param>
         private void btnAddCar_Click(object sender, RoutedEventArgs e) 
         {
-            Model model = null; 
+            try
+            {
+                Model model = null; 
 
             // Validating all input fields
             if (ValidatingInputFields())
@@ -163,11 +165,18 @@ namespace WPF_Project
                     model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, Convert.ToInt32(tbQuantity.Text));
 
                 Inventory.AddItem(model); // adding item
-                Inventory.QuantityTracker++; //adding a car to qunatityTracker when adding through addwindow
+                //Inventory.QuantityTracker++; //adding a car to qunatityTracker when adding through addwindow
                 MainWindow.Saved = false; // state now false
                 MainWindow window = new MainWindow();
-                window.dgModels.Items.Refresh();
-                this.Close();
+                
+                Close();   //close window after adding a car
+                window.dgModels.Items.Refresh(); //refreshing dataGrid to update Models
+            }
+            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         /// <summary>

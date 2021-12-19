@@ -9,9 +9,7 @@ namespace WPF_Project.Interfaces
 
         int AvailableQuantity();
 
-        int MinimumQuanitity();
-
-        bool QuantityIsValid();
+        bool MinimumQuanitity();
         
     }
 }

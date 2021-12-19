@@ -9,6 +9,7 @@ namespace WPF_Project.Models
 {
     public class Model : IQuantity
     {
+
         private string name;
         private string colour;
         private int horsepower;
@@ -19,8 +20,9 @@ namespace WPF_Project.Models
         private double length;
         private string fuelType;
         private string bodyType;
-        private int modelQuantity = 0;
-        private string engineOption;                          
+        private int modelQuantity;
+        private string engineOption;
+        private const int MIN_QUANTITY = 2;
 
 
         public Model()
@@ -464,19 +466,6 @@ namespace WPF_Project.Models
         }
 
 
-        public int ModelQuantity
-        {
-            get { return modelQuantity; }
-            set
-            {
-                if(value < 0) // change to constant
-                    throw new ArgumentException("Quantity cannot be negative", "ModelQuantity");
-                if (value > Inventory.MaxInventorySpace)
-                    throw new ArgumentException($"Quantity cannot be exceed {Inventory.MaxInventorySpace}", "ModelQuantity");
-                modelQuantity = value;
-            }
-        }
-
         public string EngineOption
         {
             get { return engineOption; }
@@ -489,7 +478,18 @@ namespace WPF_Project.Models
             }
         }
 
-        //Might be needed for reading and writing to file
+        public int ModelQuantity
+        {
+            get { return modelQuantity; }
+            set
+            {
+                if (value < 0) // change to constant
+                    throw new ArgumentException("Quantity cannot be negative", "ModelQuantity");
+                //if (value > Inventory.MaxInventorySpace || ModelQuantity + value > Inventory.MaxInventorySpace)
+                    //throw new ArgumentException($"Quantity cannot exceed {Inventory.MaxInventorySpace}", "ModelQuantity");
+                modelQuantity = value;
+            }
+        }
 
         public string CSVData
         {
@@ -553,7 +553,7 @@ namespace WPF_Project.Models
                     else if (string.IsNullOrEmpty(allData[0]))
                         return;
 
-                        Inventory.AddItem(model);
+                    Inventory.AddItem(model);
 
 
                     /*if (a6.IsMatch(allData[0]))
@@ -603,46 +603,6 @@ namespace WPF_Project.Models
         }
 
 
-        /*public static Model FromCSV(string csvLine)
-        {
-            string[] allData = csvLine.Split(',');
-            try
-            {
-                if (allData.Length == 3)
-                {
-                    Model model = new Model(allData[0], allData[1], Convert.ToInt32(allData[2]));
-                    return model;
-                }
-                else if (allData.Length == 4 && (allData[2] == Convert.ToString(Body.Convertible) || allData[2] == Convert.ToString(Body.Coupe)
-                    || allData[2] == Convert.ToString(Body.Limousine) || allData[2] == Convert.ToString(Body.SUV) || allData[2] == Convert.ToString(Body.Wagon)))
-                {
-                    Model model = new Model(allData[0], allData[1], (Body)Enum.Parse(typeof(Body), allData[2], true), Convert.ToInt32(allData[3]));
-                    return model;
-                }
-                else if (allData.Length == 4 && (allData[2] == Convert.ToString(Engine.FiftyFive) || allData[2] == Convert.ToString(Engine.Fourty)
-                    || allData[2] == Convert.ToString(Engine.FourtyFive) || allData[2] == Convert.ToString(Engine.V10) || allData[2] == Convert.ToString(Engine.Electric)))
-                {
-                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true), Convert.ToInt32(allData[3]));
-                    return model;
-                }
-                else if (allData.Length == 5 && (allData[2] == Convert.ToString(Engine.FiftyFive) || allData[2] == Convert.ToString(Engine.Fourty)
-                    || allData[2] == Convert.ToString(Engine.FourtyFive) || allData[2] == Convert.ToString(Engine.V10)
-                    || allData[2] == Convert.ToString(Engine.Electric)) && (allData[2] == Convert.ToString(Body.Convertible))
-                    || allData[2] == Convert.ToString(Body.Coupe) || allData[2] == Convert.ToString(Body.Limousine) ||
-                    allData[2] == Convert.ToString(Body.SUV) || allData[2] == Convert.ToString(Body.Wagon))
-                {
-                    Model model = new Model(allData[0], allData[1], (Engine)Enum.Parse(typeof(Engine), allData[2], true),
-                        (Body)Enum.Parse(typeof(Body), allData[2], true), Convert.ToInt32(allData[3]));
-                    return model;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw new ArgumentException("All Data Property value not valid " + ex.Message);
-            }
-
-        }*/
         public string FullInfo
         {
             get
@@ -668,18 +628,14 @@ namespace WPF_Project.Models
 
         public int AvailableQuantity()
         {
-            throw new NotImplementedException();
+            return ModelQuantity;
         }
 
-        public int MinimumQuanitity()
+        public bool MinimumQuanitity(Model model)
         {
-            throw new NotImplementedException();
+            return ModelQuantity > MIN_QUANTITY;
         }
 
-        public bool QuantityIsValid()
-        {
-            throw new NotImplementedException();
-        }
     }
 
     /// <summary>

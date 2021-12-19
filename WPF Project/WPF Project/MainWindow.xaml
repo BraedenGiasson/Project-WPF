@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="480" Width="1080"
         WindowStartupLocation="CenterScreen"
-        SizeToContent="WidthAndHeight"
+        SizeToContent="Height"
         Closing="Window_Closing">
     <Grid Background="LightGray">
         <!-- Defining Columns -->
@@ -28,7 +28,7 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
 
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <!-- Menu -->
@@ -53,8 +53,11 @@
         <StackPanel HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="1" Orientation="Horizontal">
             <TextBlock x:Name="txtWelcomeName" Text="Audi Inventory Tracker " FontSize="35" FontWeight="Bold" Margin="0,15,0,0"/>
         </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Grid.Row="8" Grid.Column="2">
+            <TextBlock Text="Select Row and press DEL key to delete" FontSize="14" FontWeight="DemiBold" Margin="10"/>
+        </StackPanel>
 
-        <!-- Description -->
+            <!-- Description -->
         <!--<StackPanel Grid.Column="1" Grid.ColumnSpan="3" Width="300" Grid.Row="3" Margin="0,0,0,30">
             <TextBlock x:Name="txtDescription" Text=""
                    FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Center"/>
@@ -73,7 +76,7 @@
                 <DataGridTextColumn Header="Engine" Binding="{Binding EngineOption}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity}"/> <!--Commented read only to prevent error-->
+                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity, UpdateSourceTrigger=PropertyChanged}"/> <!--Commented read only to prevent error-->
             </DataGrid.Columns>
 
             <!--<DataGrid.ContextMenu>
@@ -85,9 +88,9 @@
 
         <!-- Buttons -->
         <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="3" Grid.Column="1" Width="120" Height="50" Margin="0,0,0,0" Click="btnAdd_Click"/>
-        <Button Cursor="Hand" Content="Manage Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnUpdate_Click"/>
-        <Button Cursor="Hand" Content="Load Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="1"  Width="120" Height="50" Click="btnOpen_Click"/>
+        <!--<Button Cursor="Hand" Content="Manage Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnUpdate_Click"/>-->
+        <Button Cursor="Hand" Content="Load Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnOpen_Click"/>
         <!--<Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" Grid.Row="6" Grid.Column="1"  Width="120" Height="50"   Click="btnShowAll_Click"/>-->
-        <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" Grid.Row="6" Grid.Column="1"  Width="120" Height="50"   Click="btnShoppingList_Click"/>
+        <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="1"  Width="120" Height="50"   Click="btnShoppingList_Click"/>
     </Grid>
 </Window>
