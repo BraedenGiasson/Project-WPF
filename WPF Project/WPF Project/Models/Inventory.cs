@@ -115,7 +115,7 @@ namespace WPF_Project.Models
         }
 
 
-        public static void LoadItems()
+        /*public static void LoadItems()                    CAN EVENTUALLY PROBABLY BE DELETED
         {
             string car = "a3, red";
 
@@ -123,7 +123,7 @@ namespace WPF_Project.Models
             //Inventory.AddItem(model); // was adding straight to model
 
            // Model.FromCSV(Inventory.me);
-        }
+        }*/
         /// <summary>
         /// Printing successful adding car status message
         /// </summary>
