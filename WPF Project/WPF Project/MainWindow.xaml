@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="1080"
+        Title="MainWindow" Height="480" Width="1000"
         WindowStartupLocation="CenterScreen"
         SizeToContent="Height"
         Closing="Window_Closing">
     <Grid Background="LightGray">
         <!-- Defining Columns -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="2*"/>
             <!--<ColumnDefinition Width="1*"/>-->
@@ -58,14 +58,28 @@
             <TextBlock Text="Select Row and press DEL key to delete" FontSize="14" FontWeight="DemiBold" Margin="10"/>
         </StackPanel>
 
+        <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,20,100,0"
+                    HorizontalAlignment="Right" Orientation="Horizontal">
+            <TextBlock x:Name="txtNeedMoreValue" Text="need more" 
+                       FontSize="13"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,50,20,0"
+                    HorizontalAlignment="Right" Orientation="Horizontal">
+            <TextBlock x:Name="txtInventoryQuantityScreen" Text="Inventory quantity: " FontWeight="Bold" FontSize="13" Width="130"/>
+            <TextBlock x:Name="txtQuantityOnScreen" Text="" 
+                       Margin="0,1,0,0" FontSize="13" Width="25">
+            </TextBlock>
+        </StackPanel>
+
             <!-- Description -->
         <!--<StackPanel Grid.Column="1" Grid.ColumnSpan="3" Width="300" Grid.Row="3" Margin="0,0,0,30">
             <TextBlock x:Name="txtDescription" Text=""
                    FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Center"/>
         </StackPanel>-->
         <!--CellEditEnding="dgModels_CellEditEnding"-->
-        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" Grid.Column="2" 
-                  Grid.Row="3" Grid.RowSpan="4" CanUserDeleteRows="True" PreviewKeyDown="dgModels_PreviewKeyDown">
+        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="3" 
+                  Grid.RowSpan="4" CanUserDeleteRows="True" PreviewKeyDown="dgModels_PreviewKeyDown"
+                  CellEditEnding="dgModels_CellEditEnding">
             <DataGrid.Columns x:Uid="grid">
                 <DataGridTextColumn Header="Model Name" Binding="{Binding Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Colour" Binding="{Binding Colour}" IsReadOnly="True"/>
@@ -78,9 +92,9 @@
                 <DataGridTextColumn Header="Engine" Binding="{Binding EngineOption}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity, UpdateSourceTrigger=PropertyChanged}"/> <!--Commented read only to prevent error-->
+                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity}"/> <!--Commented read only to prevent error-->
             </DataGrid.Columns>
-
+            <!--UpdateSourceTrigger=PropertyChanged-->
             <!--<DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Copy" Click="menuCopy_Click"/>
@@ -89,10 +103,18 @@
         </DataGrid>
 
         <!-- Buttons -->
-        <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="3" Grid.Column="1" Width="120" Height="50" Margin="0,0,0,0" Click="btnAdd_Click"/>
+        <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" 
+                Grid.Row="3" Grid.Column="1" Width="120" Height="50" Margin="0,0,15,0" 
+                Click="btnAdd_Click"/>
         <!--<Button Cursor="Hand" Content="Manage Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnUpdate_Click"/>-->
-        <Button Cursor="Hand" Content="Load Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnOpen_Click"/>
-        <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="1"  Width="120" Height="50"   Click="btnShoppingList_Click"/>
-        <Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" Grid.Row="6" Grid.Column="1"  Width="120" Height="50"   Click="btnShowAll_Click"/>
+        <Button Cursor="Hand" Content="Load Cars" FontSize="16" FontWeight="DemiBold" 
+                Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnOpen_Click"
+                Margin="0,0,15,0"/>
+        <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" 
+                Grid.Row="5" Grid.Column="1"  Width="120" Height="50" 
+                Click="btnShoppingList_Click" Margin="0,0,15,0"/>
+        <!--<Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" 
+                Grid.Row="6" Grid.Column="1"  Width="120" Height="50"   
+                Click="btnShowAll_Click" Margin="0,0,15,0"/>-->
     </Grid>
 </Window>

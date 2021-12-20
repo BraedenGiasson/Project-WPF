@@ -24,7 +24,8 @@ namespace WPF_Project
     {
         // Saving For Adding Window
         private bool changedData = false;
-        List<string> modelNames;
+        static List<string> modelNames = new List<string>() 
+                { "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "R8", "TT", "e-tron", "e-tron GT", "Q4 e-tron" };
         int currentConstructorValue;
 
         public AddingWindow()
@@ -39,8 +40,8 @@ namespace WPF_Project
                             .Cast<Engine>()
                             .ToList();
 
-            modelNames = new List<string>() 
-                { "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "R8", "TT", "e-tron", "e-tron GT", "Q4 e-tron" };
+            //modelNames = new List<string>() 
+               // { "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "R8", "TT", "e-tron", "e-tron GT", "Q4 e-tron" };
 
             InitializeComponent();
 
@@ -71,6 +72,10 @@ namespace WPF_Project
             currentConstructorValue = 0;
             
             //models.Add(new Model("R8", "blue")); // works but all values are 0
+        }
+        public static List<string> GetModelNames
+        {
+            get { return modelNames; }
         }
         /// <summary>
         /// When an option in the dropdown of model names is changed, preform behavior

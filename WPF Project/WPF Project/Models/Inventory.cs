@@ -4,6 +4,7 @@ using System.Text;
 using WPF_Project.Interfaces;
 using System.Linq;
 using System.Windows;
+using System.ComponentModel;
 
 namespace WPF_Project.Models
 {
@@ -13,7 +14,10 @@ namespace WPF_Project.Models
         private static readonly int maxInventory = 100;
         private static List<Model> inventoryList;
         private static int quantityTracker = 0;
+        private static int counterNeedMoreOf = 0;
         private const int NO_MODELS = 0;
+        private const int MINIMUM_QUANTITY = 30; // 2 of each car (15 cars)
+        private const int MIN_QUANTITY_EACH_MODEL = 2;
 
         /// <summary>
         /// Private constructor to initalize inventory list
@@ -39,6 +43,9 @@ namespace WPF_Project.Models
             {
                 if (!value.ToString().Any(char.IsDigit))
                     throw new ArgumentException("Value has to be numeric", "QuantityTracker");
+                if (value > maxInventory)
+                    throw new ArgumentException($"Quantity in Inventory List cannot exceed {maxInventory}.", "QuantityTracker");
+
                 quantityTracker = value;
             }
         }
@@ -81,7 +88,7 @@ namespace WPF_Project.Models
                 //    inventoryList[index].ModelQuantity += model.ModelQuantity;
                 //    ShowStatusMessage("Updated quantity!");
                 //}
-                bool notInList = false;
+                bool notInList = true;
 
                 for (int i = 0; i < inventoryList.Count; i++)
                 {
@@ -92,7 +99,7 @@ namespace WPF_Project.Models
                         || model.BodyType != inventoryList[i].BodyType)*/
                     if (!IsEqualTo(inventoryList[i], model))
                     {
-                        notInList = true;
+                        notInList = false;
                     }
                     else
                     {
@@ -108,20 +115,32 @@ namespace WPF_Project.Models
                  */
 
                 // If it's not in the list, add it to the inventory
-                if (notInList)
+                if (!notInList)
                 {
                     inventoryList.Add(model);
 
                     if (!isFromLoadingCars)
                         ShowStatusMessage("Successfully added car!");
                 }
-                else if (!notInList)
+                else if (notInList)
                 {
                     // Finding where it is in the list, and updating the quantity for the model (since we don't want to have duplicates in the table)
                     inventoryList[index].ModelQuantity += model.ModelQuantity;
 
                     if (!isFromLoadingCars)
                         ShowStatusMessage("Updated quantity!");
+                }
+
+                if (quantityTracker == maxInventory)
+                    MessageBox.Show("Maximum Quantity in Inventory reached!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                int count = Model.GetMinimumQuantity(model);
+
+                if (count < 2)
+                {
+                    counterNeedMoreOf += count;
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.ShowLowInventoryMessage(count);
                 }
             }
             else
@@ -156,10 +175,34 @@ namespace WPF_Project.Models
             model.ModelQuantity = quantity;
         }
 
-        /*public static List CreateShoppingList(List<Model> models)
+        public static List<Model> CreateShoppingList()
         {
+            List<Model> tempList = new List<Model>();
+            for (int i = 0; i < AddingWindow.GetModelNames.Count; i++)
+            {
+                Model temp = new Model();
+                temp.Name = AddingWindow.GetModelNames[i];
 
-        }*/
+                int index = inventoryList.FindIndex(x => x.Name == temp.Name);
+
+                if (index >= 0)
+                {
+                    if (!inventoryList[index].MinimumQuanitity(inventoryList[index]))
+                    {
+                        inventoryList[index].QuantityFromName = MIN_QUANTITY_EACH_MODEL - Model.GetMinimumQuantity(inventoryList[index]);
+                        inventoryList[index].Information = $"Need {MIN_QUANTITY_EACH_MODEL - Model.GetMinimumQuantity(inventoryList[index])} more of model {inventoryList[index].Name}.";
+                        tempList.Add(inventoryList[index]);
+                    }
+                }
+                else
+                {
+                    temp.QuantityFromName = MIN_QUANTITY_EACH_MODEL;
+                    temp.Information = $"Need {MIN_QUANTITY_EACH_MODEL} more of model {AddingWindow.GetModelNames[i]}.";
+                    tempList.Add(temp);
+                }
+            }
+            return tempList;
+        }
 
 
         /*public static void LoadItems()                    CAN EVENTUALLY PROBABLY BE DELETED
@@ -182,12 +225,11 @@ namespace WPF_Project.Models
 
         public int AvailableQuantity()
         {
-            return quantityTracker;
+            return maxInventory - quantityTracker;
         }
-
         public bool MinimumQuanitity(Model model)
         {
-            throw new NotImplementedException();
+            return inventoryList.Count < 30;
         }
     }
 }

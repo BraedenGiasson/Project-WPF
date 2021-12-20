@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Project.Interfaces;
+using WPF_Project.Models;
 
 namespace WPF_Project
 {
@@ -20,6 +22,19 @@ namespace WPF_Project
         public ShoppingListWindow()
         {
             InitializeComponent();
+
+            dgShoppingList.ItemsSource = Inventory.CreateShoppingList();
+        }
+
+        private void btnSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            window.SaveAsLogic();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

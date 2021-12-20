@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
-        Title="ShoppingListWindow" Height="450" Width="800">
+        Title="Shopping List" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="151*"/>
+            <ColumnDefinition Width="629*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Menu -->
+        <Menu Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,32" Grid.RowSpan="2">
+            <MenuItem Header="_File" FontSize="15">
+                <MenuItem Header="Save" Click="btnSave_Click"/>
+                <MenuItem Header="Save As" Click="btnSaveAs_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Tool Bar -->
+        <ToolBar Grid.Row="1" Grid.ColumnSpan="3" Background="LightGray">
+            <Button Click="btnSave_Click">
+                <Image Source="/Images/Save_16x.png"/>
+            </Button>
+            <!--<Button Content="Open" Width="80" Grid.Column="1" Click="btnOpen_Click"/>-->
+        </ToolBar>
+
+
+        <DataGrid x:Name="dgShoppingList" AutoGenerateColumns="False"
+                 Grid.ColumnSpan="3" Grid.Row="3">
+            <DataGrid.Columns x:Uid="grid">
+                <DataGridTextColumn Header="Model Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding QuantityFromName}"/>
+                <DataGridTextColumn Header="Information" Binding="{Binding Information}" Width="1*"/>
+                <!--Commented read only to prevent error-->
+            </DataGrid.Columns>
+
+            <!--<DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy" Click="menuCopy_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>-->
+        </DataGrid>
     </Grid>
 </Window>

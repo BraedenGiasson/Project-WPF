@@ -22,6 +22,8 @@ namespace WPF_Project.Models
         private string bodyType;
         private int modelQuantity;
         private string engineOption;
+        private string information;
+        private int quantityFromName;
         private const int MIN_QUANTITY = 2;
 
         /// <summary>
@@ -533,6 +535,8 @@ namespace WPF_Project.Models
                     throw new ArgumentException("Quantity cannot be negative", "ModelQuantity");
                 //if (value > Inventory.MaxInventorySpace || ModelQuantity + value > Inventory.MaxInventorySpace)
                     //throw new ArgumentException($"Quantity cannot exceed {Inventory.MaxInventorySpace}", "ModelQuantity");
+                //if (value  > Inventory.MaxInventorySpace)
+                //    throw new ArgumentException($"Quantity in Inventory List cannot exceed {Inventory.MaxInventorySpace}.", "ModelQuantity");
                 modelQuantity = value;
             }
         }
@@ -676,6 +680,16 @@ namespace WPF_Project.Models
                 "Width:", "Length:", "FuelType:", "BodyType:", "EngineOption:", "ModelQuantity:");
             }
         }
+        public string Information
+        {
+            get { return information; }
+            set { information = value;  }
+        }
+        public int QuantityFromName
+        {
+            get { return quantityFromName; }
+            set { quantityFromName = value; }
+        }
 
         public int AvailableQuantity()
         {
@@ -684,7 +698,24 @@ namespace WPF_Project.Models
 
         public bool MinimumQuanitity(Model model)
         {
-            return ModelQuantity > MIN_QUANTITY;
+            int counter = GetMinimumQuantity(model);
+
+            if (counter >= 2) //constant
+                return true;
+            else
+                return false;
+        }
+        public static int GetMinimumQuantity(Model model)
+        {
+            int counter = 0;
+            for (int i = 0; i < Inventory.InventoryList.Count; i++)
+            {
+                if (Inventory.InventoryList[i].Name == model.Name)
+                {
+                    counter++;
+                }
+            }
+            return counter;
         }
     }
 

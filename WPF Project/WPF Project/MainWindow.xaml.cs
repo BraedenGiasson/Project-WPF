@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,7 @@ namespace WPF_Project
 
         // Saving For Main Window
         private string saveLocation = string.Empty;
-        private static bool saved = false;
+        private static bool saved = false;        
 
         // Company information
         /*private static readonly string makeName = "Audi";
@@ -43,6 +44,9 @@ namespace WPF_Project
                 InitializeComponent();
 
                 dgModels.ItemsSource = Inventory.InventoryList;
+                txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString();
+
+                txtNeedMoreValue.Visibility = Visibility.Hidden;
             }
             catch (Exception ex)
             {
@@ -66,6 +70,7 @@ namespace WPF_Project
                 AddingWindow addingWindow = new AddingWindow();
                 addingWindow.ShowDialog();
                 dgModels.Items.Refresh();
+                txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString();
             }
             catch (Exception ex)
             {
@@ -117,22 +122,22 @@ namespace WPF_Project
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnShowAll_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                ModelWindow modelWindow = new ModelWindow();
+        //private void btnShowAll_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        ModelWindow modelWindow = new ModelWindow();
 
-                // If model list has cars, show all cars
-                if (Inventory.InventoryList.Count != NO_MODELS)
-                    modelWindow.ShowDialog(); // throwing error because initally null
-                                              // If not, give message saying no cars in stock
-                else
-                    MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        //        // If model list has cars, show all cars
+        //        if (Inventory.InventoryList.Count != NO_MODELS)
+        //            modelWindow.ShowDialog(); // throwing error because initally null
+        //                                      // If not, give message saying no cars in stock
+        //        else
+        //            MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //    }
+        //    catch (Exception ex) { MessageBox.Show(ex.Message); }
             
-        }
+        //}
         /// <summary>
         /// Window for the shopping list
         /// </summary>
@@ -140,7 +145,16 @@ namespace WPF_Project
         /// <param name="e"></param>
         private void btnShoppingList_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                ShoppingListWindow shoppingList = new ShoppingListWindow();
 
+                if (Inventory.InventoryList.Count != NO_MODELS)
+                    shoppingList.ShowDialog();
+                else
+                    MessageBox.Show("Sorry, no cars to show! No cars in stock!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
         /// <summary>
         /// Saving all the data at the right location
@@ -164,7 +178,7 @@ namespace WPF_Project
         /// <summary>
         /// Writing the data to the file
         /// </summary>
-        private void WriteDataToFile()
+        public void WriteDataToFile()
         {
             if (!saved)
             {
@@ -276,6 +290,7 @@ namespace WPF_Project
             try
             {
                 string[] allValues = File.ReadAllLines(saveLocation);
+                Inventory.QuantityTracker = 0;
                 //create visitor objects and add them to list
                 foreach (string modelInfo in allValues)
                 {
@@ -285,6 +300,7 @@ namespace WPF_Project
                     //Inventory.QuantityTracker++;
                     //Inventory.InventoryList.Add(temp);
                 }
+                txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString();
             }
             catch (Exception)
             {
@@ -304,7 +320,14 @@ namespace WPF_Project
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSaveAs_Click(object sender, RoutedEventArgs e)
+        public void btnSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            SaveAsLogic();
+        }
+        /// <summary>
+        /// Logic for 'Save As' button click
+        /// </summary>
+        public void SaveAsLogic() // need to figure out how to change logic so that if hit's cancel
         {
             saved = false;
             saveLocation = "";
@@ -317,45 +340,85 @@ namespace WPF_Project
         /// <param name="e"></param>
         private void dgModels_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            // If the user presses back button or delete key (to delete a model)
-            if( e.Key == Key.Delete || e.Key == Key.Back )
+            try
             {
-                Model temp = dgModels.SelectedItem as Model;
-
-                // If the model is not an empty model, remove from inventory
-                if (temp != null)
+                // If the user presses delete key (to delete a model)
+                if (e.Key == Key.Delete)
                 {
-                    Inventory.InventoryList.Remove(temp);
-                    Inventory.QuantityTracker -= temp.ModelQuantity; // reducing inventory quantity
-                    dgModels.Items.Refresh(); // refreshing items
-                    Saved = false;
+                    Model temp = dgModels.SelectedItem as Model;
+
+                    // If the model is not an empty model, remove from inventory
+                    if (temp != null)
+                    {
+                        Inventory.InventoryList.Remove(temp);
+                        Inventory.QuantityTracker -= temp.ModelQuantity; // reducing inventory quantity                    
+                        dgModels.Items.Refresh(); // refreshing items
+
+                        if (Inventory.QuantityTracker == Inventory.MaxInventorySpace)
+                            MessageBox.Show("Maximum Quantity in Inventory reached!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                        txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString();
+                        Saved = false; // not saved anymore
+                    }
                 }
             }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
+        /// <summary>
+        /// When the cell quantity is edited, update 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgModels_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            try
+            {
+                if (e.EditAction == DataGridEditAction.Commit)
+                {
+                    var column = e.Column as DataGridBoundColumn;
+                    if (column != null)
+                    {
+                        var bindingPath = (column.Binding as Binding).Path.Path;
 
-        //private void dgModels_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        //{
-        //    if (e.EditAction == DataGridEditAction.Commit)
-        //    {
-        //        var column = e.Column as DataGridBoundColumn;
-        //        if (column != null)
-        //        {
+                        if (bindingPath == "ModelQuantity")
+                        {
+                            bool isOverQuantityLimit = false;
+                            int rowIndex = e.Row.GetIndex();
+                            var el = e.EditingElement as TextBox;
 
-        //            var bindingPath = (column.Binding as Binding).Path.Path;
-        //            if (bindingPath == "ModelQuantity")
-        //            {
-        //                int rowIndex = e.Row.GetIndex();
-        //                var el = e.EditingElement as TextBox;
-        //                //Console.WriteLine(Inventory.InventoryList);
-        //                if(Inventory.InventoryList[rowIndex].ModelQuantity > Inventory.MaxInventorySpace)
-        //                   MessageBox.Show($"Inventory quantity cannot exceed {Inventory.MaxInventorySpace}", "AddItem");
+                            Inventory.QuantityTracker -= Inventory.InventoryList[rowIndex].ModelQuantity;
 
-        //                // rowIndex has the row index
-        //                // bindingPath has the column's binding
-        //                // el.Text has the new, user-entered value
-        //            }
-        //        }
-        //    }
-        //}
+                            if ((Convert.ToInt32(el.Text.ToString()) + Inventory.QuantityTracker) > Inventory.MaxInventorySpace)
+                            {
+                                MessageBox.Show($"Quantity in Inventory List cannot exceed {Inventory.MaxInventorySpace}.", "ModelQuantity");
+                                isOverQuantityLimit = true;
+                                el.Text = Inventory.InventoryList[rowIndex].ModelQuantity.ToString();
+                            }
+
+                            if (!isOverQuantityLimit)
+                                Inventory.InventoryList[rowIndex].ModelQuantity = Convert.ToInt32(el.Text.ToString());
+                            
+                            
+
+                            Inventory.QuantityTracker += Inventory.InventoryList[rowIndex].ModelQuantity;
+
+                            if (Inventory.QuantityTracker == Inventory.MaxInventorySpace)
+                                MessageBox.Show("Maximum Quantity in Inventory reached!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                            txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString();
+                            Saved = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+        public void ShowLowInventoryMessage(int numberMore)
+        {
+            txtNeedMoreValue.Visibility = Visibility.Visible;
+
+            txtNeedMoreValue.Foreground = Brushes.Red;
+            txtNeedMoreValue.Text = $"Inventory Low! Need {numberMore} more different types of models.";
+        }
     }
 }
