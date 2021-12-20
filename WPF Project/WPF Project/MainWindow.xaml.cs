@@ -23,6 +23,8 @@ namespace WPF_Project
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
         private List<Model> models = new List<Model>();
         private const int NO_MODELS = 0;
 
@@ -37,9 +39,17 @@ namespace WPF_Project
 
         public MainWindow()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            dgModels.ItemsSource = Inventory.InventoryList;
+                dgModels.ItemsSource = Inventory.InventoryList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
 
             // Displaying company information
             /*txtWelcomeName.Text += $"{makeName}!";
@@ -52,8 +62,18 @@ namespace WPF_Project
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddingWindow addingWindow = new AddingWindow();
-            addingWindow.ShowDialog();
+            try
+            {
+                AddingWindow addingWindow = new AddingWindow();
+                addingWindow.ShowDialog();
+                dgModels.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            
         }
         /// <summary>
         /// Window for the 'Update car'
@@ -62,14 +82,19 @@ namespace WPF_Project
         /// <param name="e"></param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            UpdateWindow updateWindow = new UpdateWindow();
+            try
+            {
+                UpdateWindow updateWindow = new UpdateWindow();
 
-            // If model list has cars, show all cars
-            if (Inventory.InventoryList.Count != NO_MODELS)
-                updateWindow.ShowDialog(); // throwing error because initally null
-            // If not, give message saying no cars in stock
-            else
-                MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+                // If model list has cars, show all cars
+                if (Inventory.InventoryList.Count != NO_MODELS)
+                    updateWindow.ShowDialog(); // throwing error because initally null
+                                               // If not, give message saying no cars in stock
+                else
+                    MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            
         }
         /// <summary>
         /// Window for the 'Delete car'
@@ -78,14 +103,15 @@ namespace WPF_Project
         /// <param name="e"></param>
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            DeleteWindow deleteWindow = new DeleteWindow();
-
-            // If model list has cars, show all cars
-            if (Inventory.InventoryList.Count != NO_MODELS)
-                deleteWindow.ShowDialog(); // throwing error because initally null
-            // If not, give message saying no cars in stock
-            else
-                MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+            try
+            {
+                DeleteWindow deleteWindow = new DeleteWindow();
+                if (Inventory.InventoryList.Count != NO_MODELS)
+                    deleteWindow.ShowDialog();
+                else
+                    MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); } 
         }
         /// <summary>
         /// Displaying everything in inventory in table format
@@ -94,16 +120,19 @@ namespace WPF_Project
         /// <param name="e"></param>
         private void btnShowAll_Click(object sender, RoutedEventArgs e)
         {
-            ModelWindow modelWindow = new ModelWindow();
-
-            // If model list has cars, show all cars
-            if (Inventory.InventoryList.Count != NO_MODELS)
+            try
             {
-                modelWindow.ShowDialog(); // throwing error because initally null
+                ModelWindow modelWindow = new ModelWindow();
+
+                // If model list has cars, show all cars
+                if (Inventory.InventoryList.Count != NO_MODELS)
+                    modelWindow.ShowDialog(); // throwing error because initally null
+                                              // If not, give message saying no cars in stock
+                else
+                    MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            // If not, give message saying no cars in stock
-            else
-                MessageBox.Show("Sorry, no cars in stock at the moment!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            
         }
         /// <summary>
         /// Window for the shopping list
@@ -225,15 +254,15 @@ namespace WPF_Project
                     //clear current list
                     Inventory.InventoryList.Clear();
                     //read from file
-                    ReadVisitorsFromFile();
+                    ReadModelsFromFile();
                     //update UI
-                    //lbVisitors.Items.Refresh();             //NOT SURE WHAT TO PUT HERE
+                    dgModels.Items.Refresh();             //NOT SURE WHAT TO PUT HERE
                     saved = true;
                 }
             }
         }
 
-        private void ReadVisitorsFromFile()
+        private void ReadModelsFromFile()
         {
             try
             {
@@ -244,12 +273,12 @@ namespace WPF_Project
                     //visitors.Add(new Visitor() { CSVData = visitorInfo });
                     Model temp = new Model();
                      temp.CSVData = modelInfo;
+                    //Inventory.QuantityTracker++;
                     //Inventory.InventoryList.Add(temp);
                 }
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -261,6 +290,31 @@ namespace WPF_Project
         {
             get { return saved; }
             set { saved = value; }
+        }
+
+        private void dgModels_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                var column = e.Column as DataGridBoundColumn;
+                if (column != null)
+                {
+                    
+                    var bindingPath = (column.Binding as Binding).Path.Path;
+                    if (bindingPath == "ModelQuantity")
+                    {
+                        int rowIndex = e.Row.GetIndex();
+                        var el = e.EditingElement as TextBox;
+                        //Console.WriteLine(Inventory.InventoryList);
+                        if(Inventory.InventoryList[rowIndex].ModelQuantity > Inventory.MaxInventorySpace)
+                           MessageBox.Show($"Inventory quantity cannot exceed {Inventory.MaxInventorySpace}", "AddItem");
+                        
+                        // rowIndex has the row index
+                        // bindingPath has the column's binding
+                        // el.Text has the new, user-entered value
+                    }
+                }
+            }
         }
     }
 }

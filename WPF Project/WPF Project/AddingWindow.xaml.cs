@@ -144,30 +144,38 @@ namespace WPF_Project
         /// <param name="e"></param>
         private void btnAddCar_Click(object sender, RoutedEventArgs e) 
         {
-            Model model = null; 
-
-            // Validating all input fields
-            if (ValidatingInputFields())
+            try
             {
-                // 1st constructor
-                if (currentConstructorValue == 1)
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, Convert.ToInt32(tbQuantity.Text));
-                // 2nd constructor
-                else if (currentConstructorValue == 2)
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem, Convert.ToInt32(tbQuantity.Text));
-                // 3rd constructor
-                else if (currentConstructorValue == 3)
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, Convert.ToInt32(tbQuantity.Text));
-                // 4th constructor
-                else if (currentConstructorValue == 4)
-                    model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, Convert.ToInt32(tbQuantity.Text));
+                Model model = null; 
 
-                Inventory.AddItem(model); // adding item
+                // Validating all input fields
+                if (ValidatingInputFields())
+                {
+                    // 1st constructor
+                    if (currentConstructorValue == 1)
+                        model = new Model(cmbModelNames.Text, cmbColours.Text, Convert.ToInt32(tbQuantity.Text));
+                    // 2nd constructor
+                    else if (currentConstructorValue == 2)
+                        model = new Model(cmbModelNames.Text, cmbColours.Text, (Body)cmbBodyType2.SelectedItem, Convert.ToInt32(tbQuantity.Text));
+                    // 3rd constructor
+                    else if (currentConstructorValue == 3)
+                        model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, Convert.ToInt32(tbQuantity.Text));
+                    // 4th constructor
+                    else if (currentConstructorValue == 4)
+                        model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, Convert.ToInt32(tbQuantity.Text));
 
-                //ModelWindow modelWindow = sender as ModelWindow;
-                //modelWindow.dgModels.Items.Refresh();
-
-                MainWindow.Saved = false; // state now false
+                    Inventory.AddItem(model); // adding item
+                    //Inventory.QuantityTracker++; //adding a car to qunatityTracker when adding through addwindow
+                    MainWindow.Saved = false; // state now false
+                    MainWindow window = new MainWindow();
+                
+                    Close();   //close window after adding a car
+                    window.dgModels.Items.Refresh(); //refreshing dataGrid to update Models
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         /// <summary>
