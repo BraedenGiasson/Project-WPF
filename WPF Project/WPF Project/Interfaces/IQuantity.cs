@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WPF_Project.Models;
 
 namespace WPF_Project.Interfaces
 {
@@ -9,7 +10,7 @@ namespace WPF_Project.Interfaces
 
         int AvailableQuantity();
 
-        bool MinimumQuanitity();
+        bool MinimumQuanitity(Model model);
         
     }
 }

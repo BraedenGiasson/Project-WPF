@@ -50,7 +50,7 @@ namespace WPF_Project.Models
         /// Adding item to inventory list
         /// </summary>
         /// <param name="model"> Model (car) to be added </param>
-        public static void AddItem(Model model)
+        public static void AddItem(Model model, bool isFromLoadingCars)
         {
             QuantityTracker += model.ModelQuantity; // change to use Interface
 
@@ -60,7 +60,9 @@ namespace WPF_Project.Models
             if (inventoryList.Count == NO_MODELS) 
             {
                 inventoryList.Add(model);
-                ShowStatusMessage("Successfully added car first car!");
+                
+                if(!isFromLoadingCars)
+                    ShowStatusMessage("Successfully added car first car!");
             }
             // Making sure the quantity for the dealership is below the max allowed
             else if (quantityTracker <= maxInventory)
@@ -106,26 +108,28 @@ namespace WPF_Project.Models
                 if (notInList)
                 {
                     inventoryList.Add(model);
-                    ShowStatusMessage("Successfully added car!");
+
+                    if (!isFromLoadingCars)
+                        ShowStatusMessage("Successfully added car!");
                 }
                 else if (!notInList)
                 {
                     // Finding where it is in the list, and updating the quantity for the model (since we don't want to have duplicates in the table)
                     inventoryList[index].ModelQuantity += model.ModelQuantity;
 
-                    ShowStatusMessage("Updated quantity!");
+                    if (!isFromLoadingCars)
+                        ShowStatusMessage("Updated quantity!");
                 }
             }
             else
                 throw new ArgumentException($"Inventory quantity cannot exceed {MaxInventorySpace}", "AddItem");
-
-            
         }
 
         public static bool IsEqualTo(Model model, Model secondModel)
         {
             bool answer;
-            if (model.Name == secondModel.Name && model.Colour == secondModel.Colour && model.EngineOption == secondModel.EngineOption && model.BodyType == secondModel.BodyType)
+            if (model.Name == secondModel.Name && model.Colour == secondModel.Colour 
+                && model.EngineOption == secondModel.EngineOption && model.BodyType == secondModel.BodyType)
             {
                 answer = true;
             }
@@ -174,11 +178,9 @@ namespace WPF_Project.Models
             return quantityTracker;
         }
 
-        public bool MinimumQuanitity()
+        public bool MinimumQuanitity(Model model)
         {
             throw new NotImplementedException();
         }
-
-
     }
 }

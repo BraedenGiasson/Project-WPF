@@ -525,35 +525,38 @@ namespace WPF_Project.Models
                     Regex Q8 = new Regex("Q8", RegexOptions.IgnoreCase);
                     Regex etronGT = new Regex("^e-tron GT$", RegexOptions.IgnoreCase);
 
-
-                    
-
                     Model model = null;
 
+                    // For constructor 4
                     if (a6.IsMatch(allData[0]) || a4.IsMatch(allData[0]))
                     {
                         Enum.TryParse<Engine>(allData[2], out Engine resultEngine);
                         Enum.TryParse<Body>(allData[3], out Body resultBody);
                         model = new Model(allData[0], allData[1], resultEngine, resultBody, Convert.ToInt32(allData[4]));
                     }
+                    // For constructor 3
                     else if (Q3.IsMatch(allData[0]) || Q7.IsMatch(allData[0]))
                     {
                         Enum.TryParse<Engine>(allData[2], out Engine resultEngine);
                         model = new Model(allData[0], allData[1], resultEngine, Convert.ToInt32(allData[4]));
                     }
-                    else if (a5.IsMatch(allData[0]) || R8.IsMatch(allData[0]) || TT.IsMatch(allData[0]) || etron.IsMatch(allData[0]) || Q4etron.IsMatch(allData[0]))
+                    // For constructor 2
+                    else if (a5.IsMatch(allData[0]) || R8.IsMatch(allData[0]) || TT.IsMatch(allData[0]) 
+                        || etron.IsMatch(allData[0]) || Q4etron.IsMatch(allData[0]))
                     {
                         Enum.TryParse<Body>(allData[3], out Body resultBody);
                         model = new Model(allData[0], allData[1], resultBody, Convert.ToInt32(allData[4]));
                     }
-                    else if (a3.IsMatch(allData[0]) || a7.IsMatch(allData[0]) || a8.IsMatch(allData[0]) || Q5.IsMatch(allData[0]) || Q8.IsMatch(allData[0]) || etronGT.IsMatch(allData[0]))
+                    // For constructor 1
+                    else if (a3.IsMatch(allData[0]) || a7.IsMatch(allData[0]) || a8.IsMatch(allData[0]) 
+                        || Q5.IsMatch(allData[0]) || Q8.IsMatch(allData[0]) || etronGT.IsMatch(allData[0]))
                     {
                         model = new Model(allData[0], allData[1], Convert.ToInt32(allData[4]));
                     }
                     else if (string.IsNullOrEmpty(allData[0]))
                         return;
 
-                    Inventory.AddItem(model);
+                    Inventory.AddItem(model, true);
 
 
                     /*if (a6.IsMatch(allData[0]))
@@ -635,7 +638,6 @@ namespace WPF_Project.Models
         {
             return ModelQuantity > MIN_QUANTITY;
         }
-
     }
 
     /// <summary>
