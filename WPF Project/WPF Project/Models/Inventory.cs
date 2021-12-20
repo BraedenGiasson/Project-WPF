@@ -9,6 +9,7 @@ namespace WPF_Project.Models
 {
     public class Inventory : IQuantity
     {
+        // Backing fields
         private static readonly int maxInventory = 100;
         private static List<Model> inventoryList;
         private static int quantityTracker = 0;
@@ -28,7 +29,9 @@ namespace WPF_Project.Models
         {
             get { return inventoryList; }
         }
-
+        /// <summary>
+        /// Tracking quantity for a model
+        /// </summary>
         public static int QuantityTracker
         {
             get { return quantityTracker; }
@@ -124,7 +127,12 @@ namespace WPF_Project.Models
             else
                 throw new ArgumentException($"Inventory quantity cannot exceed {MaxInventorySpace}", "AddItem");
         }
-
+        /// <summary>
+        /// Checking if both models are the EXACT same (for every input field)
+        /// </summary>
+        /// <param name="model"> 1st model </param>
+        /// <param name="secondModel"> 2nd model </param>
+        /// <returns></returns>
         public static bool IsEqualTo(Model model, Model secondModel)
         {
             bool answer;
@@ -139,8 +147,6 @@ namespace WPF_Project.Models
             //return (model.Name.Equals(secondModel.Name));
             return answer;
         }
-
-
 
         public static void UpdateItem(Model model, int quantity)    //NEEDS TO BE IMPLEMENTED OR DELETED
         {
@@ -165,6 +171,7 @@ namespace WPF_Project.Models
 
            // Model.FromCSV(Inventory.me);
         }*/
+
         /// <summary>
         /// Printing successful adding car status message
         /// </summary>
