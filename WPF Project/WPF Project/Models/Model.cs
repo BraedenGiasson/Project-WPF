@@ -9,7 +9,7 @@ namespace WPF_Project.Models
 {
     public class Model : IQuantity
     {
-
+        // Backing fields
         private string name;
         private string colour;
         private int horsepower;
@@ -24,13 +24,19 @@ namespace WPF_Project.Models
         private string engineOption;
         private const int MIN_QUANTITY = 2;
 
-
+        /// <summary>
+        /// Default constructor for a model
+        /// </summary>
         public Model()
         {
 
         }
-
-
+        /// <summary>
+        /// Constructor 4 for a model
+        /// </summary>
+        /// <param name="name"> Name of the model </param>
+        /// <param name="colour"> Colour of the model </param>
+        /// <param name="quantity"> Number of this type of models </param>
         public Model(string name, string colour, int quantity)        //SAME ENGINE AND ONE BODYTYPE
         {
             Regex a3 = new Regex("A3", RegexOptions.IgnoreCase);
@@ -132,7 +138,13 @@ namespace WPF_Project.Models
                 ModelQuantity = quantity;
             }
         }
-
+        /// <summary>
+        /// Constructor 2 for a model
+        /// </summary>
+        /// <param name="name"> Name of the model </param>
+        /// <param name="colour"> Colour of the model </param>
+        /// <param name="bodyType"> Body Type for the model </param>
+        /// <param name="quantity"> Number of this type of models </param>
         public Model(string name, string colour, Body bodyType, int quantity)     //SAME ENGINE DIFFERENT BODY TYPE
         {
             Regex a5 = new Regex("A5", RegexOptions.IgnoreCase);
@@ -221,8 +233,13 @@ namespace WPF_Project.Models
                 ModelQuantity = quantity;
             }
         }
-
-
+        /// <summary>
+        /// Constructor 3 for a model
+        /// </summary>
+        /// <param name="name"> Name of the model </param>
+        /// <param name="colour"> Colour of the model </param>
+        /// <param name="engineOption"> Engine option for the model </param>
+        /// <param name="quantity"> Number of this type of models </param>
         public Model(string name, string colour, Engine engineOption, int quantity)      //DIFFERENT ENGINE BUT ONE BODY TYPE
         {
 
@@ -277,10 +294,14 @@ namespace WPF_Project.Models
                 ModelQuantity = quantity;
             }
         }
-
-
-
-
+        /// <summary>
+        /// Constructor 4 for a model
+        /// </summary>
+        /// <param name="name"> Name of the model </param>
+        /// <param name="colour"> Colour of the model </param>
+        /// <param name="engineOption"> Engine option for the model </param>
+        /// <param name="bodyType"> Body Type for the model </param>
+        /// <param name="quantity"> Number of this type of models </param>
         public Model(string name, string colour, Engine engineOption, Body bodyType, int quantity)        //DIFFERENT ENGINE AND DIFFERENT BODY TYPE
         {
             Regex a4 = new Regex("A4", RegexOptions.IgnoreCase);
@@ -342,7 +363,9 @@ namespace WPF_Project.Models
                 ModelQuantity = quantity;
             }
         }
-
+        /// <summary>
+        /// Property for the name of the model
+        /// </summary>
         public string Name
         {
             get { return name; }
@@ -356,14 +379,17 @@ namespace WPF_Project.Models
                 Regex etronGT = new Regex("e-tron GT", RegexOptions.IgnoreCase);
                 Regex Q4etron = new Regex("Q4 e-tron", RegexOptions.IgnoreCase);
 
-
-                if (!(cars.IsMatch(value) || suv.IsMatch(value) || r8.IsMatch(value) || tt.IsMatch(value) || etron.IsMatch(value) || etronGT.IsMatch(value) || Q4etron.IsMatch(value)))
+                // Making sure the name is an appropriate name for an audi model
+                if (!(cars.IsMatch(value) || suv.IsMatch(value) || r8.IsMatch(value) || tt.IsMatch(value) 
+                    || etron.IsMatch(value) || etronGT.IsMatch(value) || Q4etron.IsMatch(value)))
                     throw new ArgumentException("Provided name is a not a valid Model name", "Name");
 
                 name = value;
             }
         }
-
+        /// <summary>
+        /// Property for the colour of the model
+        /// </summary>
         public string Colour
         {
             get { return colour; }
@@ -374,7 +400,9 @@ namespace WPF_Project.Models
                 colour = value;
             }
         }
-
+        /// <summary>
+        /// Property for the horsepower of the model
+        /// </summary>
         public int Horsepower
         {
             get { return horsepower; }
@@ -385,7 +413,9 @@ namespace WPF_Project.Models
                 horsepower = value;
             }
         }
-
+        /// <summary>
+        /// Property for the torque of the model
+        /// </summary>
         public int Torque
         {
             get { return torque; }
@@ -396,19 +426,24 @@ namespace WPF_Project.Models
                 torque = value;
             }
         }
-
+        /// <summary>
+        /// Property for number of seats of the model
+        /// </summary>
         public int NumberOfSeats        //int validation might have to be implemented
         {
             get { return numberOfSeats; }
             set
             {
+                // Making sure the number is an actual number of seats in an audi model
                 if (value == 2 || value == 4 || value == 5 || value == 7)
                     numberOfSeats = value;
                 else
-                    throw new ArgumentException("Value is Invalid. Audis have 2, 4, 5 or 7 seats.", "NumberOfSeats");
+                    throw new ArgumentException("Value is Invalid. Audis have only 2, 4, 5 or 7 seats.", "NumberOfSeats");
             }
         }
-
+        /// <summary>
+        /// Property for the height of the model
+        /// </summary>
         public double Height
         {
             get { return height; }
@@ -419,7 +454,9 @@ namespace WPF_Project.Models
                 height = value;
             }
         }
-
+        /// <summary>
+        /// Property for the width of the model
+        /// </summary>
         public double Width
         {
             get { return width; }
@@ -430,7 +467,9 @@ namespace WPF_Project.Models
                 width = value;
             }
         }
-
+        /// <summary>
+        /// Property for the length of the model
+        /// </summary>
         public double Length
         {
             get { return length; }
@@ -441,7 +480,9 @@ namespace WPF_Project.Models
                 length = value;
             }
         }
-
+        /// <summary>
+        /// Property for the fuel type for the model
+        /// </summary>
         public string FuelType
         {
             get { return fuelType; }
@@ -452,7 +493,9 @@ namespace WPF_Project.Models
                 fuelType = value;
             }
         }
-
+        /// <summary>
+        /// Property for the body type for the model
+        /// </summary>
         public string BodyType
         {
             get { return bodyType; }
@@ -464,8 +507,9 @@ namespace WPF_Project.Models
                 bodyType = value;
             }
         }
-
-
+        /// <summary>
+        /// Property for the engine option for the model
+        /// </summary>
         public string EngineOption
         {
             get { return engineOption; }
@@ -477,7 +521,9 @@ namespace WPF_Project.Models
                 engineOption = value;
             }
         }
-
+        /// <summary>
+        /// Property for the model quantity
+        /// </summary>
         public int ModelQuantity
         {
             get { return modelQuantity; }
@@ -490,7 +536,9 @@ namespace WPF_Project.Models
                 modelQuantity = value;
             }
         }
-
+        /// <summary>
+        /// Data from CSV file when loading files
+        /// </summary>
         public string CSVData
         {
             get
@@ -604,8 +652,9 @@ namespace WPF_Project.Models
                 }
             }
         }
-
-
+        /// <summary>
+        /// Displaying full info for the model
+        /// </summary>
         public string FullInfo
         {
             get
@@ -627,7 +676,6 @@ namespace WPF_Project.Models
                 "Width:", "Length:", "FuelType:", "BodyType:", "EngineOption:", "ModelQuantity:");
             }
         }
-
 
         public int AvailableQuantity()
         {
