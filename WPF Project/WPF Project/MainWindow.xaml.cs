@@ -23,8 +23,7 @@ namespace WPF_Project
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
+        // Backing fields
         private List<Model> models = new List<Model>();
         private const int NO_MODELS = 0;
 
@@ -145,7 +144,7 @@ namespace WPF_Project
         }
         /// <summary>
         /// Saving all the data at the right location
-        /// </summary>
+        /// </summary>bt
         public void SaveData()
         {
             // Logic for if the data is being saved for the first time
@@ -225,19 +224,26 @@ namespace WPF_Project
         {
             e.Cancel = !ChecktoOpen();
         }
-
+        /// <summary>
+        /// Saving content to file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             SaveData();
         }
-
+        /// <summary>
+        /// About us message
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuAboutUs_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("We are the best team!");
         }
-
         /// <summary>
-        /// 
+        /// Opening file and refreshing inventory to show new models from file
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -247,6 +253,7 @@ namespace WPF_Project
             {
                 OpenFileDialog open = new OpenFileDialog();
                 open.Filter = "CVS Files|*.csv";
+
                 if (open.ShowDialog() == true)
                 {
                     //save location
@@ -261,7 +268,9 @@ namespace WPF_Project
                 }
             }
         }
-
+        /// <summary>
+        /// Reading models (cars) from a file
+        /// </summary>
         private void ReadModelsFromFile()
         {
             try
@@ -282,7 +291,6 @@ namespace WPF_Project
                 throw;
             }
         }
-
         /// <summary>
         /// Property to set the value of saved in other windows
         /// </summary>
@@ -290,6 +298,39 @@ namespace WPF_Project
         {
             get { return saved; }
             set { saved = value; }
+        }
+        /// <summary>
+        /// Showing Save As dialog for user to save to fifferent file/location
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            saved = false;
+            saveLocation = "";
+            SaveData();
+        }
+        /// <summary>
+        /// If the user deletes an item, delete it from the inventory and reduce the inventory quantity
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgModels_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            // If the user presses back button or delete key (to delete a model)
+            if( e.Key == Key.Delete || e.Key == Key.Back )
+            {
+                Model temp = dgModels.SelectedItem as Model;
+
+                // If the model is not an empty model, remove from inventory
+                if (temp != null)
+                {
+                    Inventory.InventoryList.Remove(temp);
+                    Inventory.QuantityTracker -= temp.ModelQuantity; // reducing inventory quantity
+                    dgModels.Items.Refresh(); // refreshing items
+                    Saved = false;
+                }
+            }
         }
 
         //private void dgModels_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -299,7 +340,7 @@ namespace WPF_Project
         //        var column = e.Column as DataGridBoundColumn;
         //        if (column != null)
         //        {
-                    
+
         //            var bindingPath = (column.Binding as Binding).Path.Path;
         //            if (bindingPath == "ModelQuantity")
         //            {
@@ -308,7 +349,7 @@ namespace WPF_Project
         //                //Console.WriteLine(Inventory.InventoryList);
         //                if(Inventory.InventoryList[rowIndex].ModelQuantity > Inventory.MaxInventorySpace)
         //                   MessageBox.Show($"Inventory quantity cannot exceed {Inventory.MaxInventorySpace}", "AddItem");
-                        
+
         //                // rowIndex has the row index
         //                // bindingPath has the column's binding
         //                // el.Text has the new, user-entered value

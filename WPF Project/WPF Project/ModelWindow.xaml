@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         SizeToContent="Height">
     <Grid>
-        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="3" Grid.RowSpan="4" CanUserDeleteRows="True">
+        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="3" Grid.RowSpan="4">
             <DataGrid.Columns x:Uid="grid">
                 <DataGridTextColumn Header="Model Name" Binding="{Binding Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Colour" Binding="{Binding Colour}" IsReadOnly="True"/>
