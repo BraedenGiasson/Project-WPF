@@ -292,29 +292,29 @@ namespace WPF_Project
             set { saved = value; }
         }
 
-        private void dgModels_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                var column = e.Column as DataGridBoundColumn;
-                if (column != null)
-                {
+        //private void dgModels_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        //{
+        //    if (e.EditAction == DataGridEditAction.Commit)
+        //    {
+        //        var column = e.Column as DataGridBoundColumn;
+        //        if (column != null)
+        //        {
                     
-                    var bindingPath = (column.Binding as Binding).Path.Path;
-                    if (bindingPath == "ModelQuantity")
-                    {
-                        int rowIndex = e.Row.GetIndex();
-                        var el = e.EditingElement as TextBox;
-                        //Console.WriteLine(Inventory.InventoryList);
-                        if(Inventory.InventoryList[rowIndex].ModelQuantity > Inventory.MaxInventorySpace)
-                           MessageBox.Show($"Inventory quantity cannot exceed {Inventory.MaxInventorySpace}", "AddItem");
+        //            var bindingPath = (column.Binding as Binding).Path.Path;
+        //            if (bindingPath == "ModelQuantity")
+        //            {
+        //                int rowIndex = e.Row.GetIndex();
+        //                var el = e.EditingElement as TextBox;
+        //                //Console.WriteLine(Inventory.InventoryList);
+        //                if(Inventory.InventoryList[rowIndex].ModelQuantity > Inventory.MaxInventorySpace)
+        //                   MessageBox.Show($"Inventory quantity cannot exceed {Inventory.MaxInventorySpace}", "AddItem");
                         
-                        // rowIndex has the row index
-                        // bindingPath has the column's binding
-                        // el.Text has the new, user-entered value
-                    }
-                }
-            }
-        }
+        //                // rowIndex has the row index
+        //                // bindingPath has the column's binding
+        //                // el.Text has the new, user-entered value
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

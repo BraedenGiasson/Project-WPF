@@ -9,9 +9,32 @@
         WindowStartupLocation="CenterScreen"
         SizeToContent="Height">
     <Grid>
-        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" IsReadOnly="True" x:FieldModifier="public">
+        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="3" Grid.RowSpan="4" CanUserDeleteRows="True">
             <DataGrid.Columns x:Uid="grid">
-                <!--<DataGridTextColumn Header="Delete" x:Name="dgDelete" Width="50"/>-->
+                <DataGridTextColumn Header="Model Name" Binding="{Binding Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Colour" Binding="{Binding Colour}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Horsepower" Binding="{Binding Horsepower}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Torque" Binding="{Binding Torque}"/>
+                <DataGridTextColumn Header="# of Seats" Binding="{Binding NumberOfSeats}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Height" Binding="{Binding Height}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Width" Binding="{Binding Width}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Length" Binding="{Binding Length}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Engine" Binding="{Binding EngineOption}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity, UpdateSourceTrigger=PropertyChanged}"/>
+                <!--Commented read only to prevent error-->
+            </DataGrid.Columns>
+
+            <!--<DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy" Click="menuCopy_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>-->
+        </DataGrid>
+        <!--<DataGrid x:Name="dgModels" AutoGenerateColumns="False" IsReadOnly="True" x:FieldModifier="public">
+            <DataGrid.Columns x:Uid="grid">
+                --><!--<DataGridTextColumn Header="Delete" x:Name="dgDelete" Width="50"/>--><!--
                 <DataGridTextColumn Header="Model Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Colour" Binding="{Binding Colour}"/>
                 <DataGridTextColumn Header="Horsepower" Binding="{Binding Horsepower}"/>
@@ -31,6 +54,6 @@
                     <MenuItem Header="Copy" Click="menuCopy_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
-        </DataGrid>
+        </DataGrid>-->
     </Grid>
 </Window>

@@ -62,8 +62,8 @@
             <TextBlock x:Name="txtDescription" Text=""
                    FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Center"/>
         </StackPanel>-->
-
-        <DataGrid x:Name="dgModels" CellEditEnding="dgModels_CellEditEnding" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="3" Grid.RowSpan="4" CanUserDeleteRows="True">
+        <!--CellEditEnding="dgModels_CellEditEnding"-->
+        <DataGrid x:Name="dgModels" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="3" Grid.RowSpan="4" CanUserDeleteRows="True">
             <DataGrid.Columns x:Uid="grid">
                 <DataGridTextColumn Header="Model Name" Binding="{Binding Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Colour" Binding="{Binding Colour}" IsReadOnly="True"/>
@@ -90,7 +90,7 @@
         <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" Grid.Row="3" Grid.Column="1" Width="120" Height="50" Margin="0,0,0,0" Click="btnAdd_Click"/>
         <!--<Button Cursor="Hand" Content="Manage Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnUpdate_Click"/>-->
         <Button Cursor="Hand" Content="Load Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnOpen_Click"/>
-        <!--<Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" Grid.Row="6" Grid.Column="1"  Width="120" Height="50"   Click="btnShowAll_Click"/>-->
         <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" Grid.Row="5" Grid.Column="1"  Width="120" Height="50"   Click="btnShoppingList_Click"/>
+        <Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" Grid.Row="6" Grid.Column="1"  Width="120" Height="50"   Click="btnShowAll_Click"/>
     </Grid>
 </Window>
