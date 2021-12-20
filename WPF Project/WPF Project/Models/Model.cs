@@ -690,12 +690,6 @@ namespace WPF_Project.Models
             get { return quantityFromName; }
             set { quantityFromName = value; }
         }
-
-        public int AvailableQuantity()
-        {
-            return ModelQuantity;
-        }
-
         public bool MinimumQuanitity(Model model)
         {
             int counter = GetMinimumQuantity(model);

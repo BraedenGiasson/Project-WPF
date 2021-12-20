@@ -58,16 +58,15 @@
             <TextBlock Text="Select Row and press DEL key to delete" FontSize="14" FontWeight="DemiBold" Margin="10"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,20,100,0"
-                    HorizontalAlignment="Right" Orientation="Horizontal">
-            <TextBlock x:Name="txtNeedMoreValue" Text="need more" 
-                       FontSize="13"/>
+        <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,42,150,0"
+                    HorizontalAlignment="Center" Orientation="Horizontal">
+            <TextBlock x:Name="txtNeedMoreValue" Text="" FontSize="13"/>
         </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,50,20,0"
+        <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,50,3,0"
                     HorizontalAlignment="Right" Orientation="Horizontal">
             <TextBlock x:Name="txtInventoryQuantityScreen" Text="Inventory quantity: " FontWeight="Bold" FontSize="13" Width="130"/>
             <TextBlock x:Name="txtQuantityOnScreen" Text="" 
-                       Margin="0,1,0,0" FontSize="13" Width="25">
+                       Margin="0,-1,0,0" FontSize="15" Width="25">
             </TextBlock>
         </StackPanel>
 

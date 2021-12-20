@@ -14,7 +14,7 @@ namespace WPF_Project.Models
         private static readonly int maxInventory = 100;
         private static List<Model> inventoryList;
         private static int quantityTracker = 0;
-        private static int counterNeedMoreOf = 0;
+        private static int counterNeedMoreOf = 30;
         private const int NO_MODELS = 0;
         private const int MINIMUM_QUANTITY = 30; // 2 of each car (15 cars)
         private const int MIN_QUANTITY_EACH_MODEL = 2;
@@ -138,13 +138,15 @@ namespace WPF_Project.Models
 
                 if (count < 2)
                 {
-                    counterNeedMoreOf += count;
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.ShowLowInventoryMessage(count);
+                    counterNeedMoreOf -= count;
                 }
             }
             else
                 throw new ArgumentException($"Inventory quantity cannot exceed {MaxInventorySpace}", "AddItem");
+        }
+        public static int GetNeedMoreOf
+        {
+            get { return counterNeedMoreOf; }
         }
         /// <summary>
         /// Checking if both models are the EXACT same (for every input field)
@@ -163,7 +165,6 @@ namespace WPF_Project.Models
             else
                 answer = false;
 
-            //return (model.Name.Equals(secondModel.Name));
             return answer;
         }
 
@@ -223,10 +224,6 @@ namespace WPF_Project.Models
             MessageBox.Show(message);
         }
 
-        public int AvailableQuantity()
-        {
-            return maxInventory - quantityTracker;
-        }
         public bool MinimumQuanitity(Model model)
         {
             return inventoryList.Count < 30;

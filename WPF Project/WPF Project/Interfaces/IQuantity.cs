@@ -8,11 +8,6 @@ namespace WPF_Project.Interfaces
     internal interface IQuantity
     {
         /// <summary>
-        /// Available quantity for either a model or the inventory
-        /// </summary>
-        /// <returns> int </returns>
-        int AvailableQuantity();
-        /// <summary>
         /// Minimum quantity for a model
         /// </summary>
         /// <param name="model"> Name of the model </param>

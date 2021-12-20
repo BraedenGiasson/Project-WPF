@@ -47,6 +47,8 @@ namespace WPF_Project
                 txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString();
 
                 txtNeedMoreValue.Visibility = Visibility.Hidden;
+
+                CheckShowLowInventoryMessage();
             }
             catch (Exception ex)
             {
@@ -71,6 +73,7 @@ namespace WPF_Project
                 addingWindow.ShowDialog();
                 dgModels.Items.Refresh();
                 txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString();
+                CheckShowLowInventoryMessage();
             }
             catch (Exception ex)
             {
@@ -149,10 +152,10 @@ namespace WPF_Project
             {
                 ShoppingListWindow shoppingList = new ShoppingListWindow();
 
-                if (Inventory.InventoryList.Count != NO_MODELS)
+                if (Inventory.CreateShoppingList().Count != NO_MODELS)
                     shoppingList.ShowDialog();
                 else
-                    MessageBox.Show("Sorry, no cars to show! No cars in stock!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Sorry, no cars needed at the moment!", "No shopping", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
@@ -358,6 +361,7 @@ namespace WPF_Project
                             MessageBox.Show("Maximum Quantity in Inventory reached!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                         txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString();
+                        CheckShowLowInventoryMessage();
                         Saved = false; // not saved anymore
                     }
                 }
@@ -405,6 +409,7 @@ namespace WPF_Project
                             if (Inventory.QuantityTracker == Inventory.MaxInventorySpace)
                                 MessageBox.Show("Maximum Quantity in Inventory reached!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
 
+                            CheckShowLowInventoryMessage();
                             txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString();
                             Saved = false;
                         }
@@ -412,6 +417,11 @@ namespace WPF_Project
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+        public void CheckShowLowInventoryMessage()
+        {
+            if (Inventory.GetNeedMoreOf <= 30)
+                ShowLowInventoryMessage(Inventory.GetNeedMoreOf);
         }
         public void ShowLowInventoryMessage(int numberMore)
         {
