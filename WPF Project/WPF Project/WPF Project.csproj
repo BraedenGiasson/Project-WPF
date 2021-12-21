@@ -8,12 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\Copy_16x.png" />
     <None Remove="Images\Save_16x.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\Copy_16x.png" />
     <Resource Include="Images\Save_16x.png" />
   </ItemGroup>
 

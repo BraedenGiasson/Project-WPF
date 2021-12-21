@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="480" Width="1000"
         WindowStartupLocation="CenterScreen"
-        SizeToContent="Height"
+        SizeToContent="WidthAndHeight"
         Closing="Window_Closing">
     <Grid Background="LightGray">
         <!-- Defining Columns -->
@@ -50,14 +50,14 @@
         <StackPanel HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="1" Orientation="Horizontal">
             <TextBlock x:Name="txtWelcomeName" Text="Audi Inventory Tracker " FontSize="35" FontWeight="Bold" Margin="0,15,0,0"/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Grid.Row="8" Grid.Column="2">
-            <TextBlock Text="Select Row and press DEL key to delete" FontSize="14" FontWeight="DemiBold" Margin="2,10,0,0"/>
+        <StackPanel HorizontalAlignment="Left" Grid.Row="8" Grid.Column="2" Margin="22,15,0,0">
+            <TextBlock Text="Select Row and press DEL key to delete" FontSize="14" FontWeight="DemiBold"/>
         </StackPanel>
 
         <!-- Text if we need more cars (less than minimum) -->
-        <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,42,150,0"
+        <StackPanel Grid.Column="2" Grid.Row="2" Margin="15,42,150,0"
                     HorizontalAlignment="Center" Orientation="Horizontal">
-            <TextBlock x:Name="txtNeedMoreValue" Text="" FontSize="13"/>
+            <TextBlock x:Name="txtNeedMoreValue" Text="" FontSize="14"/>
         </StackPanel>
         
         <!-- Text to show inventory quantity on screen -->
@@ -72,8 +72,8 @@
         <!-- Data grid for inventory of models -->
         <DataGrid x:Name="dgModels" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="3" 
                   Grid.RowSpan="4" CanUserDeleteRows="True" PreviewKeyDown="dgModels_PreviewKeyDown"
-                  CellEditEnding="dgModels_CellEditEnding">
-            <DataGrid.Columns x:Uid="grid">
+                  CellEditEnding="dgModels_CellEditEnding" Margin="20,0,0,0">
+            <DataGrid.Columns x:Uid="grid" >
                 <DataGridTextColumn Header="Model Name" Binding="{Binding Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Colour" Binding="{Binding Colour}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Horsepower" Binding="{Binding Horsepower}" IsReadOnly="True"/>
@@ -91,15 +91,15 @@
 
         <!-- Adding car -->
         <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" 
-                Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Width="120" Height="50" Margin="0,50,15,0" 
+                Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Width="120" Height="50" Margin="15,50,15,0" 
                 Click="btnAdd_Click"/>
         <!-- Loading items -->
         <Button Cursor="Hand" Content="Load Cars" FontSize="16" FontWeight="DemiBold" 
                 Grid.Row="3" Grid.Column="1"  Width="120" Height="50" Click="btnOpen_Click"
-                Margin="0,0,15,0" Grid.RowSpan="4"/>
+                Margin="15,0,15,0" Grid.RowSpan="4"/>
         <!-- Shopping list -->
         <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" 
                 Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Grid.RowSpan="4"
-                Click="btnShoppingList_Click" Margin="0,35,15,0"/>
+                Click="btnShoppingList_Click" Margin="15,35,15,0"/>
     </Grid>
 </Window>

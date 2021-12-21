@@ -27,7 +27,7 @@ namespace WPF_Project
         // Backing fields
         private List<Model> models = new List<Model>();
         private const int NO_MODELS = 0;
-        private const int MINIMUM_INVENTORY_NEEDED = 3;
+        private const int MINIMUM_INVENTORY_NEEDED = 30;
 
         // Saving For Main Window
         private string saveLocation = string.Empty;
@@ -132,10 +132,7 @@ namespace WPF_Project
                     File.WriteAllText(saveLocation, modelsCSV.ToString()); // writing all the text to the file (at the right location)
                     saved = true;
                 }
-                catch (Exception)
-                {
-                    throw;
-                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
         }
         /// <summary>
@@ -241,10 +238,7 @@ namespace WPF_Project
                 }
                 txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString(); // updating quantity text
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
         /// <summary>
         /// Property to set the value of saved in other windows
@@ -386,7 +380,7 @@ namespace WPF_Project
             txtNeedMoreValue.Visibility = Visibility.Visible;
 
             txtNeedMoreValue.Foreground = Brushes.Red;
-            txtNeedMoreValue.Text = $"Inventory Low! Need {numberMore} more different types of models.";
+            txtNeedMoreValue.Text = $"Low Inventory! Need {numberMore} more different types of models.";
         }
     }
 }

@@ -25,11 +25,21 @@ namespace WPF_Project
         private string saveLocation = string.Empty;
         private static bool saved = false;
 
+        /// <summary>
+        /// Default constructor for shopping list
+        /// </summary>
         public ShoppingListWindow()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            dgShoppingList.ItemsSource = Inventory.CreateShoppingList(); // binding
+                dgShoppingList.ItemsSource = Inventory.CreateShoppingList(); // binding
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         /// <summary>
         /// Saving shopping list content to file

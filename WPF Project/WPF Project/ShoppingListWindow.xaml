@@ -17,13 +17,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="15"/>
+            <RowDefinition Height="22"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
         <!-- Menu -->
         <Menu Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,32" Grid.RowSpan="2">
-            <MenuItem Header="_File" FontSize="15">
+            <MenuItem Header="_File" FontSize="13">
                 <MenuItem Header="Save" Click="btnSave_Click"/>
             </MenuItem>
         </Menu>
@@ -31,7 +31,7 @@
         <!-- Tool Bar -->
         <ToolBar Grid.Row="1" Grid.ColumnSpan="3" Background="LightGray">
             <Button Click="btnSave_Click">
-                <Image Source="/Images/Save_16x.png"/>
+                <Image Source="/Images/Save_16x.png" />
             </Button>
         </ToolBar>
 
