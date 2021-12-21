@@ -71,9 +71,9 @@ namespace WPF_Project
             {
                 AddingWindow addingWindow = new AddingWindow();
                 addingWindow.ShowDialog();
-                dgModels.Items.Refresh();
                 txtQuantityOnScreen.Text = Inventory.QuantityTracker.ToString();
                 CheckShowLowInventoryMessage();
+                dgModels.Items.Refresh();
             }
             catch (Exception ex)
             {
@@ -421,6 +421,7 @@ namespace WPF_Project
         public void CheckShowLowInventoryMessage()
         {
             Inventory.GetNeedMoreOfQuantity();
+
             if (Inventory.NeedMoreOf > 0 && Inventory.NeedMoreOf <= 30)
                 ShowLowInventoryMessage(Inventory.NeedMoreOf);
             else

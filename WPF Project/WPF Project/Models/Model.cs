@@ -579,6 +579,10 @@ namespace WPF_Project.Models
 
                     Model model = null;
 
+                    // Trimming all white space from fields
+                    for (int i = 0; i < allData.Length; i++)
+                        allData[i] = allData[i].Trim();
+
                     // For constructor 4
                     if (a6.IsMatch(allData[0]) || a4.IsMatch(allData[0]))
                     {

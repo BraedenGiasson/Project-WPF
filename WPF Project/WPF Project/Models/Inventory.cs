@@ -90,23 +90,42 @@ namespace WPF_Project.Models
                 //}
                 bool notInList = true;
 
-                for (int i = 0; i < inventoryList.Count; i++)
-                {
-                    // Checking if item to be added isn't already in the inventory list
-                    /*if (model.Name != inventoryList[i].Name
-                        || model.Colour != inventoryList[i].Colour
-                        || model.EngineOption != inventoryList[i].EngineOption
-                        || model.BodyType != inventoryList[i].BodyType)*/
-                    if (!IsEqualTo(inventoryList[i], model))
-                    {
-                        notInList = false;
-                    }
-                    else
-                    {
-                        index = i;
-                        break;
-                    }
-                }
+
+                //for (int i = 0; i < inventoryList.Count; i++)
+                //{
+                //    //int findIndex = inventoryList.FindIndex(IsEqualTo(inventoryList[i], model));
+
+                //    // Checking if item to be added isn't already in the inventory list
+                //    int findIndex = inventoryList.FindIndex(x => 
+                //        model.Name == x.Name
+                //        && model.Colour == x.Colour
+                //        && model.EngineOption == x.EngineOption
+                //        && model.BodyType == x.BodyType
+                //    );
+
+                //    //if (!IsEqualTo(inventoryList[i], model))
+                //    if (findIndex < 0)
+                //    {
+                //        notInList = false;
+                //    }
+                //    else
+                //    {
+                //        index = i;
+                //        break;
+                //    }
+                //}
+
+                // Checking if item to be added isn't already in the inventory list
+                int findIndex = inventoryList.FindIndex(x =>
+                    model.Name == x.Name
+                    && model.Colour == x.Colour
+                    && model.EngineOption == x.EngineOption
+                    && model.BodyType == x.BodyType
+                );
+
+                //if (!IsEqualTo(inventoryList[i], model))
+                if (findIndex < 0)
+                    notInList = false;
 
                 /* PROBLEM: HAS BEEN FIXED
                     When I add a car and then add another one the exact same after, it works,
@@ -125,7 +144,7 @@ namespace WPF_Project.Models
                 else if (notInList)
                 {
                     // Finding where it is in the list, and updating the quantity for the model (since we don't want to have duplicates in the table)
-                    inventoryList[index].ModelQuantity += model.ModelQuantity;
+                    inventoryList[findIndex].ModelQuantity += model.ModelQuantity;
 
                     if (!isFromLoadingCars)
                         ShowStatusMessage("Updated quantity!");
