@@ -30,29 +30,10 @@ Our plan is to create an inventory tracker for an Audi dealership.
 ## **Classes** 
 
 - *Model* class (acts as Car)
-  - Name (of model)
-  - Horsepower
-  - Torque
-  - Number of seats
-  - Width of Vehicle
-  - Height of Vehicle
-  - Length of Vehicle
-  - FuelType
-  - Body (enum) 
-  - Engine (enum)
-  - Color (enum)
   - See UML diagram for further details
 
 
 - *Inventory* class
-  - Max Quantity
-  - quantity tracker
-  - Add item()
-  - Remove item()
-  - Update item()
-  - Shopping List()
-  - Load items()
-  - Save items()
   - See UML diagram for further details
 
 
