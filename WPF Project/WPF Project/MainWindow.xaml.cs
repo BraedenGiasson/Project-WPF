@@ -281,6 +281,8 @@ namespace WPF_Project
                     ReadModelsFromFile();
                     //update UI
                     dgModels.Items.Refresh();             //NOT SURE WHAT TO PUT HERE
+                    CheckShowLowInventoryMessage();
+
                     saved = true;
                 }
             }
@@ -369,7 +371,7 @@ namespace WPF_Project
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
         /// <summary>
-        /// When the cell quantity is edited, update 
+        /// When the cell quantity is edited, update information
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -401,8 +403,6 @@ namespace WPF_Project
 
                             if (!isOverQuantityLimit)
                                 Inventory.InventoryList[rowIndex].ModelQuantity = Convert.ToInt32(el.Text.ToString());
-                            
-                            
 
                             Inventory.QuantityTracker += Inventory.InventoryList[rowIndex].ModelQuantity;
 
@@ -420,8 +420,11 @@ namespace WPF_Project
         }
         public void CheckShowLowInventoryMessage()
         {
-            if (Inventory.GetNeedMoreOf <= 30)
-                ShowLowInventoryMessage(Inventory.GetNeedMoreOf);
+            Inventory.GetNeedMoreOfQuantity();
+            if (Inventory.NeedMoreOf > 0 && Inventory.NeedMoreOf <= 30)
+                ShowLowInventoryMessage(Inventory.NeedMoreOf);
+            else
+                txtNeedMoreValue.Visibility = Visibility.Hidden;
         }
         public void ShowLowInventoryMessage(int numberMore)
         {

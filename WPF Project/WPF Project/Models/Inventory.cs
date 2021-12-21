@@ -133,18 +133,11 @@ namespace WPF_Project.Models
 
                 if (quantityTracker == maxInventory)
                     MessageBox.Show("Maximum Quantity in Inventory reached!", "No inventory", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-                int count = Model.GetMinimumQuantity(model);
-
-                if (count < 2)
-                {
-                    counterNeedMoreOf -= count;
-                }
             }
             else
                 throw new ArgumentException($"Inventory quantity cannot exceed {MaxInventorySpace}", "AddItem");
         }
-        public static int GetNeedMoreOf
+        public static int NeedMoreOf
         {
             get { return counterNeedMoreOf; }
         }
@@ -204,18 +197,6 @@ namespace WPF_Project.Models
             }
             return tempList;
         }
-
-
-        /*public static void LoadItems()                    CAN EVENTUALLY PROBABLY BE DELETED
-        {
-            string car = "a3, red";
-
-            Model model = Model.FromCSV(car);
-            //Inventory.AddItem(model); // was adding straight to model
-
-           // Model.FromCSV(Inventory.me);
-        }*/
-
         /// <summary>
         /// Printing successful adding car status message
         /// </summary>
@@ -226,7 +207,27 @@ namespace WPF_Project.Models
 
         public bool MinimumQuanitity(Model model)
         {
-            return inventoryList.Count < 30;
+            return counterNeedMoreOf < 30;
+        }
+        public static void GetNeedMoreOfQuantity()
+        {
+            counterNeedMoreOf = 0;
+
+            for (int i = 0; i < AddingWindow.GetModelNames.Count; i++)
+            {
+                Model temp = new Model();
+                temp.Name = AddingWindow.GetModelNames[i];
+
+                int index = inventoryList.FindIndex(x => x.Name == temp.Name);
+
+                if (index >= 0)
+                {
+                    if (!inventoryList[index].MinimumQuanitity(inventoryList[index]))
+                        counterNeedMoreOf += MIN_QUANTITY_EACH_MODEL - Model.GetMinimumQuantity(inventoryList[index]);
+                }
+                else
+                    counterNeedMoreOf += MIN_QUANTITY_EACH_MODEL;
+            }
         }
     }
 }
