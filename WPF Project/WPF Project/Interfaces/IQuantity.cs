@@ -13,6 +13,5 @@ namespace WPF_Project.Interfaces
         /// <param name="model"> Name of the model </param>
         /// <returns> boolean </returns>
         bool MinimumQuanitity(Model model);
-        
     }
 }

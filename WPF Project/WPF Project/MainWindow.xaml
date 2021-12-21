@@ -15,7 +15,6 @@
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="2*"/>
-            <!--<ColumnDefinition Width="1*"/>-->
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
         <!-- Defining Rows -->
@@ -27,7 +26,6 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
-
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
@@ -35,7 +33,6 @@
         <Menu Grid.ColumnSpan="5" Margin="0,0,0,32" Grid.RowSpan="2">
             <MenuItem Header="_File">
                 <MenuItem Header="Save" Click="btnSave_Click"/>
-                <MenuItem Header="Save As" Click="btnSaveAs_Click"/>
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="About Us" Click="menuAboutUs_Click"/>
@@ -47,7 +44,6 @@
             <Button Click="btnSave_Click">
                 <Image Source="/Images/Save_16x.png"/>
             </Button>
-            <!--<Button Content="Open" Width="80" Grid.Column="1" Click="btnOpen_Click"/>-->
         </ToolBar>
 
         <!-- Welcoming text -->
@@ -55,13 +51,16 @@
             <TextBlock x:Name="txtWelcomeName" Text="Audi Inventory Tracker " FontSize="35" FontWeight="Bold" Margin="0,15,0,0"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" Grid.Row="8" Grid.Column="2">
-            <TextBlock Text="Select Row and press DEL key to delete" FontSize="14" FontWeight="DemiBold" Margin="10"/>
+            <TextBlock Text="Select Row and press DEL key to delete" FontSize="14" FontWeight="DemiBold" Margin="2,10,0,0"/>
         </StackPanel>
 
+        <!-- Text if we need more cars (less than minimum) -->
         <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,42,150,0"
                     HorizontalAlignment="Center" Orientation="Horizontal">
             <TextBlock x:Name="txtNeedMoreValue" Text="" FontSize="13"/>
         </StackPanel>
+        
+        <!-- Text to show inventory quantity on screen -->
         <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,50,3,0"
                     HorizontalAlignment="Right" Orientation="Horizontal">
             <TextBlock x:Name="txtInventoryQuantityScreen" Text="Inventory quantity: " FontWeight="Bold" FontSize="13" Width="130"/>
@@ -69,13 +68,8 @@
                        Margin="0,-1,0,0" FontSize="15" Width="25">
             </TextBlock>
         </StackPanel>
-
-            <!-- Description -->
-        <!--<StackPanel Grid.Column="1" Grid.ColumnSpan="3" Width="300" Grid.Row="3" Margin="0,0,0,30">
-            <TextBlock x:Name="txtDescription" Text=""
-                   FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Center"/>
-        </StackPanel>-->
-        <!--CellEditEnding="dgModels_CellEditEnding"-->
+        
+        <!-- Data grid for inventory of models -->
         <DataGrid x:Name="dgModels" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="3" 
                   Grid.RowSpan="4" CanUserDeleteRows="True" PreviewKeyDown="dgModels_PreviewKeyDown"
                   CellEditEnding="dgModels_CellEditEnding">
@@ -91,29 +85,21 @@
                 <DataGridTextColumn Header="Engine" Binding="{Binding EngineOption}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Fuel Type" Binding="{Binding FuelType}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Body Type" Binding="{Binding BodyType}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity}"/> <!--Commented read only to prevent error-->
+                <DataGridTextColumn Header="Quantity" Binding="{Binding ModelQuantity}"/>
             </DataGrid.Columns>
-            <!--UpdateSourceTrigger=PropertyChanged-->
-            <!--<DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Copy" Click="menuCopy_Click"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>-->
         </DataGrid>
 
-        <!-- Buttons -->
+        <!-- Adding car -->
         <Button Cursor="Hand" Content="Add a car" FontSize="16" FontWeight="DemiBold" 
-                Grid.Row="3" Grid.Column="1" Width="120" Height="50" Margin="0,0,15,0" 
+                Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Width="120" Height="50" Margin="0,50,15,0" 
                 Click="btnAdd_Click"/>
-        <!--<Button Cursor="Hand" Content="Manage Cars" FontSize="16" FontWeight="DemiBold" Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnUpdate_Click"/>-->
+        <!-- Loading items -->
         <Button Cursor="Hand" Content="Load Cars" FontSize="16" FontWeight="DemiBold" 
-                Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Click="btnOpen_Click"
-                Margin="0,0,15,0"/>
+                Grid.Row="3" Grid.Column="1"  Width="120" Height="50" Click="btnOpen_Click"
+                Margin="0,0,15,0" Grid.RowSpan="4"/>
+        <!-- Shopping list -->
         <Button Cursor="Hand" Content="Shopping List" FontSize="16" FontWeight="DemiBold" 
-                Grid.Row="5" Grid.Column="1"  Width="120" Height="50" 
-                Click="btnShoppingList_Click" Margin="0,0,15,0"/>
-        <!--<Button Cursor="Hand" Content="Show all cars" FontSize="16" FontWeight="DemiBold" 
-                Grid.Row="6" Grid.Column="1"  Width="120" Height="50"   
-                Click="btnShowAll_Click" Margin="0,0,15,0"/>-->
+                Grid.Row="4" Grid.Column="1"  Width="120" Height="50" Grid.RowSpan="4"
+                Click="btnShoppingList_Click" Margin="0,35,15,0"/>
     </Grid>
 </Window>

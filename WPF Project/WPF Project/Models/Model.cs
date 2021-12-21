@@ -24,15 +24,15 @@ namespace WPF_Project.Models
         private string engineOption;
         private string information;
         private int quantityFromName;
+
+        private const int NO_MODELS = 0;
         private const int MIN_QUANTITY = 2;
 
         /// <summary>
         /// Default constructor for a model
         /// </summary>
-        public Model()
-        {
+        public Model() { }
 
-        }
         /// <summary>
         /// Constructor 4 for a model
         /// </summary>
@@ -397,6 +397,7 @@ namespace WPF_Project.Models
             get { return colour; }
             set
             {
+                // If colour isn't valid, throw error
                 if (value.ToString().Any(char.IsDigit) || string.IsNullOrWhiteSpace(value.ToString()))
                     throw new ArgumentException("Value has to be a string of letters", "Colour");
                 colour = value;
@@ -410,6 +411,7 @@ namespace WPF_Project.Models
             get { return horsepower; }
             set
             {
+                // If horsepower isn't valid, throw error
                 if (value.ToString().Any(char.IsLetter))
                     throw new ArgumentException("Value has to be an integer", "Horsepower");
                 horsepower = value;
@@ -423,6 +425,7 @@ namespace WPF_Project.Models
             get { return torque; }
             set
             {
+                // If torque isn't valid, throw error
                 if (value.ToString().Any(char.IsLetter))
                     throw new ArgumentException("Value has to be an integer", "Torque");
                 torque = value;
@@ -451,6 +454,7 @@ namespace WPF_Project.Models
             get { return height; }
             set
             {
+                // If height isn't valid height, throw error
                 if (string.IsNullOrWhiteSpace(value.ToString()) || value.ToString().Any(char.IsLetter))
                     throw new ArgumentException("Height has to be a numeric value", "Height");
                 height = value;
@@ -464,6 +468,7 @@ namespace WPF_Project.Models
             get { return width; }
             set
             {
+                // If width isn't valid width, throw error
                 if (string.IsNullOrWhiteSpace(value.ToString()) || value.ToString().Any(char.IsLetter))
                     throw new ArgumentException("Width has to be a numeric value", "Width");
                 width = value;
@@ -477,6 +482,7 @@ namespace WPF_Project.Models
             get { return length; }
             set
             {
+                // If length isn't valid length, throw error
                 if (string.IsNullOrWhiteSpace(value.ToString()) || value.ToString().Any(char.IsLetter))
                     throw new ArgumentException("Length has to be a numeric value", "Length");
                 length = value;
@@ -490,6 +496,7 @@ namespace WPF_Project.Models
             get { return fuelType; }
             set
             {
+                // If fuel type isn't valid fuel type, throw error
                 if (!(value.ToString() == "Gasoline" || value.ToString() == "Electric"))
                     throw new ArgumentException("FuelType has to be either 'Gasoline' or 'Electric'", "FuelType");
                 fuelType = value;
@@ -503,6 +510,7 @@ namespace WPF_Project.Models
             get { return bodyType; }
             set
             {
+                // If body type isn't valid body type, throw error
                 if (!(value == Convert.ToString(Body.Convertible) || value == Convert.ToString(Body.Coupe) || value == Convert.ToString(Models.Body.Limousine) 
                     || value == Convert.ToString(Models.Body.SUV) || value == Convert.ToString(Models.Body.Wagon)))
                     throw new ArgumentException("Body type does not exist", "BodyType");
@@ -517,6 +525,7 @@ namespace WPF_Project.Models
             get { return engineOption; }
             set
             {
+                // If engine option isn't valid engine option, throw error
                 if (!(value == Convert.ToString(Engine.FiftyFive) || value == Convert.ToString(Engine.Fourty) || value == Convert.ToString(Engine.FourtyFive)
                     || value == Convert.ToString(Engine.Electric) || (value == Convert.ToString(Engine.V10))))
                     throw new ArgumentException("Engine option does not exist", "EngineOption");
@@ -531,13 +540,16 @@ namespace WPF_Project.Models
             get { return modelQuantity; }
             set
             {
-                if (value < 0) // change to constant
+                if (value < NO_MODELS) 
                     throw new ArgumentException("Quantity cannot be negative", "ModelQuantity");
-                //if (value > Inventory.MaxInventorySpace || ModelQuantity + value > Inventory.MaxInventorySpace)
-                    //throw new ArgumentException($"Quantity cannot exceed {Inventory.MaxInventorySpace}", "ModelQuantity");
-                //if (value  > Inventory.MaxInventorySpace)
-                //    throw new ArgumentException($"Quantity in Inventory List cannot exceed {Inventory.MaxInventorySpace}.", "ModelQuantity");
                 modelQuantity = value;
+            }
+        }
+        public string ShoppingListCSVData
+        {
+            get
+            {
+                return string.Format($"{Name}, {QuantityFromName}, {Information}");
             }
         }
         /// <summary>
@@ -553,14 +565,9 @@ namespace WPF_Project.Models
             {
                 //string comma separated and set the fields of the visitor
                 string[] allData = value.Split(',');
+                
                 try
                 {
-                    /*Name = allData[0];
-                    Colour = allData[1];
-                    EngineOption = allData[2];
-                    BodyType = allData[3];
-                    ModelQuantity = Convert.ToInt32(allData[4]);*/
-
                     Regex a4 = new Regex("A4", RegexOptions.IgnoreCase);
                     Regex a6 = new Regex("A6", RegexOptions.IgnoreCase);
                     Regex Q3 = new Regex("Q3", RegexOptions.IgnoreCase);
@@ -577,7 +584,7 @@ namespace WPF_Project.Models
                     Regex Q8 = new Regex("Q8", RegexOptions.IgnoreCase);
                     Regex etronGT = new Regex("^e-tron GT$", RegexOptions.IgnoreCase);
 
-                    Model model = null;
+                    Model model = null; // dummy model
 
                     // Trimming all white space from fields
                     for (int i = 0; i < allData.Length; i++)
@@ -612,47 +619,7 @@ namespace WPF_Project.Models
                     else if (string.IsNullOrEmpty(allData[0]))
                         return;
 
-                    Inventory.AddItem(model, true);
-
-
-                    /*if (a6.IsMatch(allData[0]))
-                    {
-                        Model model = new Model();
-                    }*/
-
-                    /*Engine tryParseResult1;
-                    Body tryParseResult2;
-
-                    Name = allData[0];
-                    Colour = allData[1];
-                    if (Enum.TryParse<Engine>(allData[2], out tryParseResult1) && tryParseResult1 == Engine.FourtyFive)
-                    {
-                        Horsepower = 261;
-                        Torque = 273;
-                    }
-                    else if (Enum.TryParse<Engine>(allData[2], out tryParseResult1) && tryParseResult1 == Engine.FiftyFive)
-                    {
-                        Horsepower = 335;
-                        Torque = 369;
-                    }
-                    NumberOfSeats = 5;
-                    if (Enum.TryParse<Body>(allData[3], out tryParseResult2) && tryParseResult2 == Body.Limousine)
-                    {
-                        Height = 1457;
-                        Width = 1886;
-                        Length = 4939;
-                    }
-                    else if (Enum.TryParse<Body>(allData[3], out tryParseResult2) && tryParseResult2 == Body.Wagon)
-                    {
-                        Height = 1497;
-                        Width = 1902;
-                        Length = 4951;
-                    }
-                    FuelType = "Gasoline";
-                    BodyType = Convert.ToString(tryParseResult2);
-                    EngineOption = Convert.ToString(tryParseResult1);
-                    ModelQuantity = Convert.ToInt32(allData[4]);*/
-
+                    Inventory.AddItem(model, true); // adding to inventory list
                 }
                 catch (Exception ex)
                 {
@@ -684,34 +651,49 @@ namespace WPF_Project.Models
                 "Width:", "Length:", "FuelType:", "BodyType:", "EngineOption:", "ModelQuantity:");
             }
         }
+        /// <summary>
+        /// Showing information (how many models needed string) for Shopping list
+        /// </summary>
         public string Information
         {
             get { return information; }
             set { information = value;  }
         }
+        /// <summary>
+        /// Showing quantity (how much quantity for this model) for Shopping list
+        /// </summary>
         public int QuantityFromName
         {
             get { return quantityFromName; }
             set { quantityFromName = value; }
         }
+        /// <summary>
+        /// Checks if the minimum quantity for the model is met (2)
+        /// </summary>
+        /// <param name="model"> Model to be checked </param>
+        /// <returns> boolean </returns>
         public bool MinimumQuanitity(Model model)
         {
             int counter = GetMinimumQuantity(model);
 
-            if (counter >= 2) //constant
+            if (counter >= MIN_QUANTITY) 
                 return true;
             else
                 return false;
         }
+        /// <summary>
+        /// Getting the minimum quantity for the model
+        /// </summary>
+        /// <param name="model"> Model to be checked </param>
+        /// <returns> int </returns>
         public static int GetMinimumQuantity(Model model)
         {
             int counter = 0;
             for (int i = 0; i < Inventory.InventoryList.Count; i++)
             {
+                // If model is in list
                 if (Inventory.InventoryList[i].Name == model.Name)
-                {
                     counter++;
-                }
             }
             return counter;
         }

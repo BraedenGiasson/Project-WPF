@@ -170,7 +170,6 @@ namespace WPF_Project
                         model = new Model(cmbModelNames.Text, cmbColours.Text, (Engine)cmbEngine.SelectedItem, (Body)cmbBodyType4.SelectedItem, Convert.ToInt32(tbQuantity.Text));
 
                     Inventory.AddItem(model, false); // adding item
-                    //Inventory.QuantityTracker++; //adding a car to qunatityTracker when adding through addwindow
                     MainWindow.Saved = false; // state now false
                     MainWindow window = new MainWindow();
                 
@@ -269,7 +268,11 @@ namespace WPF_Project
             if (string.IsNullOrEmpty(tbQuantity.Text))
                 errorMessage.AppendLine("Model Quantity is a required field");
         }
-
+        /// <summary>
+        /// If user cancels when adding car
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             if (!changedData) // **** CHANGE TO !
