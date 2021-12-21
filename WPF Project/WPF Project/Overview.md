@@ -9,28 +9,28 @@
 
 ## Project Description
 
-Our plan is to create an inventory tracker for cars. 
+Our plan is to create an inventory tracker for an Audi dealership. 
 
 ## **Member Contributions**
 
 **Braeden Giasson**
 
-- I will work on the WPF UI for now.
+- I worked on the WPF, implementing functionalities for Clicks, and some backend code.
 
 **Justus Weidemann**
 
-- I will for on the backend for now (implementation of classes).
+- I worked on the backend code, implementing the classes, interfaces, and edited some WPF code.
 
 **Together**
 
 - Overview
 - UML diagram
+- A little bit of backend and frontend WPF
 
 ## **Classes** 
 
 - *Model* class (acts as Car)
   - Name (of model)
-  - Color
   - Horsepower
   - Torque
   - Number of seats
@@ -40,6 +40,8 @@ Our plan is to create an inventory tracker for cars.
   - FuelType
   - Body (enum) 
   - Engine (enum)
+  - Color (enum)
+  - See UML diagram for further details
 
 
 - *Inventory* class
@@ -49,40 +51,46 @@ Our plan is to create an inventory tracker for cars.
   - Remove item()
   - Update item()
   - Shopping List()
-  - General Report()
   - Load items()
   - Save items()
+  - See UML diagram for further details
 
 
 ## Interface
 
-- int AvailableQuantity();
-- int MinimimQuantity();
-- bool CheckQuantity();
+- bool MinimimQuantity(Model model);
 
 ## Development Approach 
 
 1. **Understanding the problem.** 
 
-   We want to build an inventory tracker for a car dealership. 
+   We want to build an inventory tracker for an Audi dealership. We except to be able to have functionality
+
+   to add models to the inventory. We also except to be able to load models from a file.
 
 2. **Formulating the problem.** 
 
-   Input: The car the dealership wants to add to its inventory
+   Input: Loading models from a file, and adding cars via the add button.
 
-   Output: A list of cars available at the dealership
+   Output: A list of Audi models currently in the inventory, displayed in a table format.
 
 3. **Developing the application .** 
 
-   See UML diagram for further details on the application.
+   See UML diagram for further developing details on the application.
 
 4. **Implementing the application.** 
 
    We will be using WPF and C# to implement our application.
 
+   WPF makes perfect to implement our application, since the UI is very powerful, and has great functionality for building small apps.
+
 5. **Testing.** 
 
-   (will add later)
+   We tested with data from loading from a file. We changed quantity fields, we inputted wrong values, we tried saving continuously, 
+   
+   we deleted rows, we tried clicking buttons when we couldn't. 
+   
+   All these tests that we performed, passed!
 
 ## Future Work
 We want to be able to have a list to be able to create your own car (customize).

@@ -48,6 +48,9 @@ namespace WPF_Project.Models
                 // If value is greater than max size for inventory, throw error
                 if (value > maxInventory)
                     throw new ArgumentException($"Quantity in Inventory List cannot exceed {maxInventory}.", "QuantityTracker");
+                // If value is negative, throw error
+                if (value < NO_MODELS)
+                    throw new ArgumentException($"Quantity cannot be lower than {NO_MODELS}", "QuantityTracker");
 
                 quantityTracker = value;
             }
@@ -112,6 +115,12 @@ namespace WPF_Project.Models
         {
             get { return counterNeedMoreOf; }
         }
+        /// <summary>
+        /// Showing successful message
+        /// </summary>
+        /// <param name="model">Model</param>
+        /// <param name="isFromLoadingCars">Is this being called from loading cars?</param>
+        /// <param name="message">Message to be shown</param>
         private static void AddCarShowSuccessful(Model model, bool isFromLoadingCars, string message)
         {
             inventoryList.Add(model); // adding to list
@@ -119,26 +128,6 @@ namespace WPF_Project.Models
             if (!isFromLoadingCars)
                 ShowStatusMessage(message);
         }
-        /// <summary>
-        /// Checking if both models are the EXACT same (for every input field)
-        /// </summary>
-        /// <param name="model"> 1st model </param>
-        /// <param name="secondModel"> 2nd model </param>
-        /// <returns></returns>
-        public static bool IsEqualTo(Model model, Model secondModel)
-        {
-            bool answer;
-            if (model.Name == secondModel.Name && model.Colour == secondModel.Colour 
-                && model.EngineOption == secondModel.EngineOption && model.BodyType == secondModel.BodyType)
-            {
-                answer = true;
-            }
-            else
-                answer = false;
-
-            return answer;
-        }
-
         /// <summary>
         /// Creating the shopping list (models that don't have AT LEAST 2 different types)
         /// </summary>

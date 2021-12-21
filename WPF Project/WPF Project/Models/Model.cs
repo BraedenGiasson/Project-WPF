@@ -545,6 +545,9 @@ namespace WPF_Project.Models
                 modelQuantity = value;
             }
         }
+        /// <summary>
+        /// CSV data for shopping list
+        /// </summary>
         public string ShoppingListCSVData
         {
             get
@@ -736,5 +739,4 @@ namespace WPF_Project.Models
         Grey,
         Yellow
     }
-
 }

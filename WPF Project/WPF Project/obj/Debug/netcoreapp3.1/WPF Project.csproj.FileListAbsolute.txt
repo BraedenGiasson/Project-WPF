@@ -34,6 +34,7 @@ C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.runtimeconfig.dev.json
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.dll
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\bin\Debug\netcoreapp3.1\WPF Project.pdb
+C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.csproj.AssemblyReference.cache
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\AddingWindow.g.cs
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\ShoppingListWindow.g.cs
@@ -51,4 +52,3 @@ C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.dll
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.pdb
 C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.genruntimeconfig.cache
-C:\Users\2043670\OneDrive - John Abbott College\Desktop\JAC - Semesters\Semester 3\Programming 3\Project-WPF\WPF Project\WPF Project\obj\Debug\netcoreapp3.1\WPF Project.csproj.AssemblyReference.cache

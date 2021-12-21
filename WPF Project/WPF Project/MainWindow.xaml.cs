@@ -327,6 +327,7 @@ namespace WPF_Project
                         if (bindingPath == "ModelQuantity")
                         {
                             bool isOverQuantityLimit = false;
+                            bool negativeValue = false;
                             int rowIndex = e.Row.GetIndex(); // getting the row from the grid
                             var el = e.EditingElement as TextBox; // getting the text from the textblock (casting as TextBlock)
 
@@ -337,10 +338,24 @@ namespace WPF_Project
                             {
                                 MessageBox.Show($"Quantity in Inventory List cannot exceed {Inventory.MaxInventorySpace}.", "ModelQuantity");
                                 isOverQuantityLimit = true;
-                                el.Text = Inventory.InventoryList[rowIndex].ModelQuantity.ToString();
+                                el.Text = Inventory.InventoryList[rowIndex].ModelQuantity.ToString(); // re-setting text
                             }
+                            // Checking for negative value inputed
+                            if (Convert.ToInt32(el.Text.ToString()) < NO_MODELS)
+                            {
+                                MessageBox.Show("Quantity cannot be negative", "ModelQuantity");
+                                negativeValue = true;
+                                el.Text = Inventory.InventoryList[rowIndex].ModelQuantity.ToString(); // re-setting text
+                            }
+                            // If they set quantity to 0, remove item from list
+                            //if (Convert.ToInt32(el.Text.ToString()) == NO_MODELS)
+                            //{
+                            //    Inventory.InventoryList.RemoveAt(rowIndex); // removing model from list
+                            //    dgModels.Items.Refresh(); // refreshing items
+                            //}
+
                             // If not over quantity limit, change value
-                            if (!isOverQuantityLimit)
+                            if (!isOverQuantityLimit || !negativeValue )
                                 Inventory.InventoryList[rowIndex].ModelQuantity = Convert.ToInt32(el.Text.ToString());
 
                             Inventory.QuantityTracker += Inventory.InventoryList[rowIndex].ModelQuantity; // adding value from quantity tracker
